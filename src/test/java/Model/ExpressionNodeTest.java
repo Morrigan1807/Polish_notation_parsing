@@ -1,0 +1,32 @@
+package Model;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ExpressionNodeTest {
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/testData_Calculate_ExpressionNode.csv")
+    public void testCalculate(String operator, double leftOperand, double rightOperand, double expected) {
+        ExpressionNode expressionNode = new ExpressionNode();
+        assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
+        expressionNode.setLeftOperand(new ExpressionLeaf(leftOperand));
+        expressionNode.setRightOperand(new ExpressionLeaf(rightOperand));
+
+        assertEquals(expected, expressionNode.calculate(), 0.01);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/testData_toPolishNotation_ExpressionNode.csv")
+    public void testToPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
+        ExpressionNode expressionNode = new ExpressionNode();
+        assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
+        expressionNode.setLeftOperand(new ExpressionLeaf(leftOperand));
+        expressionNode.setRightOperand(new ExpressionLeaf(rightOperand));
+
+        assertEquals(expected, expressionNode.toPolishNotation());
+    }
+}
