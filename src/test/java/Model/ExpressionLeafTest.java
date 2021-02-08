@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExpressionLeafTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/testData_Calculate_ExpressionLeaf.csv")
+    @CsvFileSource(resources = "/Test/TestExpressionLeaf/testData_Calculate_ExpressionLeaf.csv")
     public void testCalculate(double input, double expected) {
         ExpressionLeaf expressionLeaf = new ExpressionLeaf(input);
 
@@ -16,7 +16,7 @@ public class ExpressionLeafTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/testData_toPolishNotation_ExpressionLeaf.csv")
+    @CsvFileSource(resources = "/Test/TestExpressionLeaf/testData_toPolishNotation_ExpressionLeaf.csv")
     public void testToPolishNotation(double input, String expected) {
         ExpressionLeaf expressionLeaf = new ExpressionLeaf(input);
 

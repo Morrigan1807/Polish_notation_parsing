@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExpressionNodeTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/testData_Calculate_ExpressionNode.csv")
+    @CsvFileSource(resources = "/Test/TestExpressionNode/testData_Calculate_ExpressionNode.csv")
     public void testCalculate(String operator, double leftOperand, double rightOperand, double expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
@@ -20,7 +20,7 @@ public class ExpressionNodeTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/testData_toPolishNotation_ExpressionNode.csv")
+    @CsvFileSource(resources = "/Test/TestExpressionNode/testData_toPolishNotation_ExpressionNode.csv")
     public void testToPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
