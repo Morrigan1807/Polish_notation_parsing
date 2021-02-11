@@ -1,7 +1,4 @@
-import Model.ExpressionLeaf;
-import Model.ExpressionNode;
-import Model.ExpressionTree;
-import Model.OperatorModel;
+import Model.*;
 
 public class ExpressionParser {
     private final ExpressionTree expressionTree;
@@ -30,14 +27,24 @@ public class ExpressionParser {
             throw new IllegalArgumentException("Incorrect parentheses placement.");
         }
 
+        if(inputExpression.matches(".*([+\\-*/][+\\-*/]|[+\\-*/]\\)|\\([*/]|[^0-9][.,]|[.,][^0-9]|\\(\\)).*|.*[+\\-*/.,]|[*/.,].*") ||
+                inputExpression.matches("[^+\\-*/0-9.,()]"))
+        {
+            throw new IllegalArgumentException("Illegal input.");
+        }
+
         return new ExpressionParser(parseStringToExpressionTree(inputExpression));
     }
 
     private static ExpressionTree parseStringToExpressionTree(String expression)
     {
-        if(expression.matches("^[-+]?[0-9]+([.,]?[0-9]+)?$"))
+        if(expression.matches("^[-+]?[0-9]+[.,][0-9]+$"))
         {
-            return new ExpressionLeaf(Double.parseDouble(expression));
+            return new ExpressionLeafDouble(Double.parseDouble(expression));
+        }
+        else if(expression.matches("^[-+]?[0-9]+$"))
+        {
+            return new ExpressionLeafInteger(Integer.parseInt(expression));
         }
         else
         {
@@ -75,7 +82,7 @@ public class ExpressionParser {
                     break;
                 case '+':
                 case '-':
-                    if(count == 0)
+                    if(count == 0 && i != 0)
                     {
                         return i;
                     }
@@ -95,6 +102,25 @@ public class ExpressionParser {
                     count--;
                     break;
                 case '*':
+                    if(count == 0)
+                    {
+                        return i;
+                    }
+                    break;
+            }
+            i++;
+        }
+
+        i = 0;
+        count = 0;
+        for (char ch:expression.toCharArray()) {
+            switch (ch) {
+                case '(':
+                    count++;
+                    break;
+                case ')':
+                    count--;
+                    break;
                 case '/':
                     if(count == 0)
                     {

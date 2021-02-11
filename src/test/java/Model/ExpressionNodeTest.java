@@ -13,8 +13,8 @@ public class ExpressionNodeTest {
     public void testCalculate(String operator, double leftOperand, double rightOperand, double expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
-        expressionNode.setLeftOperand(new ExpressionLeaf(leftOperand));
-        expressionNode.setRightOperand(new ExpressionLeaf(rightOperand));
+        expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));
+        expressionNode.setRightOperand(new ExpressionLeafDouble(rightOperand));
 
         assertEquals(expected, expressionNode.calculate(), 0.01);
     }
@@ -24,9 +24,11 @@ public class ExpressionNodeTest {
     public void testToPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
-        expressionNode.setLeftOperand(new ExpressionLeaf(leftOperand));
-        expressionNode.setRightOperand(new ExpressionLeaf(rightOperand));
+        expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));
+        expressionNode.setRightOperand(new ExpressionLeafDouble(rightOperand));
 
         assertEquals(expected, expressionNode.toPolishNotation());
     }
+
+
 }

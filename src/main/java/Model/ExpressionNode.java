@@ -36,6 +36,6 @@ public class ExpressionNode implements ExpressionTree{
 
     public String toPolishNotation()
     {
-        return rootOperator.getOperatorAsChar() + " " + leftOperand.toPolishNotation() + " " + rightOperand.toPolishNotation();
+        return leftOperand.toPolishNotation() + " " + rightOperand.toPolishNotation() + " " + rootOperator.getOperatorAsChar();
     }
 }
