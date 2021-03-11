@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ExpressionParserTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/ExpressionParser/testData_toPolishNotation_ExpressionParser.csv")
+    @CsvFileSource(resources = "Test/ExpressionParser/testData_toPolishNotation_ExpressionParser.csv")
     public void testToPolishNotation(String input, String expected) {
         ExpressionParser expressionParser = ExpressionParser.parseExpression(input);
 
