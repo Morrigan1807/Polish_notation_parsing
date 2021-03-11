@@ -5,8 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.niagara.projects</groupId>
-    <artifactId>polish-notation-parsing</artifactId>
+    <artifactId>multi-module</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>StringTask</module>
+        <module>Polish_notation_parsing</module>
+        <module>ArrayTask</module>
+    </modules>
 
     <build>
         <plugins>
@@ -97,6 +104,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <sonar.host.url> http://localhost:9000 </sonar.host.url>
     </properties>
 
 </project>
