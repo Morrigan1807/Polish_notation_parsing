@@ -2,9 +2,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class StringTask {
-    //Дана строка (строка может содержать только символы латиницы и числа).
-    //Определить все ли символы в строке встречаются только один раз.
-
     public boolean hasNoDuplicatesInString(String str)
     {
         checkStringIsNull(str);

@@ -5,25 +5,30 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringTaskTest {
+    private final String resourceFileForTestHasNoDuplicatesInStringReturnTrueCase =
+            "Test/testData_hasNoDuplicatesInStringReturnTrue_StringTask.csv";
+    private final String resourceFileForTestHasNoDuplicatesInStringReturnFalseCase =
+            "Test/testData_hasNoDuplicatesInStringReturnFalse_StringTask.csv";
+
     @ParameterizedTest
-    @CsvFileSource(resources = "Test/testData_hasNoDuplicatesInStringReturnTrue_StringTask.csv")
-    public void test_HasNoDuplicatesInString_ReturnTrueCase(String input) {
+    @CsvFileSource(resources = resourceFileForTestHasNoDuplicatesInStringReturnTrueCase)
+    public void testHasNoDuplicatesInStringReturnTrueCase(String input) {
         assertTrue(new StringTask().hasNoDuplicatesInString(input));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "Test/testData_hasNoDuplicatesInStringReturnFalse_StringTask.csv")
-    public void test_HasNoDuplicatesInString_ReturnFalseCase(String input) {
+    @CsvFileSource(resources = resourceFileForTestHasNoDuplicatesInStringReturnFalseCase)
+    public void testHasNoDuplicatesInStringReturnFalseCase(String input) {
         assertFalse(new StringTask().hasNoDuplicatesInString(input));
     }
 
     @Test
-    public void test_HasNoDuplicatesInString_NullCase() {
+    public void testHasNoDuplicatesInStringNullCase() {
         assertThrows(NullPointerException.class, () -> new StringTask().hasNoDuplicatesInString(null));
     }
 
     @Test
-    public void test_HasNoDuplicatesInString_EmptyStringCase() {
+    public void testHasNoDuplicatesInStringEmptyStringCase() {
         assertThrows(NullPointerException.class, () -> new StringTask().hasNoDuplicatesInString(""));
     }
 }
