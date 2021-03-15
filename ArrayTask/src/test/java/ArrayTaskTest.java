@@ -1,6 +1,5 @@
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayTaskTest {
@@ -14,16 +13,14 @@ class ArrayTaskTest {
             "Test/testData_testMaxMultiplicationOfThree_ArrayTask_IncorrectCase.csv";
 
 
-    private int[] getArrayFromString(String stringFromCsv)
-    {
+    private int[] getArrayFromString(String stringFromCsv) {
         return parseIntArray(stringFromCsv.split("; "));
     }
 
-    private int[] parseIntArray(String[] stringArray){
+    private int[] parseIntArray(String[] stringArray) {
         int[] result = new int[stringArray.length];
 
-        for(int i = 0; i < stringArray.length; i++)
-        {
+        for (int i = 0; i < stringArray.length; i++) {
             result[i] = Integer.parseInt(stringArray[i]);
         }
 
@@ -59,6 +56,6 @@ class ArrayTaskTest {
     public void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
         int[] input = getArrayFromString(inputStr);
 
-        assertThrows(NegativeArraySizeException.class, ()->new ArrayTask().maxMultiplicationInArray(input));
+        assertThrows(NegativeArraySizeException.class, () -> new ArrayTask().maxMultiplicationInArray(input));
     }
 }
