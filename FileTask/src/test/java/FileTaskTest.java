@@ -36,7 +36,7 @@ class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase)
     public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult){
-        assertThrows(NumberFormatException.class,
+        assertThrows(ArrayIndexOutOfBoundsException.class,
                 ()-> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
     }
 }
