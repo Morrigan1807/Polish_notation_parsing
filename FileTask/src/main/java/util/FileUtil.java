@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import static util.Constant.*;
+
 @UtilityClass
 public class FileUtil {
 
@@ -23,21 +25,21 @@ public class FileUtil {
         matrixInfoAsString.append(getPreparedStringWithSizesNewMatrix(newMatrix));
         for (List<Integer> row : newMatrix) {
             for (Integer element : row) {
-                matrixInfoAsString.append(element).append(" ");
+                matrixInfoAsString.append(element).append(SPACE);
             }
             matrixInfoAsString.deleteCharAt(matrixInfoAsString.length() - 1);
-            matrixInfoAsString.append("\n");
+            matrixInfoAsString.append(LINE_FEED_CHARACTER);
         }
         matrixInfoAsString.deleteCharAt(matrixInfoAsString.length() - 1);
         return matrixInfoAsString;
     }
 
     private String getPreparedStringWithSizesNewMatrix(List<List<Integer>> newMatrix) {
-        return newMatrix.size() + (" ") + newMatrix.get(0).size() + "\n";
+        return newMatrix.size() + (SPACE) + newMatrix.get(0).size() + LINE_FEED_CHARACTER;
     }
 
     public String checkAndFixFileNameWithExtension(String fileName) {
-        return fileName.endsWith(".txt") ? fileName : fileName + ".txt";
+        return fileName.endsWith(TXT_EXTENSION) ? fileName : fileName + TXT_EXTENSION;
     }
 
     public StringBuilder getAllStringsFromFile(String fileName) throws IOException {

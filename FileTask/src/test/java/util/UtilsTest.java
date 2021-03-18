@@ -1,10 +1,12 @@
 package util;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UtilsTest {
 
@@ -41,22 +43,19 @@ class UtilsTest {
 
     @Test
     void testCreateMatrixWithInfoFromString() {
-        String firstMatrixInfo = "3 3\n2 0 2\n3 3 0\n0 1 1";
 
         List<List<Integer>> firstExpectedMatrix = new ArrayList<>();
         firstExpectedMatrix.add(Arrays.asList(2, 0, 2));
         firstExpectedMatrix.add(Arrays.asList(3, 3, 0));
         firstExpectedMatrix.add(Arrays.asList(0, 1, 1));
 
-        assertEquals(firstExpectedMatrix, Utils.createMatrixWithInfoFromString(firstMatrixInfo));
-
-        String secondMatrixInfo = "3 3\n-2 0 -2\n-3 -3 0\n0 -1 -1";
+        assertEquals(firstExpectedMatrix, Utils.createMatrixWithInfoFromString(Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO));
 
         List<List<Integer>> secondExpectedMatrix = new ArrayList<>();
         secondExpectedMatrix.add(Arrays.asList(-2, 0, -2));
         secondExpectedMatrix.add(Arrays.asList(-3, -3, 0));
         secondExpectedMatrix.add(Arrays.asList(0, -1, -1));
 
-        assertEquals(secondExpectedMatrix, Utils.createMatrixWithInfoFromString(secondMatrixInfo));
+        assertEquals(secondExpectedMatrix, Utils.createMatrixWithInfoFromString(Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO));
     }
 }

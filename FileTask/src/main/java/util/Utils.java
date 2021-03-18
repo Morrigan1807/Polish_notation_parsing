@@ -5,8 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.Constant.MESSAGE_FOR_ARRAY_INDEX_OUT_OF_BOUNDS_EXCEPTION;
-import static util.Constant.MESSAGE_FOR_ARRAY_STORE_EXCEPTION;
+import static util.Constant.*;
 
 
 @UtilityClass
@@ -20,7 +19,7 @@ public class Utils {
     }
 
     public List<List<Integer>> createMatrixWithInfoFromString(String matrixInfo) {
-        String[] arrayOfLinesInStringMatrixInfo = matrixInfo.split("\r\n|\n");
+        String[] arrayOfLinesInStringMatrixInfo = matrixInfo.split(REGEX_CARRIAGE_RETURN_CHARACTER_AND_LINE_FEED_CHARACTER_OR_LINE_FEED_CHARACTER_ONLY);
 
         int[] sizes = readSizesOfMatrixFromString(arrayOfLinesInStringMatrixInfo[0]);
 
@@ -51,7 +50,7 @@ public class Utils {
 
         List<List<Integer>> createdMatrixFromString = new ArrayList<>();
         for (int i = 0; i < rowSize; i++) {
-            String[] arrayOfLinesWithCurrentRowInMatrixAsString = arrayOfLinesInStringMatrixInfo[i + 1].split(" ");
+            String[] arrayOfLinesWithCurrentRowInMatrixAsString = arrayOfLinesInStringMatrixInfo[i + 1].split(Constant.SPACE);
             createdMatrixFromString.add(new ArrayList<>());
 
             parseStringArrayInToIntegerArray(i, arrayOfLinesWithCurrentRowInMatrixAsString, columnSize, createdMatrixFromString);
@@ -74,7 +73,7 @@ public class Utils {
     }
 
     private int[] readSizesOfMatrixFromString(String stringWithSizes) {
-        String[] arrayOfLinesWithMatrixSizeInfo = stringWithSizes.split(" ");
+        String[] arrayOfLinesWithMatrixSizeInfo = stringWithSizes.split(Constant.SPACE);
 
         return new int[]{Integer.parseInt(arrayOfLinesWithMatrixSizeInfo[0]), Integer.parseInt(arrayOfLinesWithMatrixSizeInfo[1])};
     }
