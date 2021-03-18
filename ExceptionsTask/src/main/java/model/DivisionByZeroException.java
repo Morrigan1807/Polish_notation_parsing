@@ -1,17 +1,14 @@
 package model;
 
-public class DivisionByZeroException extends Exception
-{
+public class DivisionByZeroException extends Exception {
     private final int number;
 
-    public DivisionByZeroException()
-    {
+    public DivisionByZeroException() {
         super("Division by zero.");
         number = 0;
     }
 
-    public DivisionByZeroException(String message, int num)
-    {
+    public DivisionByZeroException(String message, int num) {
         super(message);
         number = num;
     }

@@ -14,7 +14,7 @@
         <module>Polish_notation_parsing</module>
         <module>ArrayTask</module>
         <module>FileTask</module>
-        <module>exceptions_task</module>
+        <module>ExceptionsTask</module>
     </modules>
 
     <build>

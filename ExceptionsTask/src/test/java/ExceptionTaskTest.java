@@ -15,7 +15,7 @@ class ExceptionTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase)
     public void testCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase(double dividend, double divider) {
-        assertThrows(DivisionByZeroException.class, ()-> ExceptionTask.calculateDivision(dividend, divider));
+        assertThrows(DivisionByZeroException.class, () -> ExceptionTask.calculateDivision(dividend, divider));
     }
 
     @ParameterizedTest
