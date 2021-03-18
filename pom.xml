@@ -15,6 +15,7 @@
         <module>ArrayTask</module>
         <module>FileTask</module>
         <module>ExceptionsTask</module>
+        <module>CollectionsTask</module>
     </modules>
 
     <build>
