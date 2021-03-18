@@ -6,19 +6,27 @@ public class CollectionsTask {
 
         if (binaryTree.getLeftBranch() != null && binaryTree.getRightBranch() != null)
         {
-            return getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getLeftBranch()) +
-                    getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getRightBranch()) + 1;
+            return getNumberOfNodesWithTwoBranchesInLeftBranch(binaryTree) +
+                    getNumberOfNodesWithTwoBranchesInRightBranch(binaryTree) + 1;
         }
         else if(binaryTree.getLeftBranch() != null)
         {
-            return getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getLeftBranch());
+            return getNumberOfNodesWithTwoBranchesInLeftBranch(binaryTree);
         }
         else if (binaryTree.getRightBranch() != null)
         {
-            return getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getRightBranch());
+            return getNumberOfNodesWithTwoBranchesInRightBranch(binaryTree);
         }
 
         return 0;
+    }
+
+    private int getNumberOfNodesWithTwoBranchesInRightBranch(BinaryTree binaryTree) {
+        return getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getRightBranch());
+    }
+
+    private int getNumberOfNodesWithTwoBranchesInLeftBranch(BinaryTree binaryTree) {
+        return getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree.getLeftBranch());
     }
 
     private void checkNullParameter(BinaryTree binaryTree) {
