@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CollectionsTaskTest {
-    private static Stream<Arguments> dataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase() {
+    private static Stream<Arguments> getDataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase() {
         BinaryTree firstBinaryTree = new BinaryTree();
         firstBinaryTree.setLeftBranch(new BinaryTree());
         firstBinaryTree.setRightBranch(new BinaryTree());
@@ -48,7 +48,7 @@ class CollectionsTaskTest {
                 Arguments.arguments(fourthBinaryTree, fourthExpectedResult));
     }
 
-    private static Stream<Arguments> dataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeZeroResultCase() {
+    private static Stream<Arguments> getDataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeZeroResultCase() {
         BinaryTree firstBinaryTree = new BinaryTree();
         firstBinaryTree.setRightBranch(new BinaryTree());
         firstBinaryTree.getRightBranch().setLeftBranch(new BinaryTree());
@@ -75,13 +75,13 @@ class CollectionsTaskTest {
     }
 
     @ParameterizedTest
-    @MethodSource("dataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase")
+    @MethodSource("getDataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase")
     void testGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase(BinaryTree binaryTree, Integer expected) {
         assertEquals(expected, new CollectionsTask().getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree));
     }
 
     @ParameterizedTest
-    @MethodSource("dataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeZeroResultCase")
+    @MethodSource("getDataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeZeroResultCase")
     void testGetNumberOfNodesWithTwoBranchesInBinaryTreeZeroResultCase(BinaryTree binaryTree, Integer expected) {
         assertEquals(expected, new CollectionsTask().getNumberOfNodesWithTwoBranchesInBinaryTree(binaryTree));
     }
@@ -90,6 +90,4 @@ class CollectionsTaskTest {
     void testGetNumberOfNodesWithTwoBranchesInBinaryTreeNullParameterCase() {
         assertThrows(NullPointerException.class, () -> new CollectionsTask().getNumberOfNodesWithTwoBranchesInBinaryTree(null));
     }
-
-
 }

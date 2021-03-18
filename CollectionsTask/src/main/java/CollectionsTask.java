@@ -1,20 +1,14 @@
 public class CollectionsTask {
 
-    public int getNumberOfNodesWithTwoBranchesInBinaryTree(BinaryTree binaryTree)
-    {
+    public int getNumberOfNodesWithTwoBranchesInBinaryTree(BinaryTree binaryTree) {
         checkNullParameter(binaryTree);
 
-        if (binaryTree.getLeftBranch() != null && binaryTree.getRightBranch() != null)
-        {
+        if (binaryTree.getLeftBranch() != null && binaryTree.getRightBranch() != null) {
             return getNumberOfNodesWithTwoBranchesInLeftBranch(binaryTree) +
                     getNumberOfNodesWithTwoBranchesInRightBranch(binaryTree) + 1;
-        }
-        else if(binaryTree.getLeftBranch() != null)
-        {
+        } else if (binaryTree.getLeftBranch() != null) {
             return getNumberOfNodesWithTwoBranchesInLeftBranch(binaryTree);
-        }
-        else if (binaryTree.getRightBranch() != null)
-        {
+        } else if (binaryTree.getRightBranch() != null) {
             return getNumberOfNodesWithTwoBranchesInRightBranch(binaryTree);
         }
 
@@ -30,8 +24,7 @@ public class CollectionsTask {
     }
 
     private void checkNullParameter(BinaryTree binaryTree) {
-        if (binaryTree == null)
-        {
+        if (binaryTree == null) {
             throw new NullPointerException("Null input.");
         }
     }
