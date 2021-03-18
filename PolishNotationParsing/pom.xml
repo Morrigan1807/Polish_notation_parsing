@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Polish_notation_parsing</artifactId>
+    <artifactId>PolishNotationParsing</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -99,7 +99,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <sonar.host.url> http://localhost:9000 </sonar.host.url>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
     </properties>
 
 </project>

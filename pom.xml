@@ -11,7 +11,7 @@
 
     <modules>
         <module>StringTask</module>
-        <module>Polish_notation_parsing</module>
+        <module>PolishNotationParsing</module>
         <module>ArrayTask</module>
     </modules>
 
