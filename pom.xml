@@ -13,7 +13,8 @@
         <module>StringTask</module>
         <module>Polish_notation_parsing</module>
         <module>ArrayTask</module>
-        <module>CollectionsTask</module>
+        <module>FileTask</module>
+        <module>ExceptionsTask</module>
     </modules>
 
     <build>
