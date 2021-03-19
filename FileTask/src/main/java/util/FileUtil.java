@@ -13,11 +13,13 @@ import static util.Constant.*;
 public class FileUtil {
 
     public void rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) throws IOException {
-        FileWriter writer = new FileWriter(fileName, false);
+        try (FileWriter writer = new FileWriter(fileName, false)) {
+            writer.write(getPreparedStringWithNewMatrixInfo(newMatrix).toString());
 
-        writer.write(getPreparedStringWithNewMatrixInfo(newMatrix).toString());
-
-        writer.flush();
+            writer.flush();
+        } catch (IOException ignored) {
+            throw new IOException();
+        }
     }
 
     private StringBuilder getPreparedStringWithNewMatrixInfo(List<List<Integer>> newMatrix) {
@@ -43,15 +45,19 @@ public class FileUtil {
     }
 
     public StringBuilder getAllStringsFromFile(String fileName) throws IOException {
-        FileReader reader = new FileReader(fileName);
-        StringBuilder informationFromTextFile = new StringBuilder();
+        try (FileReader reader = new FileReader(fileName)) {
+            StringBuilder informationFromTextFile = new StringBuilder();
 
-        int tempChar;
+            int tempChar;
 
-        while ((tempChar = reader.read()) != -1) {
-            informationFromTextFile.append((char) tempChar);
+            while ((tempChar = reader.read()) != -1) {
+                informationFromTextFile.append((char) tempChar);
+            }
+
+            return informationFromTextFile;
+
+        } catch (IOException ignored) {
+            throw new IOException();
         }
-
-        return informationFromTextFile;
     }
 }
