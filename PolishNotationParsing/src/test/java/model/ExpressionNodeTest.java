@@ -10,7 +10,7 @@ public class ExpressionNodeTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/TestExpressionNode/testData_Calculate_ExpressionNode.csv")
-    public void testCalculate(String operator, double leftOperand, double rightOperand, double expected) {
+    void testCalculate(String operator, double leftOperand, double rightOperand, double expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
         expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));
@@ -21,7 +21,7 @@ public class ExpressionNodeTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/TestExpressionNode/testData_toPolishNotation_ExpressionNode.csv")
-    public void testToPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
+    void testToPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         assertDoesNotThrow(() -> expressionNode.setRootOperator(OperatorModel.fromString(operator)));
         expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));

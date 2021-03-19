@@ -3,17 +3,15 @@ package model;
 import lombok.Data;
 
 @Data
-public class ExpressionNode implements ExpressionTree{
+public class ExpressionNode implements ExpressionTree {
     private ExpressionTree leftOperand;
     private ExpressionTree rightOperand;
     private OperatorModel rootOperator;
 
-    public double calculate()
-    {
+    public double calculate() {
         double res = 0;
 
-        switch (rootOperator)
-        {
+        switch (rootOperator) {
             case ADDITION:
                 res = leftOperand.calculate() + rightOperand.calculate();
                 break;
@@ -34,8 +32,7 @@ public class ExpressionNode implements ExpressionTree{
         return res;
     }
 
-    public String toPolishNotation()
-    {
+    public String toPolishNotation() {
         return leftOperand.toPolishNotation() + " " + rightOperand.toPolishNotation() + " " + rootOperator.getOperatorAsChar();
     }
 }

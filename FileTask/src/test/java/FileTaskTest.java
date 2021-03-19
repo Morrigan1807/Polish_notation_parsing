@@ -13,13 +13,13 @@ import static util.Constant.*;
 class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
         assertThrows(NumberFormatException.class, () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_CORRECT_INPUT_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
             (String fileNameWithActualResult, String fileNameWithExpectedResult) throws IOException {
 
         new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult);
@@ -31,7 +31,7 @@ class FileTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_INCORRECT_SIZE_INPUT_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
         assertThrows(ArrayIndexOutOfBoundsException.class,
                 () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
     }

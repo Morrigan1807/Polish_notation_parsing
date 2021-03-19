@@ -13,10 +13,8 @@ public enum OperatorModel {
 
     private final String operatorAsChar;
 
-    public static OperatorModel fromString(String string)
-    {
-        switch (string)
-        {
+    public static OperatorModel fromString(String string) {
+        switch (string) {
             case "+":
                 return OperatorModel.ADDITION;
             case "-":
