@@ -16,6 +16,7 @@
         <module>FileTask</module>
         <module>ExceptionsTask</module>
         <module>CollectionsTask</module>
+        <module>PatternsTask</module>
     </modules>
 
     <build>

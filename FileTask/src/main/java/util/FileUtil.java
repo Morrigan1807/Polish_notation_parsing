@@ -45,19 +45,16 @@ public class FileUtil {
     }
 
     public StringBuilder getAllStringsFromFile(String fileName) throws IOException {
-        try (FileReader reader = new FileReader(fileName)) {
-            StringBuilder informationFromTextFile = new StringBuilder();
+        FileReader reader = new FileReader(fileName);
+        StringBuilder informationFromTextFile = new StringBuilder();
 
-            int tempChar;
+        int tempChar;
 
-            while ((tempChar = reader.read()) != -1) {
-                informationFromTextFile.append((char) tempChar);
-            }
-
-            return informationFromTextFile;
-
-        } catch (IOException ignored) {
-            throw new IOException();
+        while ((tempChar = reader.read()) != -1) {
+            informationFromTextFile.append((char) tempChar);
         }
+
+        reader.close();
+        return informationFromTextFile;
     }
 }
