@@ -12,13 +12,13 @@ import static util.Constant.*;
 @UtilityClass
 public class FileUtil {
 
-    public void rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) throws IOException {
+    public void rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) {
         try (FileWriter writer = new FileWriter(fileName, false)) {
             writer.write(getPreparedStringWithNewMatrixInfo(newMatrix).toString());
 
             writer.flush();
-        } catch (IOException ignored) {
-            throw new IOException();
+        } catch (IOException ioException) {
+            return;
         }
     }
 
@@ -44,7 +44,7 @@ public class FileUtil {
         return fileName.endsWith(TXT_EXTENSION) ? fileName : fileName + TXT_EXTENSION;
     }
 
-    public StringBuilder getAllStringsFromFile(String fileName) throws IOException {
+    public StringBuilder getAllStringsFromFile(String fileName) {
         try (FileReader reader = new FileReader(fileName)) {
             StringBuilder informationFromTextFile = new StringBuilder();
 
@@ -57,7 +57,7 @@ public class FileUtil {
             return informationFromTextFile;
 
         } catch (IOException ignored) {
-            throw new IOException();
+            return new StringBuilder();
         }
     }
 }

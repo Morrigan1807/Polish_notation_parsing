@@ -1,4 +1,4 @@
-import Model.*;
+import model.*;
 
 public class ExpressionParser {
     private final ExpressionTree expressionTree;

@@ -33,7 +33,7 @@ class ExceptionTaskTest {
     }
 
     @Test
-    public void testGenerateIOException() throws IOException {
+    public void testGenerateIOException() {
         assertThrows(IOException.class, () -> new ExceptionTask().generateIOException());
     }
 
@@ -43,7 +43,7 @@ class ExceptionTaskTest {
     }
 
     @Test
-    public void testGenerateDivisionByZeroException() throws DivisionByZeroException {
+    public void testGenerateDivisionByZeroException() {
         assertThrows(DivisionByZeroException.class, () -> new ExceptionTask().generateDivisionByZeroException("Some cool message"));
     }
 

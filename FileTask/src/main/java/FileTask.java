@@ -9,7 +9,7 @@ import java.util.List;
 public class FileTask {
     private List<List<Integer>> createdMatrixFromString;
 
-    public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileName) throws IOException {
+    public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileName) {
         StringBuilder stringsFromFile = FileUtil.getAllStringsFromFile(FileUtil.checkAndFixFileNameWithExtension(fileName));
 
         createdMatrixFromString = Utils.createMatrixWithInfoFromString(stringsFromFile.toString());

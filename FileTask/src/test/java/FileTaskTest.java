@@ -13,8 +13,8 @@ import static util.Constant.*;
 class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIoExceptionCase(String fileName) {
-        assertThrows(IOException.class, () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
+        assertThrows(NumberFormatException.class, () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
     }
 
     @ParameterizedTest
