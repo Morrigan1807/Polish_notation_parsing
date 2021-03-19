@@ -33,6 +33,8 @@ public class ExceptionTask {
             generateIndexOutOfBoundsException();
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             int a = 5;
+        } finally {
+            int b = 4;
         }
     }
 }
