@@ -11,9 +11,8 @@
 
     <modules>
         <module>StringTask</module>
-        <module>Polish_notation_parsing</module>
         <module>ArrayTask</module>
-        <module>collections_task</module>
+        <module>ThreadTask</module>
     </modules>
 
     <build>
