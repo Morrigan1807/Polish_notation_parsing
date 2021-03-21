@@ -18,6 +18,7 @@ public class FileUtil {
 
             writer.flush();
         } catch (IOException ioException) {
+            //TODO do smth with this block
             return;
         }
     }

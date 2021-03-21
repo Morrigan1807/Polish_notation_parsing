@@ -41,6 +41,7 @@ public class Utils {
                 return i;
             }
         }
+        //TODO code coverage
         throw new ArrayStoreException(MESSAGE_FOR_ARRAY_STORE_EXCEPTION);
     }
 

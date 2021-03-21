@@ -1,3 +1,4 @@
+import arraytask.ArrayTask;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -57,7 +58,8 @@ class ArrayTaskTest {
     @CsvFileSource(resources = resourceFileForTestHasNoDuplicatesInStringIncorrectCase)
     void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
         int[] input = getArrayFromString(inputStr);
+        ArrayTask arrayTask = new ArrayTask();
 
-        assertThrows(NegativeArraySizeException.class, () -> new ArrayTask().maxMultiplicationInArray(input));
+        assertThrows(NegativeArraySizeException.class, () -> arrayTask.maxMultiplicationInArray(input));
     }
 }

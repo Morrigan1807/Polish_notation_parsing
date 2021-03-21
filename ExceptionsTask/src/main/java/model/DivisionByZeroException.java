@@ -13,6 +13,7 @@ public class DivisionByZeroException extends Exception {
         number = num;
     }
 
+    //TODO code coverage this block
     public int getNumber() {
         return this.number;
     }

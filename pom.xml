@@ -31,9 +31,7 @@
                 <version>0.8.6</version>
                 <configuration>
                     <excludes>
-                        <exclude>
-                            **/Constant.*
-                        </exclude>
+                        <exclude>**/Constant.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -114,7 +112,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <sonar.host.url> http://localhost:9000 </sonar.host.url>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
     </properties>
 
 </project>

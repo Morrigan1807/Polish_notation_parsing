@@ -1,3 +1,5 @@
+package collectionstask;
+
 import model.BinaryTree;
 
 public class CollectionsTask {

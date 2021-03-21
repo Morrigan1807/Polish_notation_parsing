@@ -1,3 +1,5 @@
+package filetask;
+
 import lombok.Data;
 import util.FileUtil;
 import util.Utils;

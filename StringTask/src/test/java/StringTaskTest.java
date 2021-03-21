@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import stringtask.StringTask;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,11 +25,15 @@ class StringTaskTest {
 
     @Test
     void testHasNoDuplicatesInStringNullCase() {
-        assertThrows(NullPointerException.class, () -> new StringTask().hasNoDuplicatesInString(null));
+        StringTask stringTask = new StringTask();
+
+        assertThrows(NullPointerException.class, () -> stringTask.hasNoDuplicatesInString(null));
     }
 
     @Test
     void testHasNoDuplicatesInStringEmptyStringCase() {
-        assertThrows(NullPointerException.class, () -> new StringTask().hasNoDuplicatesInString(""));
+        StringTask stringTask = new StringTask();
+
+        assertThrows(NullPointerException.class, () -> stringTask.hasNoDuplicatesInString(""));
     }
 }

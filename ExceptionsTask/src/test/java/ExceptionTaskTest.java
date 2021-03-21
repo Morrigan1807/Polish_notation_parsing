@@ -1,3 +1,4 @@
+import exceptiontask.ExceptionTask;
 import model.DivisionByZeroException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -5,7 +6,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExceptionTaskTest {
 
@@ -29,7 +31,9 @@ class ExceptionTaskTest {
 
     @Test
     void testGenerateIndexOutOfBoundsException() throws IndexOutOfBoundsException {
-        assertThrows(IndexOutOfBoundsException.class, () -> new ExceptionTask().generateIndexOutOfBoundsException());
+        ExceptionTask exceptionTask = new ExceptionTask();
+
+        assertThrows(IndexOutOfBoundsException.class, exceptionTask::generateIndexOutOfBoundsException);
     }
 
     @Test
@@ -39,16 +43,13 @@ class ExceptionTaskTest {
 
     @Test
     void testGenerateArithmeticException() throws ArithmeticException {
-        assertThrows(ArithmeticException.class, () -> new ExceptionTask().generateArithmeticException());
+        ExceptionTask exceptionTask = new ExceptionTask();
+
+        assertThrows(ArithmeticException.class, exceptionTask::generateArithmeticException);
     }
 
     @Test
     void testGenerateDivisionByZeroException() {
         assertThrows(DivisionByZeroException.class, () -> new ExceptionTask().generateDivisionByZeroException("Some cool message"));
-    }
-
-    @Test
-    void testExceptionHandling() {
-        assertDoesNotThrow(() -> new ExceptionTask().exceptionHandling());
     }
 }

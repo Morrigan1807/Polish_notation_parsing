@@ -1,3 +1,4 @@
+import filetask.FileTask;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -14,7 +15,9 @@ class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
     void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
-        assertThrows(NumberFormatException.class, () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
+        FileTask fileTask = new FileTask();
+
+        assertThrows(NumberFormatException.class, () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
     }
 
     @ParameterizedTest
@@ -32,7 +35,9 @@ class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_INCORRECT_SIZE_INPUT_CASE)
     void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
+        FileTask fileTask = new FileTask();
+
         assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
+                () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionNodeTest {
+class ExpressionNodeTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/TestExpressionNode/testData_Calculate_ExpressionNode.csv")

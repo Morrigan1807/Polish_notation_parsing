@@ -1,9 +1,10 @@
+import expressionparser.ExpressionParser;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ExpressionParserTest {
+class ExpressionParserTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "Test/ExpressionParser/testData_toPolishNotation_ExpressionParser.csv")
