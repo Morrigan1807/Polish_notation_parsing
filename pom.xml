@@ -11,11 +11,13 @@
 
     <modules>
         <module>StringTask</module>
-        <module>PolishNotationParsing</module>
         <module>ArrayTask</module>
+        <module>ThreadTask</module>
+        <module>CollectionsTask</module>
         <module>FileTask</module>
         <module>ExceptionsTask</module>
-        <module>CollectionsTask</module>
+        <module>PolishNotationParsing</module>
+        <module>ThreadTask</module>
     </modules>
 
     <build>
@@ -28,12 +30,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/Constant.*</exclude>
-                    </excludes>
-                </configuration>
+                <version>0.7.1.201405082137</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -61,7 +58,7 @@
                                         <limit>
                                             <counter>COMPLEXITY</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.80</minimum>
+                                            <minimum>0.20</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -112,7 +109,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.host.url> http://localhost:9000 </sonar.host.url>
     </properties>
 
 </project>
