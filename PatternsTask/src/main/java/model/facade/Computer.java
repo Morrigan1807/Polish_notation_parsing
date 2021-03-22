@@ -1,9 +1,9 @@
 package model.facade;
 
 class Computer {
-    private CPU cpu;
-    private Memory memory;
-    private HardDrive hardDrive;
+    private final CPU cpu;
+    private final Memory memory;
+    private final HardDrive hardDrive;
 
     public Computer() {
         this.cpu = new CPU();
