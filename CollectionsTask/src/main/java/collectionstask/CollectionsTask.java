@@ -1,3 +1,7 @@
+package collectionstask;
+
+import model.BinaryTree;
+
 public class CollectionsTask {
 
     public int getNumberOfNodesWithTwoBranchesInBinaryTree(BinaryTree binaryTree) {

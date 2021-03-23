@@ -1,3 +1,4 @@
+import filetask.FileTask;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -13,13 +14,15 @@ import static util.Constant.*;
 class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIoExceptionCase(String fileName) {
-        assertThrows(IOException.class, () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
+        FileTask fileTask = new FileTask();
+
+        assertThrows(NumberFormatException.class, () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_CORRECT_INPUT_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
             (String fileNameWithActualResult, String fileNameWithExpectedResult) throws IOException {
 
         new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult);
@@ -31,8 +34,10 @@ class FileTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_INCORRECT_SIZE_INPUT_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
+        FileTask fileTask = new FileTask();
+
         assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
+                () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult));
     }
 }

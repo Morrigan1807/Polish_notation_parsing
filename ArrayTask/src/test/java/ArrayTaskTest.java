@@ -1,6 +1,9 @@
+import arraytask.ArrayTask;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ArrayTaskTest {
     private final String resourceFileForTestMaxMultiplicationInArrayAnyIntegersInArrayCase =
@@ -29,7 +32,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayAnyIntegersInArrayCase)
-    public void testMaxMultiplicationInArrayAnyIntegersInArrayCase(String inputStr, int expected) {
+    void testMaxMultiplicationInArrayAnyIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -37,7 +40,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayPositiveIntegersInArrayCase)
-    public void testMaxMultiplicationInArrayPositiveIntegersInArrayCase(String inputStr, int expected) {
+    void testMaxMultiplicationInArrayPositiveIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -45,7 +48,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayNegativeIntegersInArrayCase)
-    public void testMaxMultiplicationInArrayNegativeIntegersInArrayCase(String inputStr, int expected) {
+    void testMaxMultiplicationInArrayNegativeIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -53,9 +56,10 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestHasNoDuplicatesInStringIncorrectCase)
-    public void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
+    void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
         int[] input = getArrayFromString(inputStr);
+        ArrayTask arrayTask = new ArrayTask();
 
-        assertThrows(NegativeArraySizeException.class, () -> new ArrayTask().maxMultiplicationInArray(input));
+        assertThrows(NegativeArraySizeException.class, () -> arrayTask.maxMultiplicationInArray(input));
     }
 }

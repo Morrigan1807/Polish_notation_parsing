@@ -1,3 +1,5 @@
+package exceptiontask;
+
 import model.DivisionByZeroException;
 
 import java.io.IOException;
@@ -26,13 +28,5 @@ public class ExceptionTask {
 
     public void generateDivisionByZeroException(String message) throws DivisionByZeroException {
         throw new DivisionByZeroException(message, 11);
-    }
-
-    public void exceptionHandling() {
-        try {
-            generateIndexOutOfBoundsException();
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            int a = 5;
-        }
     }
 }

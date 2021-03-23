@@ -1,8 +1,5 @@
 package model;
 
-import lombok.Data;
-
-@Data
 public class DivisionByZeroException extends Exception {
     private final int number;
 
@@ -14,6 +11,11 @@ public class DivisionByZeroException extends Exception {
     public DivisionByZeroException(String message, int num) {
         super(message);
         number = num;
+    }
+
+    //TODO code coverage this block
+    public int getNumber() {
+        return this.number;
     }
 }
 
