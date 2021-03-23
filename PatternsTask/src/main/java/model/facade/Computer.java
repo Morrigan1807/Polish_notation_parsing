@@ -19,22 +19,3 @@ class Computer {
         hardDrive.read();
     }
 }
-
-class CPU {
-    public void freeze() {}
-
-    public void jump() { }
-
-    public void execute() { }
-}
-
-class Memory {
-    public void load() { }
-}
-
-class HardDrive {
-    public byte[] read() {return new byte[]{0, 127};}
-}
-
-
-
