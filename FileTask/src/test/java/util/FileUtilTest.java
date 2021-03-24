@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static util.Constant.*;
+import static util.FileUtil.getFileFromResourcesByResources;
 
 class FileUtilTest {
 
@@ -62,7 +65,7 @@ class FileUtilTest {
         List<String> expectedStrings = Arrays.asList("3 3", "0 8 7", "9 0 1", "2 1 0");
 
         assertEquals(expectedStrings, FileUtils.readLines(
-                Objects.requireNonNull(FileUtil.getFileFromResourcesByResources(DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING)),
+                Objects.requireNonNull(getFileFromResourcesByResources(DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING)),
                 StandardCharsets.UTF_8));
     }
 }
