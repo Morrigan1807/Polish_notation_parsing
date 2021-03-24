@@ -1,6 +1,5 @@
-package Model;
+package model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -14,10 +13,8 @@ public enum OperatorModel {
 
     private final String operatorAsChar;
 
-    public static OperatorModel fromString(String string)
-    {
-        switch (string)
-        {
+    public static OperatorModel fromString(String string) {
+        switch (string) {
             case "+":
                 return OperatorModel.ADDITION;
             case "-":

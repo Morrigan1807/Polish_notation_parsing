@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -17,6 +17,6 @@ class OperatorModelTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/OperatorModel/testData_fromString_OperatorModel_IncorrectCase.csv")
     void testFromString_IncorrectCase(String input) {
-        assertThrows(IllegalArgumentException.class, ()->OperatorModel.fromString(input));
+        assertThrows(IllegalArgumentException.class, () -> OperatorModel.fromString(input));
     }
 }
