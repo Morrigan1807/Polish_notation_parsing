@@ -54,7 +54,7 @@ public class Utils {
             String[] arrayOfLinesWithCurrentRowInMatrixAsString = arrayOfLinesInStringMatrixInfo[i + 1].split(Constant.SPACE);
             createdMatrixFromString.add(new ArrayList<>());
 
-            parseStringArrayInToIntegerArray(i, arrayOfLinesWithCurrentRowInMatrixAsString, columnSize, createdMatrixFromString);
+            parseStringArrayInToIntegerArray(arrayOfLinesWithCurrentRowInMatrixAsString, i, columnSize, createdMatrixFromString);
         }
 
         return createdMatrixFromString;
@@ -66,7 +66,7 @@ public class Utils {
         }
     }
 
-    private void parseStringArrayInToIntegerArray(int rowNumber, String[] arrayOfLinesWithCurrentRowInMatrixAsString,
+    private void parseStringArrayInToIntegerArray(String[] arrayOfLinesWithCurrentRowInMatrixAsString, int rowNumber,
                                                   int columnsSize, List<List<Integer>> createdMatrixFromString) {
         for (int j = 0; j < columnsSize; j++) {
             createdMatrixFromString.get(rowNumber).add(Integer.parseInt(arrayOfLinesWithCurrentRowInMatrixAsString[j]));

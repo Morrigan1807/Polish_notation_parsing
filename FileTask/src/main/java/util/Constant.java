@@ -21,6 +21,7 @@ public class Constant {
     public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION = "hello.txt";
     public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITHOUT_EXTENSION = "hello";
     public static final String DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING = "fileExp.txt";
+    public static final String PATH_TO_RESOURCES = "src/main/resources/";
 
     private Constant() {
     }

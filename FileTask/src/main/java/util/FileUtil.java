@@ -30,12 +30,12 @@ public class FileUtil {
             return new File((Objects.requireNonNull(FileUtil.class.getClassLoader().getResource(fileName))).toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public File getFileFromResourcesByActualPath(String fileName) {
-        return new File("src/main/resources/" + fileName);
+        return new File(PATH_TO_RESOURCES + fileName);
     }
 
     private StringBuilder getPreparedStringWithNewMatrixInfo(List<List<Integer>> newMatrix) {
