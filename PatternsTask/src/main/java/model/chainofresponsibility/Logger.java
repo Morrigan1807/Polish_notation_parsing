@@ -1,6 +1,7 @@
 package model.chainofresponsibility;
 
-abstract class Logger {
+public abstract class Logger {
+
     public static int ERR = 3;
     public static int NOTICE = 5;
     public static int DEBUG = 7;

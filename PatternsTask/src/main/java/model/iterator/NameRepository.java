@@ -1,7 +1,8 @@
 package model.iterator;
 
 public class NameRepository {
-    public String[] names = {"Robert" , "John" ,"Julie" , "Lora"};
+
+    public String[] names = {"Robert", "John", "Julie", "Lora"};
 
     public Iterator getIterator() {
         return new NameIterator();
@@ -13,20 +14,16 @@ public class NameRepository {
 
         @Override
         public boolean hasNext() {
-
-            if(index < names.length){
-                return true;
-            }
-            return false;
+            return index < names.length;
         }
 
         @Override
         public Object next() {
-
-            if(this.hasNext()){
+            if (this.hasNext()) {
                 return names[index++];
             }
-            return null;
+
+            throw new NullPointerException();
         }
     }
 }

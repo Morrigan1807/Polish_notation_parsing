@@ -1,6 +1,7 @@
 package model.facade;
 
-class Computer {
+public class Computer {
+
     private final CPU cpu;
     private final Memory memory;
     private final HardDrive hardDrive;

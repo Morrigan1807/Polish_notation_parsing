@@ -12,7 +12,8 @@ public class Person {
     private Set<Person> parents;
 
     public static class Builder {
-        private Person newPerson;
+
+        private final Person newPerson;
 
         public Builder() {
             newPerson = new Person();

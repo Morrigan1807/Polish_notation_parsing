@@ -1,10 +1,11 @@
 package model.locator;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cache {
-    private List<MessagingService> services = new ArrayList<>();
+
+    private final List<MessagingService> services = Arrays.asList(new EmailService(), new SMSService());
 
     public MessagingService getService(String serviceName) {
         for (MessagingService messagingService : services) {
@@ -12,7 +13,7 @@ public class Cache {
                 return messagingService;
             }
         }
-        return null;
+        throw new NullPointerException();
     }
 
     public void addService(MessagingService newService) {

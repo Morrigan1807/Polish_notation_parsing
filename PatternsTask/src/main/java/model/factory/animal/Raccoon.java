@@ -1,6 +1,7 @@
 package model.factory.animal;
 
 public class Raccoon implements Animal {
+
     private int age;
 
     @Override

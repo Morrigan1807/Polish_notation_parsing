@@ -1,11 +1,15 @@
 package model.chainofresponsibility;
 
-class StdoutLogger extends Logger {
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
+public class StdoutLogger extends Logger {
+
     public StdoutLogger(int mask) {
         this.mask = mask;
     }
 
     protected void writeMessage(String msg) {
-        System.out.println("Writing to stdout: " + msg);
+        log.info("Writing to stdout: " + msg);
     }
 }
