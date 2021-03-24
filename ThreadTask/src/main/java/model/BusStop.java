@@ -4,14 +4,16 @@ import lombok.Data;
 
 @Data
 public class BusStop implements Runnable {
+
+    private static final int BUS_SERVICE_TIME_IN_MILLIS = 50;
+    private static final int IDLE_DELAY = 100;
+    private static final int MAX_CAPACITY_OF_BUS_STOP = 5;
+
     private BusStop nextBusStop;
     private int currentCapacity = 0;
-    private int maxCapacityOfBusStop = 5;
     private int queueOfBusStop = 0;
     private int numOfBusesDeparted = 0;
     private int numOfBusesExpected = 5;
-    private static final int BUS_SERVICE_TIME_IN_MILLIS = 50;
-    private static final int IDLE_DELAY = 100;
 
     public void busesDepart() {
         if (nextBusStop != null) {
@@ -21,12 +23,12 @@ public class BusStop implements Runnable {
         numOfBusesDeparted += currentCapacity;
 
         synchronized (this) {
-            if (queueOfBusStop <= maxCapacityOfBusStop) {
+            if (queueOfBusStop <= MAX_CAPACITY_OF_BUS_STOP) {
                 currentCapacity = queueOfBusStop;
                 queueOfBusStop = 0;
             } else {
-                currentCapacity = maxCapacityOfBusStop;
-                queueOfBusStop -= maxCapacityOfBusStop;
+                currentCapacity = MAX_CAPACITY_OF_BUS_STOP;
+                queueOfBusStop -= MAX_CAPACITY_OF_BUS_STOP;
             }
         }
     }
@@ -57,11 +59,6 @@ public class BusStop implements Runnable {
 
         public Builder() {
             newBusStop = new BusStop();
-        }
-
-        public Builder withMaxCapacityOfBusStop(int maxCapacityOfBusStop) {
-            newBusStop.setMaxCapacityOfBusStop(maxCapacityOfBusStop);
-            return this;
         }
 
         public Builder withQueueOfBusStop(int queueOfBusStop) {
