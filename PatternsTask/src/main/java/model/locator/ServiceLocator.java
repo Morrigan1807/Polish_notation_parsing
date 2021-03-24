@@ -5,7 +5,6 @@ public class ServiceLocator {
     private static final Cache cache = new Cache();
 
     public static MessagingService getService(String serviceName) {
-
         MessagingService service = cache.getService(serviceName);
 
         if (service != null) {
