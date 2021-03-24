@@ -1,6 +1,7 @@
 package model;
 
 public class DivisionByZeroException extends Exception {
+
     private final int number;
 
     public DivisionByZeroException() {
@@ -13,7 +14,6 @@ public class DivisionByZeroException extends Exception {
         number = num;
     }
 
-    //TODO code coverage this block
     public int getNumber() {
         return this.number;
     }

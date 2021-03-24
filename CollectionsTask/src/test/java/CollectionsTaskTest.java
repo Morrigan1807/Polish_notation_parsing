@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CollectionsTaskTest {
+
     private static Stream<Arguments> getDataForTestGetNumberOfNodesWithTwoBranchesInBinaryTreeAnyResultCase() {
         BinaryTree firstBinaryTree = new BinaryTree();
         firstBinaryTree.setLeftBranch(new BinaryTree());

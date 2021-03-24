@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class ExpressionLeafDouble implements ExpressionTree {
+
     private final double leaf;
 
     public double calculate() {

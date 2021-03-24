@@ -3,6 +3,7 @@ package expressionparser;
 import model.*;
 
 public class ExpressionParser {
+
     private final ExpressionTree expressionTree;
 
     private ExpressionParser(ExpressionTree expressionTree) {

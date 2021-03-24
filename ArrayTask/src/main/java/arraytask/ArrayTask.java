@@ -1,6 +1,7 @@
 package arraytask;
 
 public class ArrayTask {
+
     public int maxMultiplicationInArray(int[] array) {
         checkSizeOfArray(array);
 

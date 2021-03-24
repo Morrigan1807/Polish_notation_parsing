@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ExpressionNode implements ExpressionTree {
+
     private ExpressionTree leftOperand;
     private ExpressionTree rightOperand;
     private OperatorModel rootOperator;

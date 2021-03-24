@@ -13,6 +13,7 @@ import static util.Constant.*;
 import static util.FileUtil.getFileFromResourcesByResources;
 
 class FileTaskTest {
+
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
     void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNullPointerExceptionCase(String fileName) {

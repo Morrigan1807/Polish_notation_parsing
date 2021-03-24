@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ArrayTaskTest {
+
     private final String resourceFileForTestMaxMultiplicationInArrayAnyIntegersInArrayCase =
             "Test/testData_test_MaxMultiplicationInArray_AnyIntegersInArrayCase_ArrayTask.csv";
     private final String resourceFileForTestMaxMultiplicationInArrayPositiveIntegersInArrayCase =
@@ -14,7 +15,6 @@ class ArrayTaskTest {
             "Test/testData_test_MaxMultiplicationInArray_NegativeIntegersInArrayCase_ArrayTask.csv";
     private final String resourceFileForTestHasNoDuplicatesInStringIncorrectCase =
             "Test/testData_testMaxMultiplicationOfThree_ArrayTask_IncorrectCase.csv";
-
 
     private int[] getArrayFromString(String stringFromCsv) {
         return parseIntArray(stringFromCsv.split("; "));

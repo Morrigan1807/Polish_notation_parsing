@@ -6,6 +6,7 @@ import stringtask.StringTask;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringTaskTest {
+
     final String resourceFileForTestHasNoDuplicatesInStringReturnTrueCase =
             "Test/testData_hasNoDuplicatesInStringReturnTrue_StringTask.csv";
     final String resourceFileForTestHasNoDuplicatesInStringReturnFalseCase =

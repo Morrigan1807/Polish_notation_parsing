@@ -34,8 +34,7 @@ public class FileUtil {
         return null;
     }
 
-    public File getFileFromResourcesByActualPath(String fileName)
-    {
+    public File getFileFromResourcesByActualPath(String fileName) {
         return new File("src/main/resources/" + fileName);
     }
 

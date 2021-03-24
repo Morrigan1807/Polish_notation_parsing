@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class StringTask {
+
     public boolean hasNoDuplicatesInString(String str) {
         checkStringIsNull(str);
         checkStringIsEmpty(str);
