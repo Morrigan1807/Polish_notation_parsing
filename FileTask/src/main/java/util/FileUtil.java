@@ -2,10 +2,13 @@ package util;
 
 import lombok.experimental.UtilityClass;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 
 import static util.Constant.*;
 
@@ -13,14 +16,27 @@ import static util.Constant.*;
 public class FileUtil {
 
     public void rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) {
-        try (FileWriter writer = new FileWriter(fileName, false)) {
+        try (FileWriter writer = new FileWriter(getFileFromResourcesByActualPath(fileName), false)) {
             writer.write(getPreparedStringWithNewMatrixInfo(newMatrix).toString());
 
             writer.flush();
         } catch (IOException ioException) {
-            //TODO do smth with this block
-            return;
+            ioException.printStackTrace();
         }
+    }
+
+    public static File getFileFromResourcesByResources(String fileName) {
+        try {
+            return new File((Objects.requireNonNull(FileUtil.class.getClassLoader().getResource(fileName))).toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public File getFileFromResourcesByActualPath(String fileName)
+    {
+        return new File("src/main/resources/" + fileName);
     }
 
     private StringBuilder getPreparedStringWithNewMatrixInfo(List<List<Integer>> newMatrix) {
@@ -46,7 +62,7 @@ public class FileUtil {
     }
 
     public StringBuilder getAllStringsFromFile(String fileName) {
-        try (FileReader reader = new FileReader(fileName)) {
+        try (FileReader reader = new FileReader(Objects.requireNonNull(getFileFromResourcesByResources(fileName)))) {
             StringBuilder informationFromTextFile = new StringBuilder();
 
             int tempChar;

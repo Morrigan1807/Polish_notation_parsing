@@ -10,6 +10,7 @@ import static util.Constant.*;
 
 @UtilityClass
 public class Utils {
+
     public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(List<List<Integer>> inputMatrix) {
         for (int i = 0; i < getDiagonalSize(inputMatrix) - 1; i++) {
             int lineToMoveUp = findLineWithZeroElementInCurrentColumn(inputMatrix, i);
@@ -41,7 +42,6 @@ public class Utils {
                 return i;
             }
         }
-        //TODO code coverage
         throw new ArrayStoreException(MESSAGE_FOR_ARRAY_STORE_EXCEPTION);
     }
 

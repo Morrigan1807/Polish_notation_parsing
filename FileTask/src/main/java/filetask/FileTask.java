@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class FileTask {
+
     private List<List<Integer>> createdMatrixFromString;
 
     public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileName) {

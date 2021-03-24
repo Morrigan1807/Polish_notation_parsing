@@ -3,21 +3,22 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static util.Constant.*;
+import static util.FileUtil.getFileFromResourcesByResources;
 
 class FileTaskTest {
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
-    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileName) {
+    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNullPointerExceptionCase(String fileName) {
         FileTask fileTask = new FileTask();
 
-        assertThrows(NumberFormatException.class, () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
+        assertThrows(NullPointerException.class, () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileName));
     }
 
     @ParameterizedTest
@@ -27,8 +28,8 @@ class FileTaskTest {
 
         new FileTask().rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult);
 
-        assertEquals(FileUtils.readLines(new File(fileNameWithExpectedResult), StandardCharsets.UTF_8),
-                FileUtils.readLines(new File(fileNameWithActualResult), StandardCharsets.UTF_8));
+        assertEquals(FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(fileNameWithExpectedResult)), StandardCharsets.UTF_8),
+                FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(fileNameWithActualResult)), StandardCharsets.UTF_8));
 
     }
 

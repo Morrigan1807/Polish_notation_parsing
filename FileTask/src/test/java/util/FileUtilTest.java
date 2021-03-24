@@ -3,12 +3,12 @@ package util;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static util.Constant.*;
@@ -28,7 +28,8 @@ class FileUtilTest {
                 firstMatrixForWriting);
 
         assertEquals(firstExpectedStrings, FileUtils.readLines(
-                new File(DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING),
+                Objects.requireNonNull(FileUtil.getFileFromResourcesByActualPath
+                        (DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING)),
                 StandardCharsets.UTF_8));
 
         List<List<Integer>> secondMatrixForWriting = new ArrayList<>();
@@ -42,7 +43,8 @@ class FileUtilTest {
                 secondMatrixForWriting);
 
         assertEquals(secondExpectedStrings, FileUtils.readLines(
-                new File(DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING),
+                Objects.requireNonNull(FileUtil.getFileFromResourcesByActualPath
+                        (DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING)),
                 StandardCharsets.UTF_8));
     }
 
@@ -60,7 +62,7 @@ class FileUtilTest {
         List<String> expectedStrings = Arrays.asList("3 3", "0 8 7", "9 0 1", "2 1 0");
 
         assertEquals(expectedStrings, FileUtils.readLines(
-                new File(DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING),
+                Objects.requireNonNull(FileUtil.getFileFromResourcesByResources(DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING)),
                 StandardCharsets.UTF_8));
     }
 }
