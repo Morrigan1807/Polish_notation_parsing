@@ -2,39 +2,52 @@ package model;
 
 import lombok.Data;
 
+import java.util.concurrent.Semaphore;
+
 @Data
-public class BusStop implements Runnable {
+public class BusStop {
 
     private static final int BUS_SERVICE_TIME_IN_MILLIS = 2000;
-    private static final int IDLE_DELAY = 100;
-    private static final int MAX_CAPACITY_OF_BUS_STOP = 5;
 
-    private BusStop nextBusStop;
-    private int currentCapacity = 0;
+    private final Semaphore semaphore = new Semaphore(2, true);
+    private String nameOfBusStop = "";
     private int numOfBusesDeparted = 0;
     private int numOfBusesExpected = 0;
+    private LoggerOfBusStops loggerOfBusStops = LoggerOfBusStops.getInstance();
 
-
-    public void busesDepart() {
-
+    public BusStop(String nameOfBusStop) {
+        this.nameOfBusStop = nameOfBusStop;
     }
 
     public void incrementNumOfBusesExpected() {
         this.numOfBusesExpected++;
     }
 
-    @Override
-    public void run() {
-        while (numOfBusesDeparted != numOfBusesExpected) {
-            try {
-                Thread.sleep(IDLE_DELAY);
-                if (currentCapacity != 0) {
-                    Thread.sleep(BUS_SERVICE_TIME_IN_MILLIS);
-                    busesDepart();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void servingBusInBusStop(Bus bus) {
+        try {
+            busArrives(bus);
+
+            busDeparts(bus);
+        } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
         }
+    }
+
+    private void busArrives(Bus bus) throws InterruptedException {
+        semaphore.acquire();
+
+        Thread.sleep(BUS_SERVICE_TIME_IN_MILLIS);
+
+        loggerOfBusStops.addInformationInLogger("Bus " + bus.getNumberOfBus() + " arrived to " + nameOfBusStop + " bus stop.");
+    }
+
+    private void busDeparts(Bus bus) {
+        synchronized (this) {
+            numOfBusesDeparted++;
+        }
+
+        loggerOfBusStops.addInformationInLogger("Bus " + bus.getNumberOfBus() + " departed from " + nameOfBusStop + " bus stop.");
+
+        semaphore.release();
     }
 }

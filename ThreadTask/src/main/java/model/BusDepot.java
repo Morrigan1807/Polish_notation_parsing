@@ -2,16 +2,19 @@ package model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class BusDepot {
-    private List<Bus> buses;
+
+    private List<Bus> buses = new ArrayList<>();
+    private List<Thread> threads = new ArrayList<>();
 
     public void startWorking() {
         for (Bus bus : buses) {
-            Thread thread = new Thread(bus);
-            thread.start();
+            threads.add(new Thread(bus));
+            threads.get(threads.size() - 1).start();
         }
     }
 }
