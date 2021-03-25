@@ -68,7 +68,7 @@ public class FileUtil {
         try (FileReader reader = new FileReader(Objects.requireNonNull(getFileFromResourcesByResources(fileName)))) {
             StringBuilder informationFromTextFile = new StringBuilder();
 
-            int tempChar;
+        int tempChar;
 
             while ((tempChar = reader.read()) != -1) {
                 informationFromTextFile.append((char) tempChar);
@@ -79,5 +79,8 @@ public class FileUtil {
         } catch (IOException ignored) {
             return new StringBuilder();
         }
+
+        reader.close();
+        return informationFromTextFile;
     }
 }

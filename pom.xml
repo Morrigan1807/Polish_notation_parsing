@@ -16,6 +16,8 @@
         <module>FileTask</module>
         <module>ExceptionsTask</module>
         <module>CollectionsTask</module>
+        <module>HttpTask</module>
+        <module>PatternsTask</module>
     </modules>
 
     <build>
@@ -32,6 +34,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/Constant.*</exclude>
+                        <exclude>PatternsTask/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -106,6 +109,18 @@
             <groupId>org.codehaus.sonar.plugins</groupId>
             <artifactId>sonar-jacoco-plugin</artifactId>
             <version>3.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.3</version>
         </dependency>
     </dependencies>
 
