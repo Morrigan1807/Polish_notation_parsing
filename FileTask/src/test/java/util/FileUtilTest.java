@@ -22,11 +22,12 @@ public class FileUtilTest {
                 Arrays.asList(-4, -4, -4),
                 Arrays.asList(0, 0, 0));
 
-        List<String> expectedStrings = Arrays.asList("3 3", "3 3 3", "-4 -4 -4", "0 0 0");
+        List<String> expectedMatrixData = Arrays.asList("3 3", "3 3 3", "-4 -4 -4", "0 0 0");
 
-        assertEquals(expectedStrings, FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
-                DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING, matrixForWriting),
-                StandardCharsets.UTF_8));
+        List<String> actualMatrixData = FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
+                RESULT_WORK_FILE_NAME, matrixForWriting), StandardCharsets.UTF_8);
+
+        assertEquals(expectedMatrixData, actualMatrixData);
     }
 
     @Test
@@ -36,31 +37,33 @@ public class FileUtilTest {
                 Arrays.asList(1, 1, 1, 1),
                 Arrays.asList(2, 2, 2, 2));
 
-        List<String> expectedStrings = Arrays.asList("3 4", "0 0 0 0", "1 1 1 1", "2 2 2 2");
+        List<String> expectedMatrixData = Arrays.asList("3 4", "0 0 0 0", "1 1 1 1", "2 2 2 2");
 
-        assertEquals(expectedStrings, FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
-                DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING, matrixForWriting),
-                StandardCharsets.UTF_8));
+        List<String> actualMatrixData = FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
+                RESULT_WORK_FILE_NAME, matrixForWriting), StandardCharsets.UTF_8);
+
+        assertEquals(expectedMatrixData, actualMatrixData);
     }
 
     @Test
     public void testCheckAndFixFileNameWithExtensionWithExtensionCase() {
-        assertEquals(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION,
-                FileUtil.checkAndFixFileNameWithExtension(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION));
+        assertEquals(FILE_NAME_WITH_EXTENSION,
+                FileUtil.checkAndFixFileNameWithExtension(FILE_NAME_WITH_EXTENSION));
     }
 
     @Test
     public void testCheckAndFixFileNameWithExtensionWithoutExtensionCase() {
-        assertEquals(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION,
-                FileUtil.checkAndFixFileNameWithExtension(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITHOUT_EXTENSION));
+        assertEquals(FILE_NAME_WITH_EXTENSION,
+                FileUtil.checkAndFixFileNameWithExtension(FILE_NAME_WITHOUT_EXTENSION));
     }
 
     @Test
     public void testGetAllStringsFromFile() throws IOException {
-        List<String> expectedStrings = Arrays.asList("3 3", "0 8 7", "9 0 1", "2 1 0");
+        List<String> expectedMatrixData = Arrays.asList("3 3", "0 8 7", "9 0 1", "2 1 0");
 
-        assertEquals(expectedStrings, FileUtils.readLines(
-                Objects.requireNonNull(getFileFromResourcesByResources(DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING)),
-                StandardCharsets.UTF_8));
+        List<String> actualMatrixData = FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(
+                FILE_NAME_WITH_EXPECTED_RESULT)), StandardCharsets.UTF_8);
+
+        assertEquals(expectedMatrixData, actualMatrixData);
     }
 }

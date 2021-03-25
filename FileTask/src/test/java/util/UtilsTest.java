@@ -46,23 +46,23 @@ public class UtilsTest {
 
     @Test
     public void testCreateMatrixWithInfoFromStringWithPositiveNumbersCase() {
-        List<List<Integer>> firstExpectedMatrix = Arrays.asList(
+        List<List<Integer>> expectedMatrix = Arrays.asList(
                 Arrays.asList(2, 0, 2),
                 Arrays.asList(3, 3, 0),
                 Arrays.asList(0, 1, 1));
 
-        assertEquals(firstExpectedMatrix, Utils.getMatrixWithInformationFromString(
-                Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO));
+        assertEquals(expectedMatrix, Utils.getMatrixWithInformationFromString(
+                Constant.STRING_WITH_UNCONVERTED_POSITIVE_MATRIX_DATA));
     }
 
     @Test
     public void testCreateMatrixWithInfoFromStringWithNegativeNumbersCase() {
-        List<List<Integer>> secondExpectedMatrix = Arrays.asList(
+        List<List<Integer>> expectedMatrix = Arrays.asList(
                 Arrays.asList(-2, 0, -2),
                 Arrays.asList(-3, -3, 0),
                 Arrays.asList(0, -1, -1));
 
-        assertEquals(secondExpectedMatrix, Utils.getMatrixWithInformationFromString(
-                Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO));
+        assertEquals(expectedMatrix, Utils.getMatrixWithInformationFromString(
+                Constant.STRING_WITH_UNCONVERTED_NEGATIVE_MATRIX_DATA));
     }
 }

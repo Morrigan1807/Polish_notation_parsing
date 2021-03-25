@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,12 +24,16 @@ public class FileTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_CORRECT_INPUT_CASE)
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
-            (String fileNameForReading, String fileNameWithActualResult, String fileNameWithExpectedResult) throws IOException {
-        assertEquals(FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(
-                fileNameWithExpectedResult)), StandardCharsets.UTF_8),
-                FileUtils.readLines(new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(
-                        fileNameForReading, fileNameWithActualResult), StandardCharsets.UTF_8));
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase(String fileNameForReading,
+                                                                                                 String fileNameWithActualResult,
+                                                                                                 String fileNameWithExpectedResult) throws IOException {
+        List<String> expectedResultInFile = FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(
+                fileNameWithExpectedResult)), StandardCharsets.UTF_8);
+
+        List<String> actualResultInFile = FileUtils.readLines(new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(
+                fileNameForReading, fileNameWithActualResult), StandardCharsets.UTF_8);
+
+        assertEquals(expectedResultInFile, actualResultInFile);
 
     }
 

@@ -14,13 +14,12 @@ public class Constant {
     public static final String REGEX_CARRIAGE_RETURN_CHARACTER_AND_LINE_FEED_CHARACTER_OR_LINE_FEED_CHARACTER_ONLY = "\r\n|\n";
     public static final String LINE_FEED_CHARACTER = "\n";
     public static final String TXT_EXTENSION = ".txt";
-    public static final String DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO = "3 3\n2 0 2\n3 3 0\n0 1 1";
-    public static final String DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO = "3 3\n-2 0 -2\n-3 -3 0\n0 -1 -1";
-    public static final String DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING =
-            "fileForRewriting.txt";
-    public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION = "hello.txt";
-    public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITHOUT_EXTENSION = "hello";
-    public static final String DATA_FOR_TEST_GET_ALL_STRINGS_FROM_FILE_FILE_NAME_WITH_STRINGS_FOR_READING = "fileExp.txt";
+    public static final String STRING_WITH_UNCONVERTED_POSITIVE_MATRIX_DATA = "3 3\n2 0 2\n3 3 0\n0 1 1";
+    public static final String STRING_WITH_UNCONVERTED_NEGATIVE_MATRIX_DATA = "3 3\n-2 0 -2\n-3 -3 0\n0 -1 -1";
+    public static final String RESULT_WORK_FILE_NAME = "fileForRewriting.txt";
+    public static final String FILE_NAME_WITH_EXTENSION = "hello.txt";
+    public static final String FILE_NAME_WITHOUT_EXTENSION = "hello";
+    public static final String FILE_NAME_WITH_EXPECTED_RESULT = "fileExp.txt";
     public static final String PATH_TO_RESOURCES = "src/main/resources/";
 
     private Constant() {
