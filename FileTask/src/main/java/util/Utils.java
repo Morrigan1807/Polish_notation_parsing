@@ -13,18 +13,18 @@ public class Utils {
 
     public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(List<List<Integer>> inputMatrix) {
         for (int i = 0; i < getDiagonalSize(inputMatrix) - 1; i++) {
-            int lineToMoveUp = findLineWithZeroElementInCurrentColumn(inputMatrix, i);
+            int lineToMoveUp = getLineWithZeroElementInCurrentColumn(inputMatrix, i);
 
             rearrangeLinesInMatrix(inputMatrix, lineToMoveUp, i);
         }
     }
 
-    public List<List<Integer>> createMatrixWithInfoFromString(String matrixInfo) {
+    public List<List<Integer>> getMatrixWithInformationFromString(String matrixInfo) {
         String[] arrayOfLinesInStringMatrixInfo = matrixInfo.split(REGEX_CARRIAGE_RETURN_CHARACTER_AND_LINE_FEED_CHARACTER_OR_LINE_FEED_CHARACTER_ONLY);
 
-        int[] sizes = readSizesOfMatrixFromString(arrayOfLinesInStringMatrixInfo[0]);
+        int[] sizes = getArrayWithSizeFromString(arrayOfLinesInStringMatrixInfo[0]);
 
-        return readAndCreateMatrixBodyFomStringArray(arrayOfLinesInStringMatrixInfo, sizes[0], sizes[1]);
+        return getListToListMatrixBody(arrayOfLinesInStringMatrixInfo, sizes[0], sizes[1]);
     }
 
     private int getDiagonalSize(List<List<Integer>> inputMatrix) {
@@ -36,7 +36,7 @@ public class Utils {
         inputMatrix.add(toLine, tempLine);
     }
 
-    private int findLineWithZeroElementInCurrentColumn(List<List<Integer>> inputMatrix, int currentColumn) {
+    private int getLineWithZeroElementInCurrentColumn(List<List<Integer>> inputMatrix, int currentColumn) {
         for (int i = 0; i < inputMatrix.size(); i++) {
             if (inputMatrix.get(i).get(currentColumn) == 0) {
                 return i;
@@ -45,8 +45,8 @@ public class Utils {
         throw new ArrayStoreException(MESSAGE_FOR_ARRAY_STORE_EXCEPTION);
     }
 
-    private List<List<Integer>> readAndCreateMatrixBodyFomStringArray(String[] arrayOfLinesInStringMatrixInfo,
-                                                                      int rowSize, int columnSize) {
+    private List<List<Integer>> getListToListMatrixBody(String[] arrayOfLinesInStringMatrixInfo,
+                                                        int rowSize, int columnSize) {
         checkTheCorrectSizesOfMatrix(arrayOfLinesInStringMatrixInfo, rowSize);
 
         List<List<Integer>> createdMatrixFromString = new ArrayList<>();
@@ -73,7 +73,7 @@ public class Utils {
         }
     }
 
-    private int[] readSizesOfMatrixFromString(String stringWithSizes) {
+    private int[] getArrayWithSizeFromString(String stringWithSizes) {
         String[] arrayOfLinesWithMatrixSizeInfo = stringWithSizes.split(Constant.SPACE);
 
         return new int[]{Integer.parseInt(arrayOfLinesWithMatrixSizeInfo[0]), Integer.parseInt(arrayOfLinesWithMatrixSizeInfo[1])};

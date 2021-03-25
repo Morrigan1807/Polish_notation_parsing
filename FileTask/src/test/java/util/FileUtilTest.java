@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -17,43 +16,41 @@ import static util.FileUtil.getFileFromResourcesByResources;
 public class FileUtilTest {
 
     @Test
-    public void testRewriteFileWithNewMatrix() throws IOException {
-        List<List<Integer>> firstMatrixForWriting = new ArrayList<>();
-        firstMatrixForWriting.add(Arrays.asList(3, 3, 3));
-        firstMatrixForWriting.add(Arrays.asList(-4, -4, -4));
-        firstMatrixForWriting.add(Arrays.asList(0, 0, 0));
+    public void testRewriteFileWithNewMatrixThreeByThreeMatrixCase() throws IOException {
+        List<List<Integer>> matrixForWriting = Arrays.asList(
+                Arrays.asList(3, 3, 3),
+                Arrays.asList(-4, -4, -4),
+                Arrays.asList(0, 0, 0));
 
-        List<String> firstExpectedStrings = Arrays.asList("3 3", "3 3 3", "-4 -4 -4", "0 0 0");
+        List<String> expectedStrings = Arrays.asList("3 3", "3 3 3", "-4 -4 -4", "0 0 0");
 
-        FileUtil.rewriteFileWithNewMatrix(DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING,
-                firstMatrixForWriting);
-
-        assertEquals(firstExpectedStrings, FileUtils.readLines(
-                Objects.requireNonNull(FileUtil.getFileFromResourcesByActualPath
-                        (DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING)),
-                StandardCharsets.UTF_8));
-
-        List<List<Integer>> secondMatrixForWriting = new ArrayList<>();
-        secondMatrixForWriting.add(Arrays.asList(0, 0, 0, 0));
-        secondMatrixForWriting.add(Arrays.asList(1, 1, 1, 1));
-        secondMatrixForWriting.add(Arrays.asList(2, 2, 2, 2));
-
-        List<String> secondExpectedStrings = Arrays.asList("3 4", "0 0 0 0", "1 1 1 1", "2 2 2 2");
-
-        FileUtil.rewriteFileWithNewMatrix(DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING,
-                secondMatrixForWriting);
-
-        assertEquals(secondExpectedStrings, FileUtils.readLines(
-                Objects.requireNonNull(FileUtil.getFileFromResourcesByActualPath
-                        (DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING)),
+        assertEquals(expectedStrings, FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
+                DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING, matrixForWriting),
                 StandardCharsets.UTF_8));
     }
 
     @Test
-    public void testCheckAndFixFileNameWithExtension() {
+    public void testRewriteFileWithNewMatrixThreeByFourMatrixCase() throws IOException {
+        List<List<Integer>> matrixForWriting = Arrays.asList(
+                Arrays.asList(0, 0, 0, 0),
+                Arrays.asList(1, 1, 1, 1),
+                Arrays.asList(2, 2, 2, 2));
+
+        List<String> expectedStrings = Arrays.asList("3 4", "0 0 0 0", "1 1 1 1", "2 2 2 2");
+
+        assertEquals(expectedStrings, FileUtils.readLines(FileUtil.getFileWithRewrittenNewMatrix(
+                DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING, matrixForWriting),
+                StandardCharsets.UTF_8));
+    }
+
+    @Test
+    public void testCheckAndFixFileNameWithExtensionWithExtensionCase() {
         assertEquals(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION,
                 FileUtil.checkAndFixFileNameWithExtension(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION));
+    }
 
+    @Test
+    public void testCheckAndFixFileNameWithExtensionWithoutExtensionCase() {
         assertEquals(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION,
                 FileUtil.checkAndFixFileNameWithExtension(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITHOUT_EXTENSION));
     }

@@ -15,32 +15,27 @@ import static util.FileUtil.getFileFromResourcesByResources;
 public class FileTaskTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE)
+    @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_EXCEPTION_CASE)
     public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNullPointerExceptionCase(String fileNameToRead) {
-        FileTask fileTask = new FileTask();
-
         assertThrows(NullPointerException.class,
-                () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameToRead, ""));
+                () -> new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(fileNameToRead, ""));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_CORRECT_INPUT_CASE)
     public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCase
             (String fileNameForReading, String fileNameWithActualResult, String fileNameWithExpectedResult) throws IOException {
-
-        FileTask fileTask = new FileTask();
-
-        assertEquals(FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(fileNameWithExpectedResult)), StandardCharsets.UTF_8),
-                FileUtils.readLines(fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameForReading, fileNameWithActualResult), StandardCharsets.UTF_8));
+        assertEquals(FileUtils.readLines(Objects.requireNonNull(getFileFromResourcesByResources(
+                fileNameWithExpectedResult)), StandardCharsets.UTF_8),
+                FileUtils.readLines(new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(
+                        fileNameForReading, fileNameWithActualResult), StandardCharsets.UTF_8));
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_INCORRECT_SIZE_INPUT_CASE)
     public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase(String fileNameWithActualResult) {
-        FileTask fileTask = new FileTask();
-
         assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> fileTask.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(fileNameWithActualResult, ""));
+                () -> new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(fileNameWithActualResult, ""));
     }
 }

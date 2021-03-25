@@ -11,51 +11,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UtilsTest {
 
     @Test
-    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal() {
-        List<List<Integer>> firstInputMatrixForTest = new ArrayList<>();
-        firstInputMatrixForTest.add(Arrays.asList(3, 3, 0));
-        firstInputMatrixForTest.add(Arrays.asList(2, 0, 2));
-        firstInputMatrixForTest.add(Arrays.asList(0, 1, 1));
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalWithPositiveNumbersCase() {
+        List<List<Integer>> inputMatrixForTest = new ArrayList<>();
+        inputMatrixForTest.add(Arrays.asList(3, 3, 0));
+        inputMatrixForTest.add(Arrays.asList(2, 0, 2));
+        inputMatrixForTest.add(Arrays.asList(0, 1, 1));
 
-        List<List<Integer>> firstExpectedMatrix = new ArrayList<>();
-        firstExpectedMatrix.add(Arrays.asList(0, 1, 1));
-        firstExpectedMatrix.add(Arrays.asList(2, 0, 2));
-        firstExpectedMatrix.add(Arrays.asList(3, 3, 0));
+        List<List<Integer>> expectedMatrix = Arrays.asList(
+                Arrays.asList(0, 1, 1),
+                Arrays.asList(2, 0, 2),
+                Arrays.asList(3, 3, 0));
 
-        Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(firstInputMatrixForTest);
+        Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(inputMatrixForTest);
 
-        assertEquals(firstExpectedMatrix, firstInputMatrixForTest);
-
-        List<List<Integer>> secondInputMatrixForTest = new ArrayList<>();
-        secondInputMatrixForTest.add(Arrays.asList(-2, 0, -2));
-        secondInputMatrixForTest.add(Arrays.asList(-3, -3, 0));
-        secondInputMatrixForTest.add(Arrays.asList(0, -1, -1));
-
-        List<List<Integer>> secondExpectedMatrix = new ArrayList<>();
-        secondExpectedMatrix.add(Arrays.asList(0, -1, -1));
-        secondExpectedMatrix.add(Arrays.asList(-2, 0, -2));
-        secondExpectedMatrix.add(Arrays.asList(-3, -3, 0));
-
-        Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(secondInputMatrixForTest);
-
-        assertEquals(secondExpectedMatrix, secondInputMatrixForTest);
+        assertEquals(expectedMatrix, inputMatrixForTest);
     }
 
     @Test
-    public void testCreateMatrixWithInfoFromString() {
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalWithNegativeNumbersCase() {
+        List<List<Integer>> inputMatrixForTest = new ArrayList<>();
+        inputMatrixForTest.add(Arrays.asList(-2, 0, -2));
+        inputMatrixForTest.add(Arrays.asList(-3, -3, 0));
+        inputMatrixForTest.add(Arrays.asList(0, -1, -1));
 
-        List<List<Integer>> firstExpectedMatrix = new ArrayList<>();
-        firstExpectedMatrix.add(Arrays.asList(2, 0, 2));
-        firstExpectedMatrix.add(Arrays.asList(3, 3, 0));
-        firstExpectedMatrix.add(Arrays.asList(0, 1, 1));
+        List<List<Integer>> expectedMatrix = Arrays.asList(
+                Arrays.asList(0, -1, -1),
+                Arrays.asList(-2, 0, -2),
+                Arrays.asList(-3, -3, 0));
 
-        assertEquals(firstExpectedMatrix, Utils.createMatrixWithInfoFromString(Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO));
+        Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(inputMatrixForTest);
 
-        List<List<Integer>> secondExpectedMatrix = new ArrayList<>();
-        secondExpectedMatrix.add(Arrays.asList(-2, 0, -2));
-        secondExpectedMatrix.add(Arrays.asList(-3, -3, 0));
-        secondExpectedMatrix.add(Arrays.asList(0, -1, -1));
+        assertEquals(expectedMatrix, inputMatrixForTest);
+    }
 
-        assertEquals(secondExpectedMatrix, Utils.createMatrixWithInfoFromString(Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO));
+    @Test
+    public void testCreateMatrixWithInfoFromStringWithPositiveNumbersCase() {
+        List<List<Integer>> firstExpectedMatrix = Arrays.asList(
+                Arrays.asList(2, 0, 2),
+                Arrays.asList(3, 3, 0),
+                Arrays.asList(0, 1, 1));
+
+        assertEquals(firstExpectedMatrix, Utils.getMatrixWithInformationFromString(
+                Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO));
+    }
+
+    @Test
+    public void testCreateMatrixWithInfoFromStringWithNegativeNumbersCase() {
+        List<List<Integer>> secondExpectedMatrix = Arrays.asList(
+                Arrays.asList(-2, 0, -2),
+                Arrays.asList(-3, -3, 0),
+                Arrays.asList(0, -1, -1));
+
+        assertEquals(secondExpectedMatrix, Utils.getMatrixWithInformationFromString(
+                Constant.DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO));
     }
 }

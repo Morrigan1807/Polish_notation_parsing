@@ -15,7 +15,7 @@ import static util.Constant.*;
 @UtilityClass
 public class FileUtil {
 
-    public File rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) {
+    public File getFileWithRewrittenNewMatrix(String fileName, List<List<Integer>> newMatrix) {
         File fileWithNewMatrix = getFileFromResourcesByActualPath(fileName);
 
         try (FileWriter writer = new FileWriter(fileWithNewMatrix, false)) {

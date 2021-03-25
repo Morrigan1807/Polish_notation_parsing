@@ -4,7 +4,7 @@ public class Constant {
 
     public static final String MESSAGE_FOR_ARRAY_STORE_EXCEPTION = "Cant find zero element for main diagonal.";
     public static final String MESSAGE_FOR_ARRAY_INDEX_OUT_OF_BOUNDS_EXCEPTION = "Matrix sizes do not match.";
-    public static final String RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_IOEXCEPTION_CASE =
+    public static final String RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_EXCEPTION_CASE =
             "filetask/testDataTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNullPointerExceptionCaseFileTask.csv";
     public static final String RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_CORRECT_INPUT_CASE =
             "filetask/testDataTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCaseFileTask.csv";
@@ -16,7 +16,7 @@ public class Constant {
     public static final String TXT_EXTENSION = ".txt";
     public static final String DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_FIRST_MATRIX_INFO = "3 3\n2 0 2\n3 3 0\n0 1 1";
     public static final String DATA_FOR_TEST_CREATE_MATRIX_WITH_INFO_FROM_STRING_SECOND_MATRIX_INFO = "3 3\n-2 0 -2\n-3 -3 0\n0 -1 -1";
-    public static final String DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_WITH_STRINGS_FOR_REWRITING =
+    public static final String DATA_FOR_TEST_REWRITE_FILE_WITH_NEW_MATRIX_FILE_NAME_FOR_REWRITING =
             "fileForRewriting.txt";
     public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION = "hello.txt";
     public static final String DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITHOUT_EXTENSION = "hello";

@@ -10,15 +10,13 @@ import java.util.List;
 @Data
 public class FileTask {
 
-    private List<List<Integer>> createdMatrixFromString;
-
-    public File rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileNameToRead, String fileNameToWrite) {
+    public File getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(String fileNameToRead, String fileNameToWrite) {
         StringBuilder stringsFromFile = FileUtil.getAllStringsFromFile(FileUtil.checkAndFixFileNameWithExtension(fileNameToRead));
 
-        createdMatrixFromString = Utils.createMatrixWithInfoFromString(stringsFromFile.toString());
+        List<List<Integer>> createdMatrixFromString = Utils.getMatrixWithInformationFromString(stringsFromFile.toString());
 
         Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(createdMatrixFromString);
 
-        return FileUtil.rewriteFileWithNewMatrix(fileNameToWrite, createdMatrixFromString);
+        return FileUtil.getFileWithRewrittenNewMatrix(fileNameToWrite, createdMatrixFromString);
     }
 }
