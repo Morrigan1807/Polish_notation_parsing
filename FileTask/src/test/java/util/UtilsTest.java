@@ -8,10 +8,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UtilsTest {
+public class UtilsTest {
 
     @Test
-    void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal() {
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal() {
         List<List<Integer>> firstInputMatrixForTest = new ArrayList<>();
         firstInputMatrixForTest.add(Arrays.asList(3, 3, 0));
         firstInputMatrixForTest.add(Arrays.asList(2, 0, 2));
@@ -42,7 +42,7 @@ class UtilsTest {
     }
 
     @Test
-    void testCreateMatrixWithInfoFromString() {
+    public void testCreateMatrixWithInfoFromString() {
 
         List<List<Integer>> firstExpectedMatrix = new ArrayList<>();
         firstExpectedMatrix.add(Arrays.asList(2, 0, 2));

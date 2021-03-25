@@ -5,7 +5,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ArrayTaskTest {
+public class ArrayTaskTest {
 
     private final String resourceFileForTestMaxMultiplicationInArrayAnyIntegersInArrayCase =
             "Test/testData_test_MaxMultiplicationInArray_AnyIntegersInArrayCase_ArrayTask.csv";
@@ -32,7 +32,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayAnyIntegersInArrayCase)
-    void testMaxMultiplicationInArrayAnyIntegersInArrayCase(String inputStr, int expected) {
+    public void testMaxMultiplicationInArrayAnyIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -40,7 +40,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayPositiveIntegersInArrayCase)
-    void testMaxMultiplicationInArrayPositiveIntegersInArrayCase(String inputStr, int expected) {
+    public void testMaxMultiplicationInArrayPositiveIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -48,7 +48,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestMaxMultiplicationInArrayNegativeIntegersInArrayCase)
-    void testMaxMultiplicationInArrayNegativeIntegersInArrayCase(String inputStr, int expected) {
+    public void testMaxMultiplicationInArrayNegativeIntegersInArrayCase(String inputStr, int expected) {
         int[] input = getArrayFromString(inputStr);
 
         assertEquals(expected, new ArrayTask().maxMultiplicationInArray(input));
@@ -56,7 +56,7 @@ class ArrayTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestHasNoDuplicatesInStringIncorrectCase)
-    void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
+    public void testHasNoDuplicatesInStringIncorrectCase(String inputStr) {
         int[] input = getArrayFromString(inputStr);
         ArrayTask arrayTask = new ArrayTask();
 

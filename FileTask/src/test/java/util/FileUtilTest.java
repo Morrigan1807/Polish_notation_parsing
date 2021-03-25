@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,14 +11,13 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static util.Constant.*;
 import static util.FileUtil.getFileFromResourcesByResources;
 
-class FileUtilTest {
+public class FileUtilTest {
 
     @Test
-    void testRewriteFileWithNewMatrix() throws IOException {
+    public void testRewriteFileWithNewMatrix() throws IOException {
         List<List<Integer>> firstMatrixForWriting = new ArrayList<>();
         firstMatrixForWriting.add(Arrays.asList(3, 3, 3));
         firstMatrixForWriting.add(Arrays.asList(-4, -4, -4));
@@ -52,7 +50,7 @@ class FileUtilTest {
     }
 
     @Test
-    void testCheckAndFixFileNameWithExtension() {
+    public void testCheckAndFixFileNameWithExtension() {
         assertEquals(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION,
                 FileUtil.checkAndFixFileNameWithExtension(DATA_FOR_TEST_CHECK_AND_FIX_FILE_NAME_WITH_EXTENSION_FILE_NAME_WITH_EXTENSION));
 
@@ -61,7 +59,7 @@ class FileUtilTest {
     }
 
     @Test
-    void testGetAllStringsFromFile() throws IOException {
+    public void testGetAllStringsFromFile() throws IOException {
         List<String> expectedStrings = Arrays.asList("3 3", "0 8 7", "9 0 1", "2 1 0");
 
         assertEquals(expectedStrings, FileUtils.readLines(

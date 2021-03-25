@@ -9,7 +9,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ExceptionTaskTest {
+public class ExceptionTaskTest {
 
     static final String resourceFileForTestCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase =
             "testDataTestCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase.csv";
@@ -18,38 +18,38 @@ class ExceptionTaskTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase)
-    void testCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase(double dividend, double divider) {
+    public void testCalculateDivisionForDivisionByZeroExceptionGenerateExceptionCase(double dividend, double divider) {
         assertThrows(DivisionByZeroException.class, () -> new ExceptionTask().calculateDivision(dividend, divider));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = resourceFileForTestCalculateDivisionForDivisionByZeroExceptionCorrectDividerCase)
-    void testCalculateDivisionForDivisionByZeroExceptionCorrectDividerCase
+    public void testCalculateDivisionForDivisionByZeroExceptionCorrectDividerCase
             (double dividend, double divider, double expectedResult) throws DivisionByZeroException {
         assertEquals(expectedResult, new ExceptionTask().calculateDivision(dividend, divider), 0.01);
     }
 
     @Test
-    void testGenerateIndexOutOfBoundsException() throws IndexOutOfBoundsException {
+    public void testGenerateIndexOutOfBoundsException() throws IndexOutOfBoundsException {
         ExceptionTask exceptionTask = new ExceptionTask();
 
         assertThrows(IndexOutOfBoundsException.class, exceptionTask::generateIndexOutOfBoundsException);
     }
 
     @Test
-    void testGenerateIOException() {
+    public void testGenerateIOException() {
         assertThrows(IOException.class, () -> new ExceptionTask().generateIOException());
     }
 
     @Test
-    void testGenerateArithmeticException() throws ArithmeticException {
+    public void testGenerateArithmeticException() throws ArithmeticException {
         ExceptionTask exceptionTask = new ExceptionTask();
 
         assertThrows(ArithmeticException.class, exceptionTask::generateArithmeticException);
     }
 
     @Test
-    void testGenerateDivisionByZeroException() {
+    public void testGenerateDivisionByZeroException() {
         assertThrows(DivisionByZeroException.class, () -> new ExceptionTask().generateDivisionByZeroException("Some cool message"));
     }
 }
