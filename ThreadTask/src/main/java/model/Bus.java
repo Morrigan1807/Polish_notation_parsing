@@ -1,8 +1,10 @@
 package model;
 
 import lombok.Data;
+import lombok.SneakyThrows;
 
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 /*Добавь фиксацию того что тот или иной автобус прибыл на ту или иную остановку
 (в алгоритме приложения, это нужно для проверки работы алгоритма)
@@ -31,19 +33,41 @@ import java.util.List;
 - разбивай методы на одно действие один метод*/
 
 @Data
-public class Bus {
+public class Bus implements Runnable {
 
+    private static final int TIME_TO_BUS_STOP = 2;
+
+    private static final Semaphore semaphore = new Semaphore(2, true);
     private static int iter = 0;
     private final int numberOfBus;
     private int timeToMoveToNextBusStop = 10;
     private List<BusStop> busRoute;
-    private BusStop currentBusStop;
+    private BusStop nextBusStop;
     private int timeInRoute;
-    private int timeStartRout;
+    private long timeStartRout;
     private int delayBeforeStart;
-    private static final int TIME_TO_BUS_STOP = 2;
 
     Bus() {
         numberOfBus = ++iter;
+    }
+
+    public void setBusRoute(List<BusStop> busRoute) {
+        this.busRoute = busRoute;
+
+        busRoute.forEach(BusStop::incrementNumOfBusesExpected);
+    }
+
+    @SneakyThrows
+    @Override
+    public void run() {
+        Thread.sleep(delayBeforeStart);
+
+        timeStartRout = System.currentTimeMillis();
+
+        goToNextBusStop();
+    }
+
+    private void goToNextBusStop() {
+
     }
 }
