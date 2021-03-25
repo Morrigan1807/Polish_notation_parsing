@@ -4,6 +4,7 @@ import lombok.Data;
 import util.FileUtil;
 import util.Utils;
 
+import java.io.File;
 import java.util.List;
 
 @Data
@@ -11,13 +12,13 @@ public class FileTask {
 
     private List<List<Integer>> createdMatrixFromString;
 
-    public void rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileName) {
-        StringBuilder stringsFromFile = FileUtil.getAllStringsFromFile(FileUtil.checkAndFixFileNameWithExtension(fileName));
+    public File rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFile(String fileNameToRead, String fileNameToWrite) {
+        StringBuilder stringsFromFile = FileUtil.getAllStringsFromFile(FileUtil.checkAndFixFileNameWithExtension(fileNameToRead));
 
         createdMatrixFromString = Utils.createMatrixWithInfoFromString(stringsFromFile.toString());
 
         Utils.rearrangeLinesInMatrixForZeroElementsOnTheMainDiagonal(createdMatrixFromString);
 
-        FileUtil.rewriteFileWithNewMatrix(fileName, createdMatrixFromString);
+        return FileUtil.rewriteFileWithNewMatrix(fileNameToWrite, createdMatrixFromString);
     }
 }

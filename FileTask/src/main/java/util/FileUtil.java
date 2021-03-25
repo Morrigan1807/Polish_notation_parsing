@@ -15,14 +15,18 @@ import static util.Constant.*;
 @UtilityClass
 public class FileUtil {
 
-    public void rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) {
-        try (FileWriter writer = new FileWriter(getFileFromResourcesByActualPath(fileName), false)) {
+    public File rewriteFileWithNewMatrix(String fileName, List<List<Integer>> newMatrix) {
+        File fileWithNewMatrix = getFileFromResourcesByActualPath(fileName);
+
+        try (FileWriter writer = new FileWriter(fileWithNewMatrix, false)) {
             writer.write(getPreparedStringWithNewMatrixInfo(newMatrix).toString());
 
             writer.flush();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+
+        return fileWithNewMatrix;
     }
 
     public static File getFileFromResourcesByResources(String fileName) {
