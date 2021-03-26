@@ -12,10 +12,10 @@ public class Bus implements Runnable {
     private static int iter = 0;
     private final int numberOfBus;
     private int timeToMoveToNextBusStop = 5000;
-    private List<BusStop> busRoute;
     private int nextBusStop = 0;
-    private long timeInRoute;
     private int delayBeforeStart;
+    private long timeInRoute;
+    private List<BusStop> busRoute;
 
     public Bus(int delayBeforeStart, int timeToMoveToNextBusStop) {
         numberOfBus = ++iter;
@@ -44,7 +44,6 @@ public class Bus implements Runnable {
 
             while (nextBusStop < busRoute.size()) {
                 goToNextBusStop();
-
             }
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();

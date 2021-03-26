@@ -12,12 +12,11 @@
     <modules>
         <module>StringTask</module>
         <module>ArrayTask</module>
-        <module>ThreadTask</module>
+        <module>MultiThreadTask</module>
         <module>CollectionsTask</module>
         <module>FileTask</module>
         <module>ExceptionsTask</module>
         <module>PolishNotationParsing</module>
-        <module>ThreadTask</module>
     </modules>
 
     <build>

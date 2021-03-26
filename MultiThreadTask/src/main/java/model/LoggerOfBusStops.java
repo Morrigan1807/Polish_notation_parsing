@@ -30,4 +30,8 @@ public class LoggerOfBusStops {
 
         return outputLog.toString();
     }
+
+    public void clearLog() {
+        logger.clear();
+    }
 }

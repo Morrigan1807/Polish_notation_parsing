@@ -87,8 +87,7 @@ public class TestThreadTask {
     }
 
     @Test
-    public void testFirstBusTimeSpent()
-    {
+    public void testFirstBusTimeSpent() {
         double expectedTimeSpent = 23;
         double actualTimeSpent = (double) busDepot.getBuses().get(0).getTimeInRoute() / 1000;
 
@@ -96,8 +95,7 @@ public class TestThreadTask {
     }
 
     @Test
-    public void testSecondBusTimeSpent()
-    {
+    public void testSecondBusTimeSpent() {
         double expectedTimeSpent = 29;
         double actualTimeSpent = (double) busDepot.getBuses().get(1).getTimeInRoute() / 1000;
 
@@ -105,8 +103,7 @@ public class TestThreadTask {
     }
 
     @Test
-    public void testThirdBusTimeSpent()
-    {
+    public void testThirdBusTimeSpent() {
         double expectedTimeSpent = 17;
         double actualTimeSpent = (double) busDepot.getBuses().get(2).getTimeInRoute() / 1000;
 
@@ -114,8 +111,7 @@ public class TestThreadTask {
     }
 
     @Test
-    public void testFourthBusTimeSpent()
-    {
+    public void testFourthBusTimeSpent() {
         double expectedTimeSpent = 44;
         double actualTimeSpent = (double) busDepot.getBuses().get(3).getTimeInRoute() / 1000;
 
@@ -123,10 +119,8 @@ public class TestThreadTask {
     }
 
     @Test
-    public void testDepartedEqualsExpectedForEachBusStop()
-    {
-        for(BusStop busStop : busStops)
-        {
+    public void testDepartedEqualsExpectedForEachBusStop() {
+        for (BusStop busStop : busStops) {
             assertEquals(busStop.getNumOfBusesExpected(), busStop.getNumOfBusesDeparted());
         }
     }

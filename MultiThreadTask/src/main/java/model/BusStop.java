@@ -8,11 +8,10 @@ import java.util.concurrent.Semaphore;
 public class BusStop {
 
     private static final int BUS_SERVICE_TIME_IN_MILLIS = 2000;
-
     private final Semaphore semaphore = new Semaphore(2, true);
-    private String nameOfBusStop = "";
     private int numOfBusesDeparted = 0;
     private int numOfBusesExpected = 0;
+    private String nameOfBusStop = "";
     private LoggerOfBusStops loggerOfBusStops = LoggerOfBusStops.getInstance();
 
     public BusStop(String nameOfBusStop) {
@@ -38,7 +37,7 @@ public class BusStop {
 
         Thread.sleep(BUS_SERVICE_TIME_IN_MILLIS);
 
-        loggerOfBusStops.addInformationInLogger("Bus " + bus.getNumberOfBus() + " arrived to " + nameOfBusStop + " bus stop.");
+        loggerOfBusStops.addInformationInLogger(String.format("Bus %d arrived to %s bus stop.", bus.getNumberOfBus(), nameOfBusStop));
     }
 
     private void busDeparts(Bus bus) {
@@ -46,7 +45,7 @@ public class BusStop {
             numOfBusesDeparted++;
         }
 
-        loggerOfBusStops.addInformationInLogger("Bus " + bus.getNumberOfBus() + " departed from " + nameOfBusStop + " bus stop.");
+        loggerOfBusStops.addInformationInLogger(String.format("Bus %d departed from %s bus stop.", bus.getNumberOfBus(), nameOfBusStop));
 
         semaphore.release();
     }
