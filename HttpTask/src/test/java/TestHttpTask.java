@@ -7,8 +7,7 @@ public class TestHttpTask {
             "LmeqNSim0lwUzjfC4n9ExajFutkAsx2v6GJla9cLZ7SduECMGVqStsTA_ynCbLZTmAAtpAR_J7IFb9LroqJqyZabKG_K";
 
     @BeforeAll
-    public static void setShowAllRequestVisibleInConsole()
-    {
+    public static void setShowAllRequestVisibleInConsole() {
         HttpRequests.showAllRequestVisibleInConsole();
     }
 
