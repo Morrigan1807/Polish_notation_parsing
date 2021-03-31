@@ -43,4 +43,11 @@ public class FileTaskTest {
         assertThrows(ArrayIndexOutOfBoundsException.class,
                 () -> new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(fileNameWithActualResult, ""));
     }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_NUMBER_FORMAT_EXCEPTION_CASE)
+    public void testRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase(String fileNameWithActualResult) {
+        assertThrows(NumberFormatException.class,
+                () -> new FileTask().getFileWithRearrangedRowsInMatrixForZeroElementsOnMainDiagonal(fileNameWithActualResult, ""));
+    }
 }
