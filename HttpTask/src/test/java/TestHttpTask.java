@@ -32,13 +32,13 @@ public class TestHttpTask {
     public void testPutRequest() {
         String idFile = "1CepFaKw1f_XET0WEO89v7xjQ8lPAwgO3";
 
-        StringBuilder urlPutRequestChangeNameFile = new StringBuilder();
-        urlPutRequestChangeNameFile.append("https://www.googleapis.com/upload/drive/v2/files/");
-        urlPutRequestChangeNameFile.append(idFile);
+        StringBuilder urlPutRequestWriteTextInFile = new StringBuilder();
+        urlPutRequestWriteTextInFile.append("https://www.googleapis.com/upload/drive/v2/files/");
+        urlPutRequestWriteTextInFile.append(idFile);
 
         String textToWriteInFile = "Hi there!";
 
-        new HttpRequests().makePutRequest(ACCESS_TOKEN, urlPutRequestChangeNameFile.toString(), textToWriteInFile);
+        new HttpRequests().makePutRequest(ACCESS_TOKEN, urlPutRequestWriteTextInFile.toString(), textToWriteInFile);
     }
 
     @Test
