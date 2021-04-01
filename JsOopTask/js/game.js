@@ -55,7 +55,9 @@ class Bird {
 	}
 	
 	hasCrashed(obstacle) {
-		return (this.y + birdImage.height >= cvs.height - fgImage.height) || (this.x + birdImage.width >= obstacle.x
+		console.log(this.y);
+		console.log(this.y <= 0);
+		return (this.y <= 0) || (this.y + birdImage.height >= cvs.height - fgImage.height) || (this.x + birdImage.width >= obstacle.x
 		&& this.x <= obstacle.x + evilBirdImage.width
 		&& ((this.y <= obstacle.y + evilBirdImage.height && this.y >= obstacle.y) 
 		|| this.y + birdImage.height >= obstacle.y + evilBirdImage.height + obstacle.gap));
@@ -68,14 +70,11 @@ function generateObstacle() {
 
 var obstacles = [];
 
-obstacles[0] = generateObstacle();
 
 var score = 0;
+var best_score = 0;
 var bird = new Bird(10, 200, 0.8);
 
-document.addEventListener("keydown", (event) => {
-	bird.moveUp();
-});
 
 function draw() {
 	ctx.drawImage(bgImage, 0, 0);
@@ -95,6 +94,11 @@ function draw() {
 
 		if(obstacles[i].x == 5) {
 			score++;
+			if (best_score < score) {
+				document.cookie = "bestScore=" + score.toString();
+	console.log(document.cookie);
+				best_score = score;
+			}
 			score_audio.play();
 		}
 	}
@@ -107,9 +111,23 @@ function draw() {
 
 	ctx.fillStyle = "#FFF";
 	ctx.font = "24px Verdana";
-	ctx.fillText("Счет: " + score, 10, cvs.height - 20);
+	ctx.fillText("Счет: " + score, 10, cvs.height - 60);
+	ctx.fillStyle = "#FFF";
+	ctx.font = "24px Verdana";
+	ctx.fillText("Лучший счет: " + best_score, 10, cvs.height - 20);
 
 	requestAnimationFrame(draw);
 }
 
-houseImage.onload = draw;
+function startGame() {
+	document.getElementById("startButton").style.display='none';
+	var score_cookie = document.cookie.trim().split(';').filter(item => item.startsWith("bestScore="))[0]
+	best_score = score_cookie !=undefined ? parseInt(score_cookie.substring(10)) : 0;
+	console.log(document.cookie);
+	console.log(best_score);
+	obstacles[0] = generateObstacle();
+	document.addEventListener("keydown", (event) => {
+		bird.moveUp();
+	});
+	draw();
+}
