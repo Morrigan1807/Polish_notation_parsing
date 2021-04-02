@@ -3,6 +3,7 @@ package model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+//TODO to refactor
 @Getter
 @RequiredArgsConstructor
 public enum OperatorModel {

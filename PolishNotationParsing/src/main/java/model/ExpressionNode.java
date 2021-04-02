@@ -2,6 +2,7 @@ package model;
 
 import lombok.Data;
 
+//TODO to refactor
 @Data
 public class ExpressionNode implements ExpressionTree {
 

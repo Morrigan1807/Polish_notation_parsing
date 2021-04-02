@@ -2,6 +2,7 @@ package model;
 
 import lombok.AllArgsConstructor;
 
+//TODO to refactor
 @AllArgsConstructor
 public class ExpressionLeafInteger implements ExpressionTree {
 
