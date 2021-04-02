@@ -18,7 +18,6 @@
         <module>ExceptionsTask</module>
         <module>PolishNotationParsing</module>
         <module>PatternsTask</module>
-        <module>HttpTask</module>
     </modules>
 
     <build>

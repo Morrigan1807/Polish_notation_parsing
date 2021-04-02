@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class TestHttpTask {
 
-    private static final String ACCESS_TOKEN = "ya29.a0AfH6SMDVDw_XmJ3yURJLJMp1H0aR0VwrnQ4PBhpAZ_CS3CgB7lGtatSEaSeXukWE" +
-            "LmeqNSim0lwUzjfC4n9ExajFutkAsx2v6GJla9cLZ7SduECMGVqStsTA_ynCbLZTmAAtpAR_J7IFb9LroqJqyZabKG_K";
+    private static final String ACCESS_TOKEN = "ya29.a0AfH6SMB10dPJOGZs9PO-4cgFiJ5yYcFtS_pLEUGy97dzqVxivlyxjU2gYRRxyswP" +
+            "CC1sMi3sH67B7dyK1MCAzSvy3LPsI3j7ARogNXQFm45Gp-wg-WCXU4B9DfahUJREsWmJ4GsepFywvRyNdcF8Jk5ZX3fK";
 
     @BeforeAll
     public static void setShowAllRequestVisibleInConsole() {
@@ -29,7 +29,7 @@ public class TestHttpTask {
 
     @Test
     public void testPutRequest() {
-        String idFile = "1CepFaKw1f_XET0WEO89v7xjQ8lPAwgO3";
+        String idFile = "1xIeTbAO1aW-G0IUhLIHJZXfPY5O0UZbQ";
 
         StringBuilder urlPutRequestWriteTextInFile = new StringBuilder();
         urlPutRequestWriteTextInFile.append("https://www.googleapis.com/upload/drive/v2/files/");
@@ -42,7 +42,7 @@ public class TestHttpTask {
 
     @Test
     public void testDeleteFile() {
-        String idFile = "1CepFaKw1f_XET0WEO89v7xjQ8lPAwgO3";
+        String idFile = "1xIeTbAO1aW-G0IUhLIHJZXfPY5O0UZbQ";
 
         StringBuilder urlDeleteRequestDeleteFile = new StringBuilder();
         urlDeleteRequestDeleteFile.append("https://www.googleapis.com/drive/v2/files/");
