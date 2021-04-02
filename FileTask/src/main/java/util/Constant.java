@@ -10,6 +10,8 @@ public class Constant {
             "filetask/testDataTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileCorrectInputCaseFileTask.csv";
     public static final String RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_INCORRECT_SIZE_INPUT_CASE =
             "filetask/testDataTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileIncorrectSizeInputCase.csv";
+    public static final String RESOURCE_FILE_FOR_TEST_REARRANGE_LINES_IN_MATRIX_FOR_ZERO_ELEMENTS_ON_THE_MAIN_DIAGONAL_IN_FILE_NUMBER_FORMAT_EXCEPTION_CASE =
+            "filetask/testDataTestRearrangeLinesInMatrixForZeroElementsOnTheMainDiagonalInFileNumberFormatExceptionCase.csv";
     public static final String SPACE = " ";
     public static final String REGEX_CARRIAGE_RETURN_CHARACTER_AND_LINE_FEED_CHARACTER_OR_LINE_FEED_CHARACTER_ONLY = "\r\n|\n";
     public static final String LINE_FEED_CHARACTER = "\n";
@@ -21,6 +23,7 @@ public class Constant {
     public static final String FILE_NAME_WITHOUT_EXTENSION = "hello";
     public static final String FILE_NAME_WITH_EXPECTED_RESULT = "fileExp.txt";
     public static final String PATH_TO_RESOURCES = "src/main/resources/";
+
 
     private Constant() {
     }

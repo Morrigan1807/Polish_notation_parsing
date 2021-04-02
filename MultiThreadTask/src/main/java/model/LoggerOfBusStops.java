@@ -6,14 +6,14 @@ import java.util.List;
 public class LoggerOfBusStops {
 
     private static List<String> logger;
-    private static LoggerOfBusStops singleton = new LoggerOfBusStops();
+    private static LoggerOfBusStops loggerOfBusStops = new LoggerOfBusStops();
 
     private LoggerOfBusStops() {
         logger = new ArrayList<>();
     }
 
     public static LoggerOfBusStops getInstance() {
-        return singleton;
+        return loggerOfBusStops;
     }
 
     public void addInformationInLogger(String logInformation) {
