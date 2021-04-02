@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="none" name="robots"/>
+    <title>Библиотека jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery.tmpl.min.js"></script>
+    <script src="jquery.validate.js"></script>
+
+    <script>
+        $(function () {
+
+            var data = [
+                {name: "Ручка", product: "pen", stocklevel: "100", price: 1},
+                {name: "Карандаш", product: "pencil", stocklevel: "120", price: 1.11},
+                {name: "Маркер", product: "marker", stocklevel: "20", price: 5.50},
+                {name: "Скрепки", product: "clips", stocklevel: "0", price: 3.44},
+                {name: "Линейка", product: "ruler", stocklevel: "10", price: 2.12},
+                {name: "Тетрадь", product: "notebook", stocklevel: "50", price: 0.99},
+            ];
+
+            var templResult = $('#stationeryTmpl').tmpl(data);
+            templResult.slice(0, 3).appendTo('#row1');
+            templResult.slice(3).appendTo("#row2");
+
+            $('form').validate({
+                highlight: function (element, errorClass) {
+                    $(element).add($(element).parent()).addClass("invalidElem");
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).add($(element).parent()).removeClass("invalidElem");
+                },
+                errorElement: "div",
+                errorClass: "errorMsg"
+            });
+
+            $.validator.addClassRules({
+                stationeryValidation: {
+                    min: 0,
+                    max: 10
+                }
+            })
+
+            $('input').addClass("stationeryValidation").change(function (e) {
+                $('form').validate().element($(e.target));
+            });
+
+            $('button').click(function (e) {
+                var formData = $('form').serialize();
+
+                $.post('phphandler.php', formData,
+                    function (data) {
+                        processServerResponse(data);
+                    });
+
+                e.preventDefault()
+            });
+
+            function processServerResponse(data) {
+                var inputElems = $('div.dcell').hide();
+
+                for (var prop in data) {
+                    var filtered = inputElems.has('input[name=' + prop + ']')
+                        .appendTo("#row1").show();
+                }
+
+                $('#buttonDiv, #totalDiv').remove();
+
+                $('#totalTmpl').tmpl(data).appendTo('body');
+            }
+        });
+    </script>
+
+    <script id="stationeryTmpl" type="text/x-jquery-tmpl">
+        <div class="dcell">
+            <img src="pic/${product}.jpg"/>
+            <label for="${product}">${name}:</label>
+            <input name="${product}" data-price="${price}" data-stock="${stocklevel}"
+                value="0" required />
+        </div>
+
+
+    </script>
+    <script id="totalTmpl" type="text/x-jquery-tmpl">
+        <div id="totalDiv" style="clear: both; padding: 5px">
+            <div style="text-align: center">Всего заказов: <span id=total>${total}</span></div>
+            <div id="buttonDiv"><button type="submit">Заказать</button></div>
+        </div>
+
+
+    </script>
+
+    <style>
+        h1 {
+            min-width: 70px;
+            border: thick double black;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            font-size: x-large;
+            padding: .5em;
+            color: black;
+            background-color: LightGreen;
+            background-size: contain;
+            margin-top: 0;
+        }
+
+        .dtable {
+            display: table;
+            width: 100%;
+        }
+
+        .drow {
+            display: table-row;
+        }
+
+        .dcell {
+            display: table-cell;
+            padding: 10px;
+        }
+
+        .dcell > * {
+            vertical-align: middle
+        }
+
+        input {
+            width: 2em;
+            text-align: right;
+            border: thin solid black;
+            padding: 2px;
+        }
+
+        label {
+            width: 6em;
+            padding-left: .5em;
+            display: inline-block;
+        }
+
+        #buttonDiv {
+            text-align: center;
+        }
+
+        button {
+            padding: 12px;
+        }
+
+        #oblock {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 700px;
+        }
+
+        div.errorMsg {
+            color: red
+        }
+
+        .invalidElem {
+            border: medium solid red
+        }
+    </style>
+
+</head>
+
+<body>
+<h1>Канцелярские товары</h1>
+<form method="post">
+    <div id="oblock">
+        <div class="dtable">
+            <div class="drow" id="row1"></div>
+            <div class="drow" id="row2"></div>
+        </div>
+    </div>
+    <div id="buttonDiv">
+        <button type="submit">Заказать</button>
+    </div>
+</form>
+</body>
+
+</html>
