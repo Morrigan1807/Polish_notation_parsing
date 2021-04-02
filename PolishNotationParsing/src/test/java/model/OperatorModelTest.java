@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-//TODO to refactor
 public class OperatorModelTest {
 
     @ParameterizedTest

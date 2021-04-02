@@ -2,17 +2,16 @@ package model;
 
 import lombok.AllArgsConstructor;
 
-//TODO to refactor
 @AllArgsConstructor
 public class ExpressionLeafDouble implements ExpressionTree {
 
     private final double leaf;
 
-    public double calculate() {
+    public double getResultOfExpression() {
         return leaf;
     }
 
-    public String toPolishNotation() {
+    public String getStringOfPolishNotation() {
         return Double.toString(leaf);
     }
 }

@@ -5,7 +5,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//TODO to refactor
 public class ExpressionLeafDoubleTest {
 
     @ParameterizedTest
@@ -13,7 +12,7 @@ public class ExpressionLeafDoubleTest {
     public void testCalculate(double input, double expected) {
         ExpressionLeafDouble expressionLeafDouble = new ExpressionLeafDouble(input);
 
-        assertEquals(expected, expressionLeafDouble.calculate(), 0.01);
+        assertEquals(expected, expressionLeafDouble.getResultOfExpression(), 0.01);
     }
 
     @ParameterizedTest
@@ -21,6 +20,6 @@ public class ExpressionLeafDoubleTest {
     public void testToPolishNotation(double input, String expected) {
         ExpressionLeafDouble expressionLeafDouble = new ExpressionLeafDouble(input);
 
-        assertEquals(expected, expressionLeafDouble.toPolishNotation());
+        assertEquals(expected, expressionLeafDouble.getStringOfPolishNotation());
     }
 }

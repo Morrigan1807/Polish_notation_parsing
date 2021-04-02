@@ -6,7 +6,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//TODO to refactor
 public class ExpressionNodeTest {
 
     @ParameterizedTest
@@ -17,7 +16,7 @@ public class ExpressionNodeTest {
         expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));
         expressionNode.setRightOperand(new ExpressionLeafDouble(rightOperand));
 
-        assertEquals(expected, expressionNode.calculate(), 0.01);
+        assertEquals(expected, expressionNode.getResultOfExpression(), 0.01);
     }
 
     @ParameterizedTest
@@ -28,7 +27,7 @@ public class ExpressionNodeTest {
         expressionNode.setLeftOperand(new ExpressionLeafDouble(leftOperand));
         expressionNode.setRightOperand(new ExpressionLeafDouble(rightOperand));
 
-        assertEquals(expected, expressionNode.toPolishNotation());
+        assertEquals(expected, expressionNode.getStringOfPolishNotation());
     }
 
 

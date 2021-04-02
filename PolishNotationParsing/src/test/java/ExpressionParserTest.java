@@ -4,7 +4,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//TODO to refactor
 public class ExpressionParserTest {
 
     @ParameterizedTest
@@ -12,7 +11,7 @@ public class ExpressionParserTest {
     public void testToPolishNotation(String input, String expected) {
         ExpressionParser expressionParser = ExpressionParser.parseExpression(input);
 
-        assertEquals(expected, expressionParser.toPolishNotation());
+        assertEquals(expected, expressionParser.getStringWithExpressionByPolishNotation());
     }
 
     @ParameterizedTest
@@ -20,7 +19,7 @@ public class ExpressionParserTest {
     public void testCalculateExpression(String input, double expected) {
         ExpressionParser expressionParser = ExpressionParser.parseExpression(input);
 
-        assertEquals(expected, expressionParser.calculateExpression(), 0.01);
+        assertEquals(expected, expressionParser.getResultOfExpression(), 0.01);
     }
 
     @ParameterizedTest

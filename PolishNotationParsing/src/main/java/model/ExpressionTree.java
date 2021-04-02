@@ -1,9 +1,8 @@
 package model;
 
-//TODO to refactor
 public interface ExpressionTree {
 
-    double calculate();
+    double getResultOfExpression();
 
-    String toPolishNotation();
+    String getStringOfPolishNotation();
 }

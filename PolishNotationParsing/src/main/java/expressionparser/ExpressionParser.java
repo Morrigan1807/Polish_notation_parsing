@@ -2,7 +2,6 @@ package expressionparser;
 
 import model.*;
 
-//TODO to refactor
 public class ExpressionParser {
 
     private final ExpressionTree expressionTree;
@@ -17,7 +16,7 @@ public class ExpressionParser {
         if (!isCorrectParentheses(inputExpression)) {
             throw new IllegalArgumentException("Incorrect parentheses placement.");
         }
-
+        //TODO разбить на булл методы регулярки
         if (inputExpression.matches(".*([+\\-*/][+\\-*/]|[+\\-*/]\\)|\\([*/]|[^0-9][.,]|[.,][^0-9]|\\(\\)).*|.*[+\\-*/.,]|[*/.,].*") ||
                 inputExpression.matches("[^+\\-*/0-9.,()]")) {
             throw new IllegalArgumentException("Illegal input.");
@@ -26,12 +25,21 @@ public class ExpressionParser {
         return new ExpressionParser(parseStringToExpressionTree(inputExpression));
     }
 
+    public String getStringWithExpressionByPolishNotation() {
+        return expressionTree.getStringOfPolishNotation();
+    }
+
+    public double getResultOfExpression() {
+        return expressionTree.getResultOfExpression();
+    }
+
     private static ExpressionTree parseStringToExpressionTree(String expression) {
         if (expression.matches("^[-+]?[0-9]+[.,][0-9]+$")) {
             return new ExpressionLeafDouble(Double.parseDouble(expression));
         } else if (expression.matches("^[-+]?[0-9]+$")) {
             return new ExpressionLeafInteger(Integer.parseInt(expression));
         } else {
+            //TODO while вынести в отдельный метод
             while (expression.charAt(0) == '(' && expression.charAt(expression.length() - 1) == ')' &&
                     isCorrectParentheses(expression.substring(1, expression.length() - 1))) {
                 expression = expression.substring(1, expression.length() - 1);
@@ -39,6 +47,7 @@ public class ExpressionParser {
 
             int index = getNextOperatorPosition(expression);
 
+            //TODO заполнение node в отдельный метод
             ExpressionNode node = new ExpressionNode();
 
             node.setRootOperator(OperatorModel.fromString(expression.substring(index, index + 1)));
@@ -51,6 +60,7 @@ public class ExpressionParser {
     }
 
     private static int getNextOperatorPosition(String expression) {
+        //TODO разбить на методы
         int count = 0;
         int i = 0;
 
@@ -113,10 +123,11 @@ public class ExpressionParser {
         throw new IllegalArgumentException("Operator not found.");
     }
 
-    private static String removeSpaces(String string) {
-        return string.replaceAll(" ", "");
+    private static String removeSpaces(String stringForSpaceRemoving) {
+        return stringForSpaceRemoving.replaceAll(" ", "");
     }
 
+    //TODO разбить на методы
     private static boolean isCorrectParentheses(String expression) {
         int count = 0;
 
@@ -133,13 +144,5 @@ public class ExpressionParser {
         }
 
         return count == 0;
-    }
-
-    public String toPolishNotation() {
-        return expressionTree.toPolishNotation();
-    }
-
-    public double calculateExpression() {
-        return expressionTree.calculate();
     }
 }

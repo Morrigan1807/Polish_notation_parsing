@@ -2,7 +2,6 @@ package model;
 
 import lombok.Data;
 
-//TODO to refactor
 @Data
 public class ExpressionNode implements ExpressionTree {
 
@@ -10,31 +9,26 @@ public class ExpressionNode implements ExpressionTree {
     private ExpressionTree rightOperand;
     private OperatorModel rootOperator;
 
-    public double calculate() {
-        double res = 0;
-
+    public double getResultOfExpression() {
         switch (rootOperator) {
             case ADDITION:
-                res = leftOperand.calculate() + rightOperand.calculate();
-                break;
+                return leftOperand.getResultOfExpression() + rightOperand.getResultOfExpression();
 
             case SUBTRACTION:
-                res = leftOperand.calculate() - rightOperand.calculate();
-                break;
+                return leftOperand.getResultOfExpression() - rightOperand.getResultOfExpression();
 
             case MULTIPLICATION:
-                res = leftOperand.calculate() * rightOperand.calculate();
-                break;
+                return leftOperand.getResultOfExpression() * rightOperand.getResultOfExpression();
 
             case DIVISION:
-                res = leftOperand.calculate() / rightOperand.calculate();
-                break;
-        }
+                return leftOperand.getResultOfExpression() / rightOperand.getResultOfExpression();
 
-        return res;
+            default:
+                throw new ArithmeticException("Wong operator type.");
+        }
     }
 
-    public String toPolishNotation() {
-        return leftOperand.toPolishNotation() + " " + rightOperand.toPolishNotation() + " " + rootOperator.getOperatorAsChar();
+    public String getStringOfPolishNotation() {
+        return leftOperand.getStringOfPolishNotation() + " " + rightOperand.getStringOfPolishNotation() + " " + rootOperator.getOperatorAsChar();
     }
 }
