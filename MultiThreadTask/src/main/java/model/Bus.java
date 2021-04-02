@@ -1,15 +1,16 @@
 package model;
 
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
 @Data
+@Log4j2
 public class Bus implements Runnable {
 
     private static final int TIME_TO_BUS_STOP = 2;
-
-    private static int iter = 0;
+    private static int iterationNumberOfBusStop = 0;
     private final int numberOfBus;
     private int timeToMoveToNextBusStop = 5000;
     private int nextBusStop = 0;
@@ -18,7 +19,7 @@ public class Bus implements Runnable {
     private List<BusStop> busRoute;
 
     public Bus(int delayBeforeStart, int timeToMoveToNextBusStop) {
-        numberOfBus = ++iter;
+        numberOfBus = ++iterationNumberOfBusStop;
 
         this.delayBeforeStart = delayBeforeStart;
         this.timeToMoveToNextBusStop = timeToMoveToNextBusStop;
@@ -46,7 +47,7 @@ public class Bus implements Runnable {
                 goToNextBusStop();
             }
         } catch (InterruptedException interruptedException) {
-            interruptedException.printStackTrace();
+            log.error(interruptedException);
         }
 
         timeInRoute = System.currentTimeMillis() - timeStartRout;

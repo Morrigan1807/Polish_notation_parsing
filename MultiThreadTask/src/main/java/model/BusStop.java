@@ -1,10 +1,13 @@
 package model;
 
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Semaphore;
 
 @Data
+@Log4j2
 public class BusStop {
 
     private static final int BUS_SERVICE_TIME_IN_MILLIS = 2000;
@@ -25,10 +28,9 @@ public class BusStop {
     public void servingBusInBusStop(Bus bus) {
         try {
             busArrives(bus);
-
             busDeparts(bus);
         } catch (InterruptedException interruptedException) {
-            interruptedException.printStackTrace();
+            log.error(interruptedException);
         }
     }
 
