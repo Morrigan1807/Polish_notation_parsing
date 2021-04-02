@@ -3,8 +3,8 @@ import org.junit.jupiter.api.Test;
 
 public class TestHttpTask {
 
-    private static final String ACCESS_TOKEN = "ya29.a0AfH6SMB10dPJOGZs9PO-4cgFiJ5yYcFtS_pLEUGy97dzqVxivlyxjU2gYRRxyswP" +
-            "CC1sMi3sH67B7dyK1MCAzSvy3LPsI3j7ARogNXQFm45Gp-wg-WCXU4B9DfahUJREsWmJ4GsepFywvRyNdcF8Jk5ZX3fK";
+    private static final String ACCESS_TOKEN = "ya29.a0AfH6SMAeJizwb_8FzdvGis_eH4lt7vNOg4gBy_DG6lTLdtNnNT56uDzGNlQYioPX" +
+            "lpsD0dTmn3_5Wh61qH5oLQep2x2V6BJXjo5tCsgtApCOjF-yENiasvR99Bq--fIPTtrieAAf1K28ayUa0GQ8ZR1PhGG19A";
 
     @BeforeAll
     public static void setShowAllRequestVisibleInConsole() {
@@ -21,19 +21,19 @@ public class TestHttpTask {
     @Test
     public void testPostRequest() {
         StringBuilder urlPostRequestUploadFileInGDrive = new StringBuilder();
-        urlPostRequestUploadFileInGDrive.append("https://www.googleapis.com/upload/drive/v3/files");
-        urlPostRequestUploadFileInGDrive.append("?uploadType=media");
+        urlPostRequestUploadFileInGDrive.append("https://www.googleapis.com/upload/drive/v3/files")
+                .append("?uploadType=media");
 
         new HttpRequests().makePostRequest(ACCESS_TOKEN, urlPostRequestUploadFileInGDrive.toString());
     }
 
     @Test
     public void testPutRequest() {
-        String idFile = "1xIeTbAO1aW-G0IUhLIHJZXfPY5O0UZbQ";
+        String idFile = "1F-5tiTiV12Xk2H1BTKl7dYwcrYrpcDH2";
 
         StringBuilder urlPutRequestWriteTextInFile = new StringBuilder();
-        urlPutRequestWriteTextInFile.append("https://www.googleapis.com/upload/drive/v2/files/");
-        urlPutRequestWriteTextInFile.append(idFile);
+        urlPutRequestWriteTextInFile.append("https://www.googleapis.com/upload/drive/v2/files/")
+                .append(idFile);
 
         String textToWriteInFile = "Hi there!";
 
@@ -42,11 +42,11 @@ public class TestHttpTask {
 
     @Test
     public void testDeleteFile() {
-        String idFile = "1xIeTbAO1aW-G0IUhLIHJZXfPY5O0UZbQ";
+        String idFile = "1F-5tiTiV12Xk2H1BTKl7dYwcrYrpcDH2";
 
         StringBuilder urlDeleteRequestDeleteFile = new StringBuilder();
-        urlDeleteRequestDeleteFile.append("https://www.googleapis.com/drive/v2/files/");
-        urlDeleteRequestDeleteFile.append(idFile);
+        urlDeleteRequestDeleteFile.append("https://www.googleapis.com/drive/v2/files/")
+                .append(idFile);
 
         new HttpRequests().makeDeleteRequest(ACCESS_TOKEN, urlDeleteRequestDeleteFile.toString());
     }
