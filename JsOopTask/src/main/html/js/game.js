@@ -68,7 +68,7 @@ class Bird {
 
 function generateObstacle() {
     return new Obstacle(canvasImage.width, Math.floor(Math.random() * (canvasImage.height - groundImage.height) * 0.6),
-		Math.round(Math.random() * 60 + 90));
+        Math.round(Math.random() * 60 + 90));
 }
 
 var obstacles = [];
