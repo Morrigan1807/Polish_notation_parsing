@@ -1,6 +1,10 @@
 package expressionparser;
 
-import model.*;
+import model.ExpressionTree;
+
+import static util.Constant.ILLEGAL_INPUT;
+import static util.Constant.INCORRECT_PARENTHESES_PLACEMENT;
+import static util.Util.*;
 
 public class ExpressionParser {
 
@@ -14,12 +18,11 @@ public class ExpressionParser {
         inputExpression = removeSpaces(inputExpression);
 
         if (!isCorrectParentheses(inputExpression)) {
-            throw new IllegalArgumentException("Incorrect parentheses placement.");
+            throw new IllegalArgumentException(INCORRECT_PARENTHESES_PLACEMENT);
         }
-        //TODO разбить на булл методы регулярки
-        if (inputExpression.matches(".*([+\\-*/][+\\-*/]|[+\\-*/]\\)|\\([*/]|[^0-9][.,]|[.,][^0-9]|\\(\\)).*|.*[+\\-*/.,]|[*/.,].*") ||
-                inputExpression.matches("[^+\\-*/0-9.,()]")) {
-            throw new IllegalArgumentException("Illegal input.");
+
+        if (isIncorrectInputExpression(inputExpression)) {
+            throw new IllegalArgumentException(ILLEGAL_INPUT);
         }
 
         return new ExpressionParser(parseStringToExpressionTree(inputExpression));
@@ -31,118 +34,5 @@ public class ExpressionParser {
 
     public double getResultOfExpression() {
         return expressionTree.getResultOfExpression();
-    }
-
-    private static ExpressionTree parseStringToExpressionTree(String expression) {
-        if (expression.matches("^[-+]?[0-9]+[.,][0-9]+$")) {
-            return new ExpressionLeafDouble(Double.parseDouble(expression));
-        } else if (expression.matches("^[-+]?[0-9]+$")) {
-            return new ExpressionLeafInteger(Integer.parseInt(expression));
-        } else {
-            //TODO while вынести в отдельный метод
-            while (expression.charAt(0) == '(' && expression.charAt(expression.length() - 1) == ')' &&
-                    isCorrectParentheses(expression.substring(1, expression.length() - 1))) {
-                expression = expression.substring(1, expression.length() - 1);
-            }
-
-            int index = getNextOperatorPosition(expression);
-
-            //TODO заполнение node в отдельный метод
-            ExpressionNode node = new ExpressionNode();
-
-            node.setRootOperator(OperatorModel.fromString(expression.substring(index, index + 1)));
-
-            node.setLeftOperand(parseStringToExpressionTree(expression.substring(0, index)));
-            node.setRightOperand(parseStringToExpressionTree(expression.substring(index + 1)));
-
-            return node;
-        }
-    }
-
-    private static int getNextOperatorPosition(String expression) {
-        //TODO разбить на методы
-        int count = 0;
-        int i = 0;
-
-        for (char ch : expression.toCharArray()) {
-            switch (ch) {
-                case '(':
-                    count++;
-                    break;
-                case ')':
-                    count--;
-                    break;
-                case '+':
-                case '-':
-                    if (count == 0 && i != 0) {
-                        return i;
-                    }
-                    break;
-            }
-            i++;
-        }
-
-        i = 0;
-        count = 0;
-        for (char ch : expression.toCharArray()) {
-            switch (ch) {
-                case '(':
-                    count++;
-                    break;
-                case ')':
-                    count--;
-                    break;
-                case '*':
-                    if (count == 0) {
-                        return i;
-                    }
-                    break;
-            }
-            i++;
-        }
-
-        i = 0;
-        count = 0;
-        for (char ch : expression.toCharArray()) {
-            switch (ch) {
-                case '(':
-                    count++;
-                    break;
-                case ')':
-                    count--;
-                    break;
-                case '/':
-                    if (count == 0) {
-                        return i;
-                    }
-                    break;
-            }
-            i++;
-        }
-
-        throw new IllegalArgumentException("Operator not found.");
-    }
-
-    private static String removeSpaces(String stringForSpaceRemoving) {
-        return stringForSpaceRemoving.replaceAll(" ", "");
-    }
-
-    //TODO разбить на методы
-    private static boolean isCorrectParentheses(String expression) {
-        int count = 0;
-
-        for (char ch : expression.toCharArray()) {
-            if (ch == '(') {
-                count++;
-            } else if (ch == ')') {
-                count--;
-
-                if (count < 0) {
-                    return false;
-                }
-            }
-        }
-
-        return count == 0;
     }
 }
