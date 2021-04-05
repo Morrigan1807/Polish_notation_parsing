@@ -24,13 +24,13 @@ public class ExpressionParserTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/ExpressionParser/testData_parseExpression_ExpressionParser_CorrectCase.csv")
-    public void testParseExpression_CorrectCase(String input) {
+    public void testParseExpressionCorrectCase(String input) {
         assertDoesNotThrow(() -> ExpressionParser.parseExpression(input));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/ExpressionParser/testData_parseExpression_ExpressionParser_IncorrectCase.csv")
-    public void testParseExpression_IncorrectCase(String input) {
+    public void testParseExpressionIncorrectCase(String input) {
         assertThrows(IllegalArgumentException.class, () -> ExpressionParser.parseExpression(input));
     }
 }

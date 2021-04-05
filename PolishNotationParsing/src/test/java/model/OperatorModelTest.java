@@ -16,7 +16,7 @@ public class OperatorModelTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/Test/OperatorModel/testData_fromString_OperatorModel_IncorrectCase.csv")
-    public void testFromString_IncorrectCase(String input) {
+    public void testFromStringIncorrectCase(String input) {
         assertThrows(IllegalArgumentException.class, () -> OperatorModel.fromString(input));
     }
 }
