@@ -2,6 +2,8 @@ package model;
 
 import lombok.Data;
 
+import static util.Constant.WRONG_OPERATOR_TYPE;
+
 @Data
 public class ExpressionNode implements ExpressionTree {
 
@@ -24,7 +26,7 @@ public class ExpressionNode implements ExpressionTree {
                 return leftOperand.getResultOfExpression() / rightOperand.getResultOfExpression();
 
             default:
-                throw new ArithmeticException("Wong operator type.");
+                throw new ArithmeticException(WRONG_OPERATOR_TYPE);
         }
     }
 

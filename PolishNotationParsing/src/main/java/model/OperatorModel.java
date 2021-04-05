@@ -3,6 +3,8 @@ package model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import static util.Constant.NOT_AN_OPERATOR;
+
 @Getter
 @RequiredArgsConstructor
 public enum OperatorModel {
@@ -25,7 +27,7 @@ public enum OperatorModel {
             case "/":
                 return OperatorModel.DIVISION;
             default:
-                throw new IllegalArgumentException("Not an operator: " + string);
+                throw new IllegalArgumentException(NOT_AN_OPERATOR + string);
         }
     }
 }
