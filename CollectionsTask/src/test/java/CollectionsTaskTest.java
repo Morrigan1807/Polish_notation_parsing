@@ -1,5 +1,5 @@
 import collectionstask.CollectionsTask;
-import model.BinaryTree;
+import ParameterizedTests.model.BinaryTree;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

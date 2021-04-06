@@ -1,18 +1,19 @@
 package util;
 
-import model.*;
+import ParameterizedTests.model.*;
 
 import static util.Constant.*;
 
 public class Util {
 
     public static ExpressionTree parseStringToExpressionTree(String expression) {
-        if (isSignedDoubleNumber(expression)) {
-            return new ExpressionLeafDouble(Double.parseDouble(expression));
-        } else if (isSignedIntegerNumber(expression)) {
-            return new ExpressionLeafInteger(Integer.parseInt(expression));
+        String expressionWithoutExtraParentheses = getStringWithoutExtraParentheses(expression);
+
+        if (isSignedDoubleNumber(expressionWithoutExtraParentheses)) {
+            return new ExpressionLeafDouble(Double.parseDouble(expressionWithoutExtraParentheses));
+        } else if (isSignedIntegerNumber(expressionWithoutExtraParentheses)) {
+            return new ExpressionLeafInteger(Integer.parseInt(expressionWithoutExtraParentheses));
         } else {
-            String expressionWithoutExtraParentheses = getStringWithoutExtraParentheses(expression);
             int index = getNextOperatorPosition(expressionWithoutExtraParentheses);
 
             return getExpressionNode(expressionWithoutExtraParentheses, index);

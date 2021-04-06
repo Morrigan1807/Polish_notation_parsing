@@ -1,6 +1,6 @@
 package exceptiontask;
 
-import model.DivisionByZeroException;
+import ParameterizedTests.model.DivisionByZeroException;
 
 import java.io.IOException;
 
