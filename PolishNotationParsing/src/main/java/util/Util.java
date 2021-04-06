@@ -6,6 +6,9 @@ import static util.Constant.*;
 
 public class Util {
 
+    private Util() {
+    }
+
     public static ExpressionTree parseStringToExpressionTree(String expression) {
         String expressionWithoutExtraParentheses = getStringWithoutExtraParentheses(expression);
 
@@ -99,7 +102,7 @@ public class Util {
         return expression.matches(SINGED_DOUBLE_PATTERN);
     }
 
-    private static int getNextOperatorPosition(String expression) {
+    public static int getNextOperatorPosition(String expression) {
         int nextOperatorPosition = getNextPlusOrMinusOperatorPosition(expression);
         if (nextOperatorPosition != -1) {
             return nextOperatorPosition;
@@ -118,7 +121,7 @@ public class Util {
         throw new IllegalArgumentException(OPERATOR_NOT_FOUND);
     }
 
-    private static int getNextDivisionOperatorPosition(String expression) {
+    public static int getNextDivisionOperatorPosition(String expression) {
         int count = 0;
         int currentPosition = 0;
 

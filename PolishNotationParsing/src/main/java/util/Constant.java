@@ -1,6 +1,7 @@
 package util;
 
 public class Constant {
+
     public static final char DIVISION_AS_CHAR = '/';
     public static final char MULTIPLICATION_AS_CHAR = '*';
     public static final char ADDITION_AS_CHAR = '+';
@@ -30,4 +31,19 @@ public class Constant {
     public static final String MULTIPLICATION_AS_STRING = "*";
     public static final String ADDITION_AS_STRING = "+";
     public static final String SUBTRACTION_AS_STRING = "-";
+    public static final String PATH_TO_EXPRESSION_PARSER_TEST_DATA = "/test/expressionparser/";
+    public static final String TEST_DATA_GET_STRING_WITH_EXPRESSION_BY_POLISH_NOTATION = "testDataGetStringWithExpressionByPolishNotation.csv";
+    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION = "testDataGetResultOfExpression.csv";
+    public static final String TEST_DATA_PARSE_EXPRESSION_CORRECT_CASE = "testDataParseExpressionCorrectCase.csv";
+    public static final String TEST_DATA_PARSE_EXPRESSION_INCORRECT_CASE = "testDataParseExpressionIncorrectCase.csv";
+    public static final String PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA = "/test/testexpressionleafdouble/";
+    public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION = "testDataGetStringOfPolishNotation.csv";
+    public static final String PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA = "/test/testexpressionleafinteger/";
+    public static final String PATH_TO_EXPRESSION_NODE_TEST_DATA = "/test/testexpressionnode/";
+    public static final String PATH_TO_OPERATOR_MODEL_TEST_DATA = "/test/operatormodel/";
+    public static final String TEST_DATA_FROM_STRING_CORRECT_CASE = "testDataFromStringCorrectCase.csv";
+    public static final String TEST_DATA_FROM_STRING_INCORRECT_CASE = "testDataFromStringIncorrectCase.csv";
+
+    private Constant() {
+    }
 }

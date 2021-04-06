@@ -5,22 +5,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static util.Constant.*;
 
 public class ExpressionLeafIntegerTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/test/testexpressionleafinteger/testDataGetResultOfExpression.csv")
+    @CsvFileSource(resources = PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + TEST_DATA_GET_RESULT_OF_EXPRESSION)
     public void testGetResultOfExpression(int input, int expected) {
-        ExpressionLeafInteger expressionLeafInteger = new ExpressionLeafInteger(input);
-
-        assertEquals(expected, expressionLeafInteger.getResultOfExpression());
+        assertEquals(expected, new ExpressionLeafInteger(input).getResultOfExpression());
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/test/testexpressionleafinteger/testDataGetStringOfPolishNotation.csv")
+    @CsvFileSource(resources = PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + TEST_DATA_GET_STRING_OF_POLISH_NOTATION)
     public void testGetStringOfPolishNotation(int input, String expected) {
-        ExpressionLeafInteger expressionLeafInteger = new ExpressionLeafInteger(input);
-
-        assertEquals(expected, expressionLeafInteger.getStringOfPolishNotation());
+        assertEquals(expected, new ExpressionLeafInteger(input).getStringOfPolishNotation());
     }
 }

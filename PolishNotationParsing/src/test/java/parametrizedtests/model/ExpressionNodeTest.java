@@ -7,11 +7,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static util.Constant.*;
 
 public class ExpressionNodeTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/test/testexpressionnode/testDataGetResultOfExpression.csv")
+    @CsvFileSource(resources = PATH_TO_EXPRESSION_NODE_TEST_DATA + TEST_DATA_GET_RESULT_OF_EXPRESSION)
     public void testGetResultOfExpression(String operator, double leftOperand, double rightOperand, double expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         expressionNode.setRootOperator(OperatorModel.fromString(operator));
@@ -22,7 +23,7 @@ public class ExpressionNodeTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/test/testexpressionnode/testDataGetStringOfPolishNotation.csv")
+    @CsvFileSource(resources = PATH_TO_EXPRESSION_NODE_TEST_DATA + TEST_DATA_GET_STRING_OF_POLISH_NOTATION)
     public void testGetStringOfPolishNotation(String operator, double leftOperand, double rightOperand, String expected) {
         ExpressionNode expressionNode = new ExpressionNode();
         expressionNode.setRootOperator(OperatorModel.fromString(operator));
