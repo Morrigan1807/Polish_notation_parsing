@@ -17,9 +17,4 @@ public class UtilTest {
     public void testGetNextDivisionOperatorPositionNotFoundCase() {
         assertEquals(-1, Util.getNextDivisionOperatorPosition("2 * 2"));
     }
-
-    @Test
-    public void testGetNextDivisionOperatorPositionIncorrectParenthesesCase() {
-        assertEquals(-1, Util.getNextDivisionOperatorPosition("2 * 2"));
-    }
 }
