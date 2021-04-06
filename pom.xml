@@ -17,6 +17,7 @@
         <module>FileTask</module>
         <module>ExceptionsTask</module>
         <module>PatternsTask</module>
+        <module>PolishNotationParsing</module>
     </modules>
 
     <build>
