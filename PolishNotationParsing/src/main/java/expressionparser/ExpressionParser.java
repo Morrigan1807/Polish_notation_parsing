@@ -1,6 +1,6 @@
 package expressionparser;
 
-import ParameterizedTests.model.ExpressionTree;
+import model.ExpressionTree;
 
 import static util.Util.*;
 

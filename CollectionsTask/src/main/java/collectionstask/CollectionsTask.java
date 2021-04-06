@@ -1,6 +1,6 @@
 package collectionstask;
 
-import ParameterizedTests.model.BinaryTree;
+import model.BinaryTree;
 
 public class CollectionsTask {
 

@@ -1,5 +1,5 @@
 import exceptiontask.ExceptionTask;
-import ParameterizedTests.model.DivisionByZeroException;
+import model.DivisionByZeroException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;

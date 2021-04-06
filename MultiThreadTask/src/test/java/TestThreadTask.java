@@ -1,7 +1,7 @@
-import ParameterizedTests.model.Bus;
-import ParameterizedTests.model.BusDepot;
-import ParameterizedTests.model.BusStop;
-import ParameterizedTests.model.LoggerOfBusStops;
+import model.Bus;
+import model.BusDepot;
+import model.BusStop;
+import model.LoggerOfBusStops;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

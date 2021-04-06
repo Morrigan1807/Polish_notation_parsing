@@ -1,7 +1,7 @@
-import ParameterizedTests.model.Bus;
-import ParameterizedTests.model.BusDepot;
-import ParameterizedTests.model.BusStop;
-import ParameterizedTests.model.LoggerOfBusStops;
+import model.Bus;
+import model.BusDepot;
+import model.BusStop;
+import model.LoggerOfBusStops;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

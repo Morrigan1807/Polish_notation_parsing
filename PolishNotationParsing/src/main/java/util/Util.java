@@ -1,6 +1,6 @@
 package util;
 
-import ParameterizedTests.model.*;
+import model.*;
 
 import static util.Constant.*;
 
