@@ -1,6 +1,12 @@
 package util;
 
 public class Constant {
+    public static final char DIVISION_AS_CHAR = '/';
+    public static final char MULTIPLICATION_AS_CHAR = '*';
+    public static final char ADDITION_AS_CHAR = '+';
+    public static final char SUBTRACTION_AS_CHAR = '-';
+    public static final char LEFT_PARENTHESIS = '(';
+    public static final char RIGHT_PARENTHESIS = ')';
     public static final String INCORRECT_PARENTHESES_PLACEMENT = "Incorrect parentheses placement.";
     public static final String ILLEGAL_INPUT = "Illegal input.";
     public static final String OPERATOR_NOT_FOUND = "Operator not found.";
@@ -17,14 +23,8 @@ public class Constant {
     public static final String HAS_NON_ARITHMETIC_CHARACTERS_PATTERN = ".*[^+\\-*/0-9.,()].*";
     public static final String SPACE = " ";
     public static final String EMPTY_STRING = "";
-    public static final char LEFT_PARENTHESIS = '(';
-    public static final char RIGHT_PARENTHESIS = ')';
     public static final String SINGED_INTEGER_PATTERN = "^[-+]?[0-9]+$";
     public static final String SINGED_DOUBLE_PATTERN = "^[-+]?[0-9]+[.,][0-9]+$";
-    public static final char DIVISION_AS_CHAR = '/';
-    public static final char MULTIPLICATION_AS_CHAR = '*';
-    public static final char ADDITION_AS_CHAR = '+';
-    public static final char SUBTRACTION_AS_CHAR = '-';
     public static final String DIVISION_AS_STRING = "/";
     public static final String MULTIPLICATION_AS_STRING = "*";
     public static final String ADDITION_AS_STRING = "+";
