@@ -34,6 +34,7 @@ public class ExpressionNode implements ExpressionTree {
     }
 
     public String getStringOfPolishNotation() {
-        return leftOperand.getStringOfPolishNotation() + SPACE + rightOperand.getStringOfPolishNotation() + SPACE + rootOperator.getOperatorAsChar();
+        return leftOperand.getStringOfPolishNotation() + SPACE + rightOperand.getStringOfPolishNotation() + SPACE +
+                rootOperator.getOperatorAsChar();
     }
 }

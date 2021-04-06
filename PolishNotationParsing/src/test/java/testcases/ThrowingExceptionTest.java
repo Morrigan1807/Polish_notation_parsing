@@ -24,8 +24,6 @@ public class ThrowingExceptionTest {
 
     @Test
     public void TestThrowArithmeticExceptionWhenExpressionHasDivisionByZero() {
-        ExpressionParser expressionParser = ExpressionParser.parseExpression("13 / 0");
-
-        assertThrows(ArithmeticException.class, expressionParser::getResultOfExpression);
+        assertThrows(ArithmeticException.class, ExpressionParser.parseExpression("13 / 0")::getResultOfExpression);
     }
 }
