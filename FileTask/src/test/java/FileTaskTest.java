@@ -34,7 +34,6 @@ public class FileTaskTest {
                 fileNameForReading, fileNameWithActualResult), StandardCharsets.UTF_8);
 
         assertEquals(expectedResultInFile, actualResultInFile);
-
     }
 
     @ParameterizedTest
