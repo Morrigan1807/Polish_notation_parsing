@@ -12,6 +12,7 @@ public class Constant {
     public static final String OPERATOR_NOT_FOUND = "Operator not found.";
     public static final String WRONG_OPERATOR_TYPE = "Wong operator type.";
     public static final String NOT_AN_OPERATOR = "Not an operator: ";
+    public static final String DIVISION_BY_ZERO = "Division by zero.";
     public static final String TWO_CONSECUTIVE_OPERATORS_PATTERN = ".*[+\\-*/][+\\-*/].*";
     public static final String OPERATOR_FOLLOWED_BY_PARENTHESIS_PATTERN = ".*[+\\-*/]\\).*";
     public static final String PARENTHESIS_FOLLOWED_BY_MULTIPLICATION_OR_DIVISION_PATTERN = ".*\\([*/].*";

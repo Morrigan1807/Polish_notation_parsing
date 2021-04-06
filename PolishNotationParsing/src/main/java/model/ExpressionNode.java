@@ -2,8 +2,7 @@ package model;
 
 import lombok.Data;
 
-import static util.Constant.SPACE;
-import static util.Constant.WRONG_OPERATOR_TYPE;
+import static util.Constant.*;
 
 @Data
 public class ExpressionNode implements ExpressionTree {
@@ -25,7 +24,7 @@ public class ExpressionNode implements ExpressionTree {
 
             case DIVISION:
                 if (rightOperand.getResultOfExpression() == 0) {
-                    throw new ArithmeticException("Division by zero.");
+                    throw new ArithmeticException(DIVISION_BY_ZERO);
                 }
                 return leftOperand.getResultOfExpression() / rightOperand.getResultOfExpression();
 
