@@ -103,10 +103,12 @@ public class Util {
         if (nextOperatorPosition != -1) {
             return nextOperatorPosition;
         }
+
         nextOperatorPosition = getNextMultiplyOperatorPosition(expression);
         if (nextOperatorPosition != -1) {
             return nextOperatorPosition;
         }
+
         nextOperatorPosition = getNextDivisionOperatorPosition(expression);
         if (nextOperatorPosition != -1) {
             return nextOperatorPosition;
@@ -132,6 +134,8 @@ public class Util {
                         return currentPosition;
                     }
                     break;
+                default:
+                    break;
             }
             currentPosition++;
         }
@@ -154,6 +158,8 @@ public class Util {
                     if (count == 0) {
                         return currentPosition;
                     }
+                    break;
+                default:
                     break;
             }
             currentPosition++;
@@ -178,6 +184,8 @@ public class Util {
                     if (count == 0 && currentPosition != 0) {
                         return currentPosition;
                     }
+                    break;
+                default:
                     break;
             }
             currentPosition++;
