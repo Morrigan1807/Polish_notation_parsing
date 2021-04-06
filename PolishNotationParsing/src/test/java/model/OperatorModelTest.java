@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class OperatorModelTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/OperatorModel/testData_fromString_OperatorModel.csv")
-    public void testFromString(String input, OperatorModel expected) {
+    @CsvFileSource(resources = "/Test/OperatorModel/testDataFromStringCorrectCase.csv")
+    public void testFromStringCorrectCase(String input, OperatorModel expected) {
         assertEquals(expected, OperatorModel.fromString(input));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/OperatorModel/testData_fromString_OperatorModel_IncorrectCase.csv")
+    @CsvFileSource(resources = "/Test/OperatorModel/testDataFromStringIncorrectCase.csv")
     public void testFromStringIncorrectCase(String input) {
         assertThrows(IllegalArgumentException.class, () -> OperatorModel.fromString(input));
     }

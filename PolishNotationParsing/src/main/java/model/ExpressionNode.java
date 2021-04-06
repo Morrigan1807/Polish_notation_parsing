@@ -2,6 +2,7 @@ package model;
 
 import lombok.Data;
 
+import static util.Constant.SPACE;
 import static util.Constant.WRONG_OPERATOR_TYPE;
 
 @Data
@@ -31,6 +32,6 @@ public class ExpressionNode implements ExpressionTree {
     }
 
     public String getStringOfPolishNotation() {
-        return leftOperand.getStringOfPolishNotation() + " " + rightOperand.getStringOfPolishNotation() + " " + rootOperator.getOperatorAsChar();
+        return leftOperand.getStringOfPolishNotation() + SPACE + rightOperand.getStringOfPolishNotation() + SPACE + rootOperator.getOperatorAsChar();
     }
 }

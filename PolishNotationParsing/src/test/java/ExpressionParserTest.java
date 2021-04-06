@@ -7,29 +7,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ExpressionParserTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "Test/ExpressionParser/testData_toPolishNotation_ExpressionParser.csv")
-    public void testToPolishNotation(String input, String expected) {
+    @CsvFileSource(resources = "Test/ExpressionParser/testDataGetStringWithExpressionByPolishNotation.csv")
+    public void testGetStringWithExpressionByPolishNotation(String input, String expected) {
         ExpressionParser expressionParser = ExpressionParser.parseExpression(input);
 
         assertEquals(expected, expressionParser.getStringWithExpressionByPolishNotation());
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/ExpressionParser/testData_calculateExpression_ExpressionParser.csv")
-    public void testCalculateExpression(String input, double expected) {
+    @CsvFileSource(resources = "/Test/ExpressionParser/testDataGetResultOfExpression.csv")
+    public void testGetResultOfExpression(String input, double expected) {
         ExpressionParser expressionParser = ExpressionParser.parseExpression(input);
 
         assertEquals(expected, expressionParser.getResultOfExpression(), 0.01);
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/ExpressionParser/testData_parseExpression_ExpressionParser_CorrectCase.csv")
+    @CsvFileSource(resources = "/Test/ExpressionParser/testDataParseExpressionCorrectCase.csv")
     public void testParseExpressionCorrectCase(String input) {
         assertDoesNotThrow(() -> ExpressionParser.parseExpression(input));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/Test/ExpressionParser/testData_parseExpression_ExpressionParser_IncorrectCase.csv")
+    @CsvFileSource(resources = "/Test/ExpressionParser/testDataParseExpressionIncorrectCase.csv")
     public void testParseExpressionIncorrectCase(String input) {
         assertThrows(IllegalArgumentException.class, () -> ExpressionParser.parseExpression(input));
     }

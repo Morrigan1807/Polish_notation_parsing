@@ -2,8 +2,6 @@ package expressionparser;
 
 import model.ExpressionTree;
 
-import static util.Constant.ILLEGAL_INPUT;
-import static util.Constant.INCORRECT_PARENTHESES_PLACEMENT;
 import static util.Util.*;
 
 public class ExpressionParser {
@@ -15,17 +13,12 @@ public class ExpressionParser {
     }
 
     public static ExpressionParser parseExpression(String inputExpression) {
-        inputExpression = removeSpaces(inputExpression);
+        String expressionWithoutSpaces = removeSpaces(inputExpression);
 
-        if (!isCorrectParentheses(inputExpression)) {
-            throw new IllegalArgumentException(INCORRECT_PARENTHESES_PLACEMENT);
-        }
+        checkCorrectParentheses(expressionWithoutSpaces);
+        checkExpressionArithmeticallyCorrect(expressionWithoutSpaces);
 
-        if (isIncorrectInputExpression(inputExpression)) {
-            throw new IllegalArgumentException(ILLEGAL_INPUT);
-        }
-
-        return new ExpressionParser(parseStringToExpressionTree(inputExpression));
+        return new ExpressionParser(parseStringToExpressionTree(expressionWithoutSpaces));
     }
 
     public String getStringWithExpressionByPolishNotation() {
