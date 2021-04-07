@@ -31,35 +31,30 @@ public class Constant {
     public static final String MULTIPLICATION_AS_STRING = "*";
     public static final String ADDITION_AS_STRING = "+";
     public static final String SUBTRACTION_AS_STRING = "-";
-    private static final String PATH_TO_EXPRESSION_PARSER_TEST_DATA = "/expressionparser/";
     public static final String TEST_DATA_GET_STRING_WITH_EXPRESSION_BY_POLISH_NOTATION =
-            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataGetStringWithExpressionByPolishNotation.csv";
+            "/expressionparser/testDataGetStringWithExpressionByPolishNotation.csv";
     public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_PARSER =
-            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataGetResultOfExpression.csv";
+            "/expressionparser/testDataGetResultOfExpression.csv";
     public static final String TEST_DATA_PARSE_EXPRESSION_CORRECT_CASE =
-            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataParseExpressionCorrectCase.csv";
+            "/expressionparser/testDataParseExpressionCorrectCase.csv";
     public static final String TEST_DATA_PARSE_EXPRESSION_INCORRECT_CASE =
-            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataParseExpressionIncorrectCase.csv";
-    private static final String PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA = "/expressionleafdouble/";
+            "/expressionparser/testDataParseExpressionIncorrectCase.csv";
     public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_DOUBLE =
-            PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA + "testDataGetResultOfExpression.csv";
+            "/expressionleafdouble/testDataGetResultOfExpression.csv";
     public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_DOUBLE =
-            PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
-    private static final String PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA = "/expressionleafinteger/";
+            "/expressionleafdouble/testDataGetStringOfPolishNotation.csv";
     public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_INTEGER =
-            PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + "testDataGetResultOfExpression.csv";
+            "/expressionleafinteger/testDataGetResultOfExpression.csv";
     public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_INTEGER =
-            PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
-    private static final String PATH_TO_EXPRESSION_NODE_TEST_DATA = "/expressionnode/";
+            "/expressionleafinteger/testDataGetStringOfPolishNotation.csv";
     public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_NODE =
-            PATH_TO_EXPRESSION_NODE_TEST_DATA + "testDataGetResultOfExpression.csv";
+            "/expressionnode/testDataGetResultOfExpression.csv";
     public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_NODE =
-            PATH_TO_EXPRESSION_NODE_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
-    private static final String PATH_TO_OPERATOR_MODEL_TEST_DATA = "/operatormodel/";
+            "/expressionnode/testDataGetStringOfPolishNotation.csv";
     public static final String TEST_DATA_FROM_STRING_CORRECT_CASE =
-            PATH_TO_OPERATOR_MODEL_TEST_DATA + "testDataFromStringCorrectCase.csv";
+            "/operatormodel/testDataFromStringCorrectCase.csv";
     public static final String TEST_DATA_FROM_STRING_INCORRECT_CASE =
-            PATH_TO_OPERATOR_MODEL_TEST_DATA + "testDataFromStringIncorrectCase.csv";
+            "/operatormodel/testDataFromStringIncorrectCase.csv";
 
     private Constant() {
     }
