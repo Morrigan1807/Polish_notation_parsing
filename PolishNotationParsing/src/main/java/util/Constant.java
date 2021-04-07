@@ -31,18 +31,35 @@ public class Constant {
     public static final String MULTIPLICATION_AS_STRING = "*";
     public static final String ADDITION_AS_STRING = "+";
     public static final String SUBTRACTION_AS_STRING = "-";
-    public static final String PATH_TO_EXPRESSION_PARSER_TEST_DATA = "/test/expressionparser/";
-    public static final String TEST_DATA_GET_STRING_WITH_EXPRESSION_BY_POLISH_NOTATION = "testDataGetStringWithExpressionByPolishNotation.csv";
-    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION = "testDataGetResultOfExpression.csv";
-    public static final String TEST_DATA_PARSE_EXPRESSION_CORRECT_CASE = "testDataParseExpressionCorrectCase.csv";
-    public static final String TEST_DATA_PARSE_EXPRESSION_INCORRECT_CASE = "testDataParseExpressionIncorrectCase.csv";
-    public static final String PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA = "/test/testexpressionleafdouble/";
-    public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION = "testDataGetStringOfPolishNotation.csv";
-    public static final String PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA = "/test/testexpressionleafinteger/";
-    public static final String PATH_TO_EXPRESSION_NODE_TEST_DATA = "/test/testexpressionnode/";
-    public static final String PATH_TO_OPERATOR_MODEL_TEST_DATA = "/test/operatormodel/";
-    public static final String TEST_DATA_FROM_STRING_CORRECT_CASE = "testDataFromStringCorrectCase.csv";
-    public static final String TEST_DATA_FROM_STRING_INCORRECT_CASE = "testDataFromStringIncorrectCase.csv";
+    private static final String PATH_TO_EXPRESSION_PARSER_TEST_DATA = "/expressionparser/";
+    public static final String TEST_DATA_GET_STRING_WITH_EXPRESSION_BY_POLISH_NOTATION =
+            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataGetStringWithExpressionByPolishNotation.csv";
+    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_PARSER =
+            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataGetResultOfExpression.csv";
+    public static final String TEST_DATA_PARSE_EXPRESSION_CORRECT_CASE =
+            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataParseExpressionCorrectCase.csv";
+    public static final String TEST_DATA_PARSE_EXPRESSION_INCORRECT_CASE =
+            PATH_TO_EXPRESSION_PARSER_TEST_DATA + "testDataParseExpressionIncorrectCase.csv";
+    private static final String PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA = "/expressionleafdouble/";
+    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_DOUBLE =
+            PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA + "testDataGetResultOfExpression.csv";
+    public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_DOUBLE =
+            PATH_TO_EXPRESSION_LEAF_DOUBLE_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
+    private static final String PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA = "/expressionleafinteger/";
+    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_INTEGER =
+            PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + "testDataGetResultOfExpression.csv";
+    public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_INTEGER =
+            PATH_TO_EXPRESSION_LEAF_INTEGER_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
+    private static final String PATH_TO_EXPRESSION_NODE_TEST_DATA = "/expressionnode/";
+    public static final String TEST_DATA_GET_RESULT_OF_EXPRESSION_NODE =
+            PATH_TO_EXPRESSION_NODE_TEST_DATA + "testDataGetResultOfExpression.csv";
+    public static final String TEST_DATA_GET_STRING_OF_POLISH_NOTATION_NODE =
+            PATH_TO_EXPRESSION_NODE_TEST_DATA + "testDataGetStringOfPolishNotation.csv";
+    private static final String PATH_TO_OPERATOR_MODEL_TEST_DATA = "/operatormodel/";
+    public static final String TEST_DATA_FROM_STRING_CORRECT_CASE =
+            PATH_TO_OPERATOR_MODEL_TEST_DATA + "testDataFromStringCorrectCase.csv";
+    public static final String TEST_DATA_FROM_STRING_INCORRECT_CASE =
+            PATH_TO_OPERATOR_MODEL_TEST_DATA + "testDataFromStringIncorrectCase.csv";
 
     private Constant() {
     }

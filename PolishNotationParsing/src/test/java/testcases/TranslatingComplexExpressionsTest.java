@@ -64,10 +64,18 @@ public class TranslatingComplexExpressionsTest {
     }
 
     @Test
-    public void testTranslatingIntoPolishNotationAndCalculatingWithNegativeDoubleValue() {
+    public void testTranslatingIntoPolishNotationAndCalculatingExpressionWithNegativeDoubleValue() {
         ExpressionParser expressionParser = ExpressionParser.parseExpression("2 * (-0.7)");
 
         assertEquals("2 -0.7 *", expressionParser.getStringWithExpressionByPolishNotation());
         assertEquals(-1.4, expressionParser.getResultOfExpression(), 0.01);
+    }
+
+    @Test
+    public void testTranslatingIntoPolishNotationAndCalculatingExpressionWithSpacesInValues() {
+        ExpressionParser expressionParser = ExpressionParser.parseExpression("13 001 + 18");
+
+        assertEquals("13001 18 +", expressionParser.getStringWithExpressionByPolishNotation());
+        assertEquals(13019, expressionParser.getResultOfExpression(), 0.01);
     }
 }
