@@ -18,6 +18,7 @@
         <module>ExceptionsTask</module>
         <module>PatternsTask</module>
         <module>PolishNotationParsing</module>
+        <module>ShopSimulator</module>
     </modules>
 
     <build>
