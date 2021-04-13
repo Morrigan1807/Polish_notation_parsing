@@ -9,8 +9,8 @@ import java.util.Queue;
 public class CashWindow implements Runnable {
 
     private static int iteratorForNumber = 0;
-    private Queue<Customer> queue = new LinkedList<>();
     private final int number;
+    private Queue<Customer> queue = new LinkedList<>();
     private InputShopDataModel inputShopDataModel;
     private ObservableList<String> logLost;
     private int customersInQueue = 0;
