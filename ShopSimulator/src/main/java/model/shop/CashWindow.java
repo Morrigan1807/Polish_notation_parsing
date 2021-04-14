@@ -1,9 +1,9 @@
 package model.shop;
 
-import javafx.collections.ObservableList;
 import model.database.InputShopDataModel;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class CashWindow implements Runnable {
@@ -12,10 +12,10 @@ public class CashWindow implements Runnable {
     private final int number;
     private Queue<Customer> queue = new LinkedList<>();
     private InputShopDataModel inputShopDataModel;
-    private ObservableList<String> logLost;
+    private List<String> logLost;
     private int customersInQueue = 0;
 
-    public CashWindow(InputShopDataModel inputShopDataModel, ObservableList<String> logList) {
+    public CashWindow(InputShopDataModel inputShopDataModel, List<String> logList) {
         this.inputShopDataModel = inputShopDataModel;
         this.logLost = logList;
         number = ++iteratorForNumber;

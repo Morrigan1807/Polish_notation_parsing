@@ -1,6 +1,5 @@
 package model.shop;
 
-import javafx.collections.ObservableList;
 import model.database.InputShopDataModel;
 
 import java.util.ArrayList;
@@ -10,9 +9,9 @@ public class Shop implements Runnable {
 
     public List<CashWindow> cashWindows = new ArrayList<>();
     private InputShopDataModel inputShopDataModel;
-    private ObservableList<String> logList;
+    private List<String> logList;
 
-    Shop(InputShopDataModel inputShopDataModel, ObservableList<String> logList) {
+    public Shop(InputShopDataModel inputShopDataModel, List<String> logList) {
         this.inputShopDataModel = inputShopDataModel;
         this.logList = logList;
     }

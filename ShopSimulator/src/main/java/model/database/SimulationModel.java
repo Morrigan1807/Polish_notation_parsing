@@ -6,7 +6,10 @@ import lombok.Data;
 public class SimulationModel {
 
     private Integer idSimulation;
-    private Integer idAccount;
+    private String idAccount;
     private Integer idInputShopData;
     private Integer idPerformanceIndicators;
+    private String recommendation;
+    private InputShopDataModel inputShopData;
+    private PerformanceIndicatorsModel performanceIndicators;
 }

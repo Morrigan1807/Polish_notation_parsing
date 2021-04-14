@@ -31,7 +31,7 @@ public class SimulationRepositoryImpl implements SimulationRepository {
     }
 
     @Override
-    public List<SimulationModel> selectAllSimulationsByIdEntity(int idEntity) {
+    public List<SimulationModel> selectAllSimulationsByIdEntity(String idEntity) {
         return null;
     }
 }

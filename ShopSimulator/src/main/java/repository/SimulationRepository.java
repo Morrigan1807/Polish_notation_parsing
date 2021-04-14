@@ -16,5 +16,5 @@ public interface SimulationRepository {
 
     SimulationModel selectSimulationById(int idSimulationForDelete);
 
-    List<SimulationModel> selectAllSimulationsByIdEntity(int idEntity);
+    List<SimulationModel> selectAllSimulationsByIdEntity(String idEntity);
 }

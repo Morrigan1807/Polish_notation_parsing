@@ -1,15 +1,19 @@
 package util;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import model.database.InputShopDataModel;
 import model.database.PerformanceIndicatorsModel;
 
 @AllArgsConstructor
+@NoArgsConstructor
 public class PerformanceIndicatorsUtil {
 
     private InputShopDataModel inputShopDataModel;
 
-    public void calculatePerformanceIndicators(PerformanceIndicatorsModel performanceIndicatorsModel) {
+    public PerformanceIndicatorsModel calculatePerformanceIndicators() {
+        PerformanceIndicatorsModel performanceIndicatorsModel = new PerformanceIndicatorsModel();
+
         performanceIndicatorsModel.setSystemDowntimeProbability(getSystemDowntimeProbability());
         performanceIndicatorsModel.setRejectionProbability(getRejectionProbability());
         performanceIndicatorsModel.setAbsoluteBandwidth(getAbsoluteBandwidth());
@@ -19,6 +23,12 @@ public class PerformanceIndicatorsUtil {
         performanceIndicatorsModel.setAverageNumberOfRequestsInTheSystem(getAverageNumberOfRequestsInTheSystem());
         performanceIndicatorsModel.setAverageTimeInQueue(getAverageTimeInQueue());
         performanceIndicatorsModel.setAverageTimeInSystem(getAverageTimeInSystem());
+
+        return performanceIndicatorsModel;
+    }
+
+    public boolean isGoodPerformanceIndicators(PerformanceIndicatorsModel performanceIndicators) {
+        return performanceIndicators.getAbsoluteBandwidth() > 1;
     }
 
     private double getSystemDowntimeProbability() {
