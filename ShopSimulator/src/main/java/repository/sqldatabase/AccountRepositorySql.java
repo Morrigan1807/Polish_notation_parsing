@@ -1,11 +1,13 @@
-package repository;
+package repository.sqldatabase;
 
 import model.database.AccountModel;
 import model.database.EntityDataModel;
+import repository.AccountRepository;
 
 import java.util.List;
 
-public class AccountRepositoryImpl implements AccountRepository {
+public class AccountRepositorySql implements AccountRepository {
+
     @Override
     public void insertAccount(AccountModel account) {
 

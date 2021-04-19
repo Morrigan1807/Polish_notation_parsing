@@ -1,10 +1,12 @@
-package repository;
+package repository.sqldatabase;
 
 import model.database.InputShopDataModel;
+import repository.InputShopDataRepository;
 
 import java.util.List;
 
-public class InputShopDataRepositoryImpl implements InputShopDataRepository {
+public class InputShopDataRepositorySql implements InputShopDataRepository {
+
     @Override
     public void insertInputShopData(InputShopDataModel inputShopData) {
 

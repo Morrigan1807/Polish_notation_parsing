@@ -1,10 +1,12 @@
-package repository;
+package repository.sqldatabase;
 
 import model.database.PerformanceIndicatorsModel;
+import repository.PerformanceIndicatorsRepository;
 
 import java.util.List;
 
-public class PerformanceIndicatorsRepositoryImpl implements PerformanceIndicatorsRepository {
+public class PerformanceIndicatorsRepositorySql implements PerformanceIndicatorsRepository {
+
     @Override
     public void insertPerformanceIndicators(PerformanceIndicatorsModel performanceIndicators) {
 

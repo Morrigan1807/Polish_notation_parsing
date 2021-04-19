@@ -1,5 +1,7 @@
 package controller;
 
+import lombok.Getter;
+import lombok.Setter;
 import model.database.AccountModel;
 import model.database.InputShopDataModel;
 import model.database.PerformanceIndicatorsModel;
@@ -8,6 +10,9 @@ import model.shop.Shop;
 import repository.InputShopDataRepository;
 import repository.PerformanceIndicatorsRepository;
 import repository.SimulationRepository;
+import repository.sqldatabase.InputShopDataRepositorySql;
+import repository.sqldatabase.PerformanceIndicatorsRepositorySql;
+import repository.sqldatabase.SimulationRepositorySql;
 import util.PerformanceIndicatorsUtil;
 
 import java.util.ArrayList;
@@ -15,16 +20,27 @@ import java.util.List;
 
 public class ClientController {
 
-    private InputShopDataRepository inputShopDataRepository;
-    private PerformanceIndicatorsRepository performanceIndicatorsRepository;
-    private SimulationRepository simulationRepository;
+    private InputShopDataRepository inputShopDataRepository = new InputShopDataRepositorySql();
+    private PerformanceIndicatorsRepository performanceIndicatorsRepository = new PerformanceIndicatorsRepositorySql();
+    private SimulationRepository simulationRepository = new SimulationRepositorySql();
     private List<String> logList = new ArrayList<>();
+    @Getter
     private List<SimulationModel> allSimulations = new ArrayList<>();
     private AccountModel currentAccount;
+    @Getter
+    @Setter
     private Integer numberOfCashWindows;
+    @Getter
+    @Setter
     private Integer queueLimit;
+    @Getter
+    @Setter
     private Double customerIntensity;
+    @Getter
+    @Setter
     private Double serviceIntensity;
+    @Getter
+    @Setter
     private Double simulationRunTime;
 
     public InputShopDataModel getInputShopData() {
@@ -50,61 +66,17 @@ public class ClientController {
         return new PerformanceIndicatorsUtil().isGoodPerformanceIndicators(performanceIndicators) ? "It's good!" : "It's bad!";
     }
 
-    public void showAllSimulations() {
-        allSimulations = simulationRepository.selectAllSimulationsByIdEntity(currentAccount.getLogin());
+    public void setAllSimulations(List<SimulationModel> allSimulations) {
+        this.allSimulations = allSimulations;
     }
 
-    public void deleteSimulation(int indexOfSimulationForDelete) {
+    public SimulationModel deleteSimulation(int indexOfSimulationForDelete) {
         simulationRepository.deleteSimulation(allSimulations.get(indexOfSimulationForDelete).getIdSimulation());
-        allSimulations.remove(indexOfSimulationForDelete);
+        return allSimulations.remove(indexOfSimulationForDelete);
     }
 
-    public void changeDataInSimulation(int indexOfSimulation) {
-        SimulationModel currentSimulation = allSimulations.get(indexOfSimulation);
-
-        inputShopDataRepository.updateInputShopData(currentSimulation.getIdInputShopData(), getInputShopData());
-        performanceIndicatorsRepository.updatePerformanceIndicators(currentSimulation.getIdPerformanceIndicators(), getPerformanceIndicators());
-
-
-    }
-
-    public Integer getNumberOfCashWindows() {
-        return numberOfCashWindows;
-    }
-
-    public void setNumberOfCashWindows(Integer numberOfCashWindows) {
-        this.numberOfCashWindows = numberOfCashWindows;
-    }
-
-    public Integer getQueueLimit() {
-        return queueLimit;
-    }
-
-    public void setQueueLimit(Integer queueLimit) {
-        this.queueLimit = queueLimit;
-    }
-
-    public Double getCustomerIntensity() {
-        return customerIntensity;
-    }
-
-    public void setCustomerIntensity(Double customerIntensity) {
-        this.customerIntensity = customerIntensity;
-    }
-
-    public Double getServiceIntensity() {
-        return serviceIntensity;
-    }
-
-    public void setServiceIntensity(Double serviceIntensity) {
-        this.serviceIntensity = serviceIntensity;
-    }
-
-    public Double getSimulationRunTime() {
-        return simulationRunTime;
-    }
-
-    public void setSimulationRunTime(Double simulationRunTime) {
-        this.simulationRunTime = simulationRunTime;
+    public void changeDataInSimulation(int indexOfSimulation, SimulationModel changedSimulation) {
+        simulationRepository.updateSimulation(indexOfSimulation, changedSimulation);
+        allSimulations.set(indexOfSimulation, changedSimulation);
     }
 }

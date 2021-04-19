@@ -1,10 +1,12 @@
-package repository;
+package repository.sqldatabase;
 
 import model.database.SimulationModel;
+import repository.SimulationRepository;
 
 import java.util.List;
 
-public class SimulationRepositoryImpl implements SimulationRepository {
+public class SimulationRepositorySql implements SimulationRepository {
+
     @Override
     public void insertSimulation(SimulationModel simulation) {
 

@@ -1,18 +1,21 @@
 package controller;
 
+import lombok.Getter;
 import model.database.AccountModel;
 import repository.AccountRepository;
+import repository.sqldatabase.AccountRepositorySql;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminController {
 
-    private AccountRepository accountRepository;
+    private AccountRepository accountRepository = new AccountRepositorySql();
+    @Getter
     private List<AccountModel> allAccounts = new ArrayList<>();
 
-    public void setAllAccounts() {
-        allAccounts = accountRepository.selectAllAccounts();
+    public void setAllAccounts(List<AccountModel> allAccounts) {
+        this.allAccounts = allAccounts;
     }
 
     public void changeAccountInfoInSelected(int indexOfSelected, AccountModel newAccountData) {
@@ -25,8 +28,8 @@ public class AdminController {
         allAccounts.add(newAccount);
     }
 
-    public void deleteAccount(int indexOfAccountForDelete) {
+    public AccountModel deleteAccount(int indexOfAccountForDelete) {
         accountRepository.deleteAccount(allAccounts.get(indexOfAccountForDelete).getLogin());
-        allAccounts.remove(indexOfAccountForDelete);
+        return allAccounts.remove(indexOfAccountForDelete);
     }
 }
