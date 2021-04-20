@@ -35,7 +35,7 @@ class AdminControllerTest {
                 .accessLevel("notAdmin")
                 .password("hello")
                 .build();
-        adminController.changeAccountInfoInSelected(1, changedAccount);
+        adminController.changeAccountDataInSelected(1, changedAccount);
 
         assertEquals(changedAccount, adminController.getAllAccounts().get(1));
     }

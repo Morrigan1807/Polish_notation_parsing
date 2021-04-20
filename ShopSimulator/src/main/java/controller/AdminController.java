@@ -20,7 +20,7 @@ public class AdminController {
         this.allAccounts = allAccounts;
     }
 
-    public void changeAccountInfoInSelected(int indexOfSelected, AccountModel newAccountData) {
+    public void changeAccountDataInSelected(int indexOfSelected, AccountModel newAccountData) {
         //TODO Add update query to DB
         accountRepository.updateAccount(allAccounts.get(indexOfSelected).getLogin(), newAccountData);
         allAccounts.set(indexOfSelected, newAccountData);
