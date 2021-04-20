@@ -1,7 +1,7 @@
 package controller;
 
 import model.database.InputShopDataModel;
-import model.database.PerformanceIndicatorsModel;
+import model.database.PerformanceDataModel;
 import model.database.SimulationModel;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,28 +24,14 @@ class ClientControllerTest {
         clientController.setServiceIntensity(4.2);
         clientController.setSimulationRunTime(1.0);
 
-        SimulationModel firstSimulation = new SimulationModel();
-        firstSimulation.setIdSimulation(1);
-        firstSimulation.setRecommendation("It's good!");
-
-        SimulationModel secondSimulation = new SimulationModel();
-        secondSimulation.setIdSimulation(2);
-        secondSimulation.setRecommendation("It's bad!");
-
-        allSimulations.add(firstSimulation);
-        allSimulations.add(secondSimulation);
+        allSimulations.add(SimulationModel.builder().idSimulation(1).recommendation("It's good!").build());
+        allSimulations.add(SimulationModel.builder().idSimulation(2).recommendation("It's bad!").build());
     }
 
     @Test
     public void testGetInputShopData() {
-        InputShopDataModel expectedInputShopData = new InputShopDataModel();
-        expectedInputShopData.setNumberOfCashWindows(4);
-        expectedInputShopData.setQueueLimit(7);
-        expectedInputShopData.setCustomerIntensity(1.1);
-        expectedInputShopData.setServiceIntensity(4.2);
-        expectedInputShopData.setSimulationRunTime(1.0);
-
-        assertEquals(expectedInputShopData, clientController.getInputShopData());
+        assertEquals(InputShopDataModel.builder().numberOfCashWindows(4).queueLimit(7).customerIntensity(1.1)
+                .serviceIntensity(4.2).simulationRunTime(1.0).build(), clientController.getInputShopData());
     }
 
     @Test
@@ -54,24 +40,25 @@ class ClientControllerTest {
     }
 
     @Test
-    public void testGetPerformanceIndicators() {
-        assertNotNull(clientController.getPerformanceIndicators());
+    public void testGetPerformanceData() {
+        assertNotNull(clientController.getPerformanceData());
     }
 
     @Test
     public void testShowRecommendationGoodCase() {
-        PerformanceIndicatorsModel performanceIndicatorsForCheck = new PerformanceIndicatorsModel();
-        performanceIndicatorsForCheck.setAbsoluteBandwidth(2.1);
-
-        assertEquals("It's good!", clientController.showRecommendation(performanceIndicatorsForCheck));
+        //TODO Rewrite test for expert analysis
+        assertEquals("It's good!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(2.1).build()));
     }
 
     @Test
     public void testShowRecommendationBadCase() {
-        PerformanceIndicatorsModel performanceIndicatorsForCheck = new PerformanceIndicatorsModel();
-        performanceIndicatorsForCheck.setAbsoluteBandwidth(0.5);
+        //TODO Rewrite test for expert analysis
+        assertEquals("It's bad!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(0.5).build()));
+    }
 
-        assertEquals("It's bad!", clientController.showRecommendation(performanceIndicatorsForCheck));
+    @Test
+    public void testSaveSimulation() {
+        assertDoesNotThrow(clientController::saveSimulation);
     }
 
     @Test
@@ -92,13 +79,15 @@ class ClientControllerTest {
     @Test
     public void testChangeDataInSimulation() {
         clientController.setAllSimulations(allSimulations);
-
-        SimulationModel changedSimulation = new SimulationModel();
-        changedSimulation.setIdSimulation(3);
-        changedSimulation.setRecommendation("It's good!");
-
+        SimulationModel changedSimulation = SimulationModel.builder().idSimulation(3).recommendation("It's good!").build();
         clientController.changeDataInSimulation(1, changedSimulation);
 
         assertEquals(changedSimulation, clientController.getAllSimulations().get(1));
+    }
+
+    @Test
+    public void testGetSimulation() {
+        clientController.setAllSimulations(allSimulations);
+        assertNotNull(clientController.getSimulation(0));
     }
 }

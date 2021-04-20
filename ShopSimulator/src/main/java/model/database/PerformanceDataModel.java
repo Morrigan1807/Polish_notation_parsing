@@ -1,11 +1,13 @@
 package model.database;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class PerformanceIndicatorsModel {
+@Builder
+public class PerformanceDataModel {
 
-    private Integer idPerformanceIndicators;
+    private Integer idPerformanceData;
     private Integer idInputShopData;
     private Double systemDowntimeProbability;
     private Double rejectionProbability;

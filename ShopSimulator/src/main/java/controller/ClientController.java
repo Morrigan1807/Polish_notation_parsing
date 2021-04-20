@@ -4,26 +4,29 @@ import lombok.Getter;
 import lombok.Setter;
 import model.database.AccountModel;
 import model.database.InputShopDataModel;
-import model.database.PerformanceIndicatorsModel;
+import model.database.PerformanceDataModel;
 import model.database.SimulationModel;
 import model.shop.Shop;
 import repository.InputShopDataRepository;
-import repository.PerformanceIndicatorsRepository;
+import repository.PerformanceDataRepository;
 import repository.SimulationRepository;
 import repository.sqldatabase.InputShopDataRepositorySql;
-import repository.sqldatabase.PerformanceIndicatorsRepositorySql;
+import repository.sqldatabase.PerformanceDataRepositorySql;
 import repository.sqldatabase.SimulationRepositorySql;
-import util.PerformanceIndicatorsUtil;
+import util.PerformanceDataUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientController {
 
-    private InputShopDataRepository inputShopDataRepository = new InputShopDataRepositorySql();
-    private PerformanceIndicatorsRepository performanceIndicatorsRepository = new PerformanceIndicatorsRepositorySql();
-    private SimulationRepository simulationRepository = new SimulationRepositorySql();
-    private List<String> logList = new ArrayList<>();
+    //TODO Add configuration ling
+    private final InputShopDataRepository inputShopDataRepository = new InputShopDataRepositorySql();
+    //TODO Add configuration ling
+    private final PerformanceDataRepository performanceDataRepository = new PerformanceDataRepositorySql();
+    //TODO Add configuration ling
+    private final SimulationRepository simulationRepository = new SimulationRepositorySql();
+    private final List<String> logList = new ArrayList<>();
     @Getter
     private List<SimulationModel> allSimulations = new ArrayList<>();
     private AccountModel currentAccount;
@@ -44,39 +47,52 @@ public class ClientController {
     private Double simulationRunTime;
 
     public InputShopDataModel getInputShopData() {
-        InputShopDataModel inputShopData = new InputShopDataModel();
-        inputShopData.setNumberOfCashWindows(numberOfCashWindows);
-        inputShopData.setQueueLimit(queueLimit);
-        inputShopData.setCustomerIntensity(customerIntensity);
-        inputShopData.setServiceIntensity(serviceIntensity);
-        inputShopData.setSimulationRunTime(simulationRunTime);
-
-        return inputShopData;
+        return InputShopDataModel.builder()
+                .numberOfCashWindows(numberOfCashWindows)
+                .queueLimit(queueLimit)
+                .customerIntensity(customerIntensity)
+                .serviceIntensity(serviceIntensity)
+                .simulationRunTime(simulationRunTime)
+                .build();
     }
 
     public Shop startSimulation() {
+        //TODO Add jump to new page and output simulation
         return new Shop(getInputShopData(), logList);
     }
 
-    public PerformanceIndicatorsModel getPerformanceIndicators() {
-        return new PerformanceIndicatorsUtil(getInputShopData()).calculatePerformanceIndicators();
+    public PerformanceDataModel getPerformanceData() {
+        return new PerformanceDataUtil(getInputShopData()).calculatePerformanceData();
     }
 
-    public String showRecommendation(PerformanceIndicatorsModel performanceIndicators) {
-        return new PerformanceIndicatorsUtil().isGoodPerformanceIndicators(performanceIndicators) ? "It's good!" : "It's bad!";
+    public String getRecommendation(PerformanceDataModel performanceData) {
+        //TODO Rewrite for changing color of simulation in result
+        return new PerformanceDataUtil().isGoodPerformanceData(performanceData) ? "It's good!" : "It's bad!";
+    }
+
+    public void saveSimulation() {
+        //TODO Add insert query to DB
     }
 
     public void setAllSimulations(List<SimulationModel> allSimulations) {
+        //TODO Add select query to DB and writing in allSimulations
         this.allSimulations = allSimulations;
     }
 
     public SimulationModel deleteSimulation(int indexOfSimulationForDelete) {
+        //TODO Add delete query to DB
         simulationRepository.deleteSimulation(allSimulations.get(indexOfSimulationForDelete).getIdSimulation());
         return allSimulations.remove(indexOfSimulationForDelete);
     }
 
     public void changeDataInSimulation(int indexOfSimulation, SimulationModel changedSimulation) {
+        //TODO Add update query to DB
         simulationRepository.updateSimulation(indexOfSimulation, changedSimulation);
         allSimulations.set(indexOfSimulation, changedSimulation);
+    }
+
+    public SimulationModel getSimulation(int indexOfSimulation) {
+        //TODO Add jump to new page with info about selected simulation
+        return allSimulations.get(indexOfSimulation);
     }
 }

@@ -11,27 +11,31 @@ import java.util.List;
 
 public class MarketerController {
 
-    private AccountRepository accountRepository = new AccountRepositorySql();
+    //TODO Add configuration ling
+    private final AccountRepository accountRepository = new AccountRepositorySql();
     @Getter
     private List<EntityDataModel> allEntities = new ArrayList<>();
 
     public void setAllEntities(List<EntityDataModel> allEntities) {
+        //TODO Add select query to DB and writing in allEntities
         this.allEntities = allEntities;
     }
 
     public List<EntityDataModel> getAllEntityByName(String name) {
-        List<EntityDataModel> allEntityByName = new ArrayList<>();
+        //TODO Add select query to DB (by name) and writing in allEntitiesByName
+        List<EntityDataModel> allEntitiesByName = new ArrayList<>();
 
         for (EntityDataModel entity : allEntities) {
             if (entity.getEntityName().equals(name)) {
-                allEntityByName.add(entity);
+                allEntitiesByName.add(entity);
             }
         }
 
-        return allEntityByName;
+        return allEntitiesByName;
     }
 
     public List<List<String>> generateReportAboutAllSimulations() {
+        //TODO Add creating excel-file for report
         List<List<String>> reportData = new ArrayList<>();
 
         for (EntityDataModel entityData : allEntities) {

@@ -22,10 +22,11 @@ public class CashWindow implements Runnable {
     }
 
     private double poisson() {
+        //TODO Add Poisson for generating for service time
         return 1.1;
     }
 
     public void run() {
-
+        //TODO Add work for cash window
     }
 }

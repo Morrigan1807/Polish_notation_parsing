@@ -13,43 +13,28 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class AdminControllerTest {
 
     private static final List<AccountModel> allAccounts = new ArrayList<>();
+    private static final AdminController adminController = new AdminController();
 
     @BeforeAll
     public static void createAllAccounts() {
-        AccountModel firstAccount = new AccountModel();
-        firstAccount.setLogin("login");
-        firstAccount.setEntityName("name");
+        allAccounts.add(AccountModel.builder().login("login").entityName("name").build());
+        allAccounts.add(AccountModel.builder().accessLevel("admin").password("admin").build());
+        allAccounts.add(AccountModel.builder().login("login").password("password").build());
 
-        AccountModel secondAccount = new AccountModel();
-        secondAccount.setAccessLevel("admin");
-        secondAccount.setPassword("admin");
-
-        AccountModel thirdAccount = new AccountModel();
-        thirdAccount.setLogin("login");
-        thirdAccount.setPassword("password");
-
-        allAccounts.add(firstAccount);
-        allAccounts.add(secondAccount);
-        allAccounts.add(thirdAccount);
+        adminController.setAllAccounts(allAccounts);
     }
 
     @Test
     public void testSetAllAccounts() {
-        AdminController adminController = new AdminController();
-        adminController.setAllAccounts(allAccounts);
-
         assertEquals(allAccounts, adminController.getAllAccounts());
     }
 
     @Test
     public void testChangeAccountInfoInSelected() {
-        AdminController adminController = new AdminController();
-        adminController.setAllAccounts(allAccounts);
-
-        AccountModel changedAccount = new AccountModel();
-        changedAccount.setAccessLevel("notAdmin");
-        changedAccount.setPassword("hello");
-
+        AccountModel changedAccount = AccountModel.builder()
+                .accessLevel("notAdmin")
+                .password("hello")
+                .build();
         adminController.changeAccountInfoInSelected(1, changedAccount);
 
         assertEquals(changedAccount, adminController.getAllAccounts().get(1));
@@ -57,13 +42,10 @@ class AdminControllerTest {
 
     @Test
     public void testAddNewAccount() {
-        AdminController adminController = new AdminController();
-        adminController.setAllAccounts(allAccounts);
-
-        AccountModel accountForAdd = new AccountModel();
-        accountForAdd.setLogin("world");
-        accountForAdd.setPassword("hello");
-
+        AccountModel accountForAdd = AccountModel.builder()
+                .login("world")
+                .password("hello")
+                .build();
         adminController.addNewAccount(accountForAdd);
 
         assertNotEquals(-1, adminController.getAllAccounts().indexOf(accountForAdd));
@@ -71,9 +53,6 @@ class AdminControllerTest {
 
     @Test
     public void testDeleteAccount() {
-        AdminController adminController = new AdminController();
-        adminController.setAllAccounts(allAccounts);
-
         AccountModel deletedAccount = adminController.deleteAccount(2);
 
         assertEquals(-1, adminController.getAllAccounts().indexOf(deletedAccount));

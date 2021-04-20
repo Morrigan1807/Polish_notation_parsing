@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 
-    private static Controller controller = new Controller();
+    private static final Controller controller = new Controller();
 
     @BeforeAll
     public static void createController() {
@@ -18,7 +18,7 @@ class ControllerTest {
 
     @Test
     public void testCheckAccountCorrectCase() {
-        controller.setCurrentAccount(new AccountModel());
+        controller.setCurrentAccount(AccountModel.builder().build());
         assertTrue(controller.checkAccount());
     }
 
@@ -29,28 +29,19 @@ class ControllerTest {
 
     @Test
     public void testLoginOnSiteAdminCase() {
-        AccountModel account = new AccountModel();
-        account.setAccessLevel("admin");
-        controller.setCurrentAccount(account);
-
+        controller.setCurrentAccount(AccountModel.builder().accessLevel("admin").build());
         assertEquals("Going to admin page.", controller.loginOnSite());
     }
 
     @Test
     public void testLoginOnSiteMarketerCase() {
-        AccountModel account = new AccountModel();
-        account.setAccessLevel("marketer");
-        controller.setCurrentAccount(account);
-
+        controller.setCurrentAccount(AccountModel.builder().accessLevel("marketer").build());
         assertEquals("Going to marketer page.", controller.loginOnSite());
     }
 
     @Test
     public void testLoginOnSiteClientCase() {
-        AccountModel account = new AccountModel();
-        account.setAccessLevel("client");
-        controller.setCurrentAccount(account);
-
+        controller.setCurrentAccount(AccountModel.builder().accessLevel("client").build());
         assertEquals("Going to client page.", controller.loginOnSite());
     }
 }
