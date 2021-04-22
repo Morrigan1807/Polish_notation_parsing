@@ -37,6 +37,12 @@
                         <exclude>
                             **/Constant.*
                         </exclude>
+                        <exclude>
+                            **/shop/**
+                        </exclude>
+                        <exclude>
+                            **/repository/**
+                        </exclude>
                     </excludes>
                 </configuration>
                 <executions>

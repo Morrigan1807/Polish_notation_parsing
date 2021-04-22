@@ -8,6 +8,6 @@ import lombok.Data;
 public class EntityDataModel {
 
     private String entityName;
-    private String phone_number;
+    private String phoneNumber;
     private Integer simulationsCount;
 }

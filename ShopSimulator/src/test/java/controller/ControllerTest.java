@@ -29,19 +29,19 @@ class ControllerTest {
 
     @Test
     public void testLoginOnSiteAdminCase() {
-        controller.setCurrentAccount(AccountModel.builder().accessLevel("admin").build());
+        controller.setCurrentAccount(AccountModel.builder().login("admin").password("admin").accessLevel("admin").build());
         assertEquals("Going to admin page.", controller.loginOnSite());
     }
 
     @Test
     public void testLoginOnSiteMarketerCase() {
-        controller.setCurrentAccount(AccountModel.builder().accessLevel("marketer").build());
+        controller.setCurrentAccount(AccountModel.builder().login("marketer").password("marketer").accessLevel("marketer").build());
         assertEquals("Going to marketer page.", controller.loginOnSite());
     }
 
     @Test
     public void testLoginOnSiteClientCase() {
-        controller.setCurrentAccount(AccountModel.builder().accessLevel("client").build());
+        controller.setCurrentAccount(AccountModel.builder().login("client").password("client").accessLevel("client").build());
         assertEquals("Going to client page.", controller.loginOnSite());
     }
 }

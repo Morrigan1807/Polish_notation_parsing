@@ -37,12 +37,12 @@ public class PerformanceDataUtil {
         double queuingLoad = inputShopData.getCustomerIntensity() / inputShopData.getServiceIntensity();
 
         channelLoad = queuingLoad / inputShopData.getNumberOfCashWindows();
-        totalQueueCapacity = inputShopData.getQueueLimit() * inputShopData.getNumberOfCashWindows();
+        totalQueueCapacity = (double) inputShopData.getQueueLimit() * inputShopData.getNumberOfCashWindows();
     }
 
     public boolean isGoodPerformanceData(PerformanceDataModel performanceData) {
         //TODO Add expert analysis of performance data
-        return performanceData.getAbsoluteBandwidth() > 1;
+        return performanceData.getAbsoluteBandwidth() > 0.5;
     }
 
     public double getSystemDowntimeProbability() {

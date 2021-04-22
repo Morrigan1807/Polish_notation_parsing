@@ -3,7 +3,7 @@ package controller;
 import model.database.InputShopDataModel;
 import model.database.PerformanceDataModel;
 import model.database.SimulationModel;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClientControllerTest {
 
-    private static final List<SimulationModel> allSimulations = new ArrayList<>();
-    private static final ClientController clientController = new ClientController();
+    private final List<SimulationModel> allSimulations = new ArrayList<>();
+    private final ClientController clientController = new ClientController();
 
-    @BeforeAll
-    public static void prepareClientController() {
+    @BeforeEach
+    public void prepareClientController() {
         clientController.setNumberOfCashWindows(4);
         clientController.setQueueLimit(7);
         clientController.setCustomerIntensity(1.1);
@@ -35,8 +35,18 @@ class ClientControllerTest {
     }
 
     @Test
+    public void testGetInputShopDataDoesNotThrow() {
+        assertDoesNotThrow(clientController::getInputShopData);
+    }
+
+    @Test
     public void testStartSimulation() {
         assertNotNull(clientController.startSimulation());
+    }
+
+    @Test
+    public void testStartSimulationDoesNotThrow() {
+        assertDoesNotThrow(clientController::startSimulation);
     }
 
     @Test
@@ -45,15 +55,20 @@ class ClientControllerTest {
     }
 
     @Test
+    public void testGetPerformanceDataDoesNotThrow() {
+        assertDoesNotThrow(clientController::getPerformanceData);
+    }
+
+    @Test
     public void testShowRecommendationGoodCase() {
         //TODO Rewrite test for expert analysis
-        assertEquals("It's good!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(2.1).build()));
+        assertEquals("It's good!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(0.85).build()));
     }
 
     @Test
     public void testShowRecommendationBadCase() {
         //TODO Rewrite test for expert analysis
-        assertEquals("It's bad!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(0.5).build()));
+        assertEquals("It's bad!", clientController.getRecommendation(PerformanceDataModel.builder().absoluteBandwidth(0.3).build()));
     }
 
     @Test
@@ -69,11 +84,8 @@ class ClientControllerTest {
     }
 
     @Test
-    public void testDeleteSimulation() {
-        clientController.setAllSimulations(allSimulations);
-        SimulationModel deletedSimulation = clientController.deleteSimulation(0);
-
-        assertEquals(-1, clientController.getAllSimulations().indexOf(deletedSimulation));
+    public void testSetAllSimulationsDoesNotThrow() {
+        assertDoesNotThrow(() -> clientController.setAllSimulations(allSimulations));
     }
 
     @Test
@@ -86,8 +98,37 @@ class ClientControllerTest {
     }
 
     @Test
+    public void testChangeDataInSimulationDoesNotThrow() {
+        clientController.setAllSimulations(allSimulations);
+        SimulationModel changedSimulation = SimulationModel.builder().idSimulation(3).recommendation("It's good!").build();
+
+        assertDoesNotThrow(() -> clientController.changeDataInSimulation(1, changedSimulation));
+    }
+
+    @Test
+    public void testDeleteSimulation() {
+        clientController.setAllSimulations(allSimulations);
+        SimulationModel deletedSimulation = clientController.deleteSimulation(0);
+
+        assertEquals(-1, clientController.getAllSimulations().indexOf(deletedSimulation));
+    }
+
+    @Test
+    public void testDeleteSimulationDoesNotThrow() {
+        clientController.setAllSimulations(allSimulations);
+
+        assertDoesNotThrow(() -> clientController.deleteSimulation(0));
+    }
+
+    @Test
     public void testGetSimulation() {
         clientController.setAllSimulations(allSimulations);
         assertNotNull(clientController.getSimulation(0));
+    }
+
+    @Test
+    public void testGetSimulationDoesNotThrow() {
+        clientController.setAllSimulations(allSimulations);
+        assertDoesNotThrow(() -> clientController.getSimulation(0));
     }
 }

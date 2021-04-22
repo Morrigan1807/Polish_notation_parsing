@@ -40,7 +40,7 @@ public class MarketerController {
 
         for (EntityDataModel entityData : allEntities) {
             reportData.add(Arrays.asList(entityData.getEntityName(),
-                    entityData.getPhone_number(),
+                    entityData.getPhoneNumber(),
                     entityData.getSimulationsCount().toString()));
         }
 
