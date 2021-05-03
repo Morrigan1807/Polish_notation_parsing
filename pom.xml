@@ -20,6 +20,7 @@
         <module>PolishNotationParsing</module>
         <module>ShopSimulator</module>
         <module>CrawlingEbay</module>
+        <module>RefactoringTask</module>
     </modules>
 
     <build>
