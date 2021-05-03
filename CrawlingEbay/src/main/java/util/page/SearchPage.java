@@ -1,6 +1,6 @@
-package model.pageobject;
+package util.page;
 
-import model.foundelement.FoundElementModel;
+import model.FoundElementModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,32 +20,27 @@ public class SearchPage extends PageObject {
     }
 
     public SearchPage inputMinimumPriceField(String minimumPrice) {
-        WebElement minimumPriceField = Wait.waitAndGetElement(driver, MINIMUM_PRICE_FIELD);
-        minimumPriceField.sendKeys(minimumPrice);
+        Wait.waitAndGetElement(driver, MINIMUM_PRICE_FIELD).sendKeys(minimumPrice);
         return this;
     }
 
     public SearchPage inputMaximumPriceField(String maximumPrice) {
-        WebElement maximumPriceField = Wait.waitAndGetElement(driver, MAXIMUM_PRICE_FIELD);
-        maximumPriceField.sendKeys(maximumPrice);
+        Wait.waitAndGetElement(driver, MAXIMUM_PRICE_FIELD).sendKeys(maximumPrice);
         return this;
     }
 
     public SearchPage clickSubmitPriceRangeButton() {
-        WebElement submitPriceRangeButton = Wait.waitAndGetElement(driver, SUBMIT_PRICE_RANGE_BUTTON);
-        submitPriceRangeButton.click();
+        Wait.waitAndGetElement(driver, SUBMIT_PRICE_RANGE_BUTTON).click();
         return this;
     }
 
     public SearchPage clickCaseNewConditionCheckBox() {
-        WebElement caseNewConditionCheckBox = Wait.waitAndGetElement(driver, CASE_NEW_CONDITION_CHECK_BOX);
-        caseNewConditionCheckBox.click();
+        Wait.waitAndGetElement(driver, CASE_NEW_CONDITION_CHECK_BOX).click();
         return this;
     }
 
     public SearchPage clickCaseUsedConditionCheckBox() {
-        WebElement caseUsedConditionCheckBox = Wait.waitAndGetElement(driver, CASE_USED_CONDITION_CHECK_BOX);
-        caseUsedConditionCheckBox.click();
+        Wait.waitAndGetElement(driver, CASE_USED_CONDITION_CHECK_BOX).click();
         return this;
     }
 
@@ -58,13 +53,11 @@ public class SearchPage extends PageObject {
     }
 
     public String getTextFromMinimumPriceField() {
-        WebElement minimumPriceField = Wait.waitAndGetElement(driver, MINIMUM_PRICE_FIELD);
-        return minimumPriceField.getAttribute(VALUE_ATTRIBUTE);
+        return Wait.waitAndGetElement(driver, MINIMUM_PRICE_FIELD).getAttribute(VALUE_ATTRIBUTE);
     }
 
     public String getTextFromMaximumPriceField() {
-        WebElement maximumPriceField = Wait.waitAndGetElement(driver, MAXIMUM_PRICE_FIELD);
-        return maximumPriceField.getAttribute(VALUE_ATTRIBUTE);
+        return Wait.waitAndGetElement(driver, MAXIMUM_PRICE_FIELD).getAttribute(VALUE_ATTRIBUTE);
     }
 
     public List<FoundElementModel> getSearchResults(int countOfResults) {

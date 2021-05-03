@@ -1,8 +1,8 @@
-import configurationproperties.ConfigurationProperties;
+import util.ConfigurationProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import model.foundelement.FoundElementModel;
-import model.pageobject.MainPage;
-import model.pageobject.SearchPage;
+import model.FoundElementModel;
+import util.page.MainPage;
+import util.page.SearchPage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -32,14 +32,13 @@ public class CrawlingTest {
 
     @Test
     public void crawlingEbay() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(ConfigurationProperties.getProperty(SEARCH_REQUEST));
-        mainPage.clickSearchButton();
+        SearchPage searchPage = mainPage.clickLanguageGeoElement()
+                .inputSearchText(ConfigurationProperties.getProperty(SEARCH_REQUEST))
+                .clickSearchButton()
+                .inputMinimumPriceField(ConfigurationProperties.getProperty(MINIMUM_PRICE))
+                .inputMaximumPriceField(ConfigurationProperties.getProperty(MAXIMUM_PRICE))
+                .clickSubmitPriceRangeButton();
 
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.inputMinimumPriceField(ConfigurationProperties.getProperty(MINIMUM_PRICE));
-        searchPage.inputMaximumPriceField(ConfigurationProperties.getProperty(MAXIMUM_PRICE));
-        searchPage.clickSubmitPriceRangeButton();
         if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(NEW)) {
             searchPage.clickCaseNewConditionCheckBox();
         } else if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(USED)) {

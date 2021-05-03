@@ -1,14 +1,12 @@
-import configurationproperties.ConfigurationProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import model.foundelement.FoundElementModel;
-import model.pageobject.MainPage;
-import model.pageobject.SearchPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import model.FoundElementModel;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import util.ConfigurationProperties;
 import util.Wait;
+import util.page.MainPage;
+import util.page.SearchPage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -17,72 +15,76 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static util.Constant.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EbayTest {
 
     private static MainPage mainPage;
     private static WebDriver driver;
 
-    @BeforeEach
-    public void setup() {
+    @BeforeAll
+    public static void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
         mainPage = new MainPage(driver);
     }
 
+    @BeforeEach
+    public void goToMainPage() {
+        driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
+    }
+
     @Test
+    @Order(1)
     public void testGoToSite() {
         driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
         assertEquals(ConfigurationProperties.getProperty(MAIN_PAGE), driver.getCurrentUrl());
     }
 
     @Test
+    @Order(2)
     public void testLanguageChangeToEnglish() {
-        mainPage.clickLanguageGeoElement();
-        assertEquals(mainPage.getPageLanguage(), EN);
+        String languageOnPage = mainPage.clickLanguageGeoElement()
+                .getPageLanguage();
+        assertEquals(languageOnPage, EN);
     }
 
     @Test
+    @Order(3)
     public void testSearchParametersOnSiteSearchPageAfterEnteringInSearchBar() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(MOUSE_TEXT)
-                .clickSearchButton();
+        int sizeSearchData = 5;
+        List<FoundElementModel> searchResult = mainPage.inputSearchText(MOUSE_TEXT)
+                .clickSearchButton()
+                .getSearchResults(sizeSearchData);
 
-        SearchPage searchPage = new SearchPage(driver);
-        List<FoundElementModel> searchResult = searchPage.getSearchResults(5);
-
-        for (int i = 0; i < 5 && i < searchResult.size(); i++) {
-            assertTrue(searchResult.get(i).getProductName().contains(MOUSE_TEXT));
+        for (FoundElementModel foundElementModel : searchResult) {
+            assertTrue(foundElementModel.getProductName().contains(MOUSE_TEXT));
         }
     }
 
     @Test
+    @Order(4)
     public void testSearchParametersOnSiteSearchPageAfterEnteringPriceRange() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(MOUSE_TEXT)
-                .clickSearchButton();
+        int sizeSearchData = 5;
+        List<FoundElementModel> searchResult = mainPage.inputSearchText(MOUSE_TEXT)
+                .clickSearchButton()
+                .inputMinimumPriceField(ONE)
+                .inputMaximumPriceField(TWO)
+                .clickSubmitPriceRangeButton()
+                .getSearchResults(sizeSearchData);
 
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.inputMinimumPriceField(ONE);
-        searchPage.inputMaximumPriceField(TWO);
-        searchPage.clickSubmitPriceRangeButton();
-        List<FoundElementModel> searchResult = searchPage.getSearchResults(5);
-
-        for (int i = 0; i < 5 && i < searchResult.size(); i++) {
-            assertTrue(searchResult.get(i).getPrice().isWithin(1, 2));
+        for (FoundElementModel foundElementModel : searchResult) {
+            assertTrue(foundElementModel.getPrice().isWithin(1, 2));
         }
     }
 
     @Test
+    @Order(5)
     public void testSearchParametersOnSiteSearchPageAfterEnteringInvertedPriceRange() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(MOUSE_TEXT)
-                .clickSearchButton();
-
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.inputMinimumPriceField(FIVE)
+        SearchPage searchPage = mainPage.inputSearchText(MOUSE_TEXT)
+                .clickSearchButton()
+                .inputMinimumPriceField(FIVE)
                 .inputMaximumPriceField(THREE)
                 .clickSubmitPriceRangeButton();
 
@@ -91,14 +93,13 @@ public class EbayTest {
     }
 
     @Test
+    @Order(6)
     public void testSearchParametersOnSiteSearchPageAfterEnteringProductConditionAsNew() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(MOUSE_TEXT)
-                .clickSearchButton();
-
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.clickCaseNewConditionCheckBox();
-        List<FoundElementModel> searchResult = searchPage.getSearchResults(5);
+        int sizeSearchData = 5;
+        List<FoundElementModel> searchResult = mainPage.inputSearchText(MOUSE_TEXT)
+                .clickSearchButton()
+                .clickCaseNewConditionCheckBox()
+                .getSearchResults(sizeSearchData);
 
         for (int i = 0; i < 5 && i < searchResult.size(); i++) {
             assertEquals(BRAND_NEW, searchResult.get(i).getCondition());
@@ -106,22 +107,21 @@ public class EbayTest {
     }
 
     @Test
+    @Order(7)
     public void testSearchParametersOnSiteSearchPageAfterEnteringProductConditionAsUsed() {
-        mainPage.clickLanguageGeoElement();
-        mainPage.inputSearchText(MOUSE_TEXT)
-                .clickSearchButton();
-
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.clickCaseUsedConditionCheckBox();
-        List<FoundElementModel> searchResult = searchPage.getSearchResults(5);
+        int sizeSearchData = 5;
+        List<FoundElementModel> searchResult = mainPage.inputSearchText(MOUSE_TEXT)
+                .clickSearchButton()
+                .clickCaseUsedConditionCheckBox()
+                .getSearchResults(sizeSearchData);
 
         for (int i = 0; i < 5 && i < searchResult.size(); i++) {
             assertTrue(searchResult.get(i).getCondition().equals(PRE_OWNED) || searchResult.get(i).getCondition().equals(REFURBISHED));
         }
     }
 
-    @AfterEach
-    public void waitAndCloseDriver() {
+    @AfterAll
+    public static void waitAndCloseDriver() {
         Wait.sleepFiveSeconds();
         driver.close();
         driver.quit();

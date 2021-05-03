@@ -1,4 +1,4 @@
-package model.foundelement;
+package model;
 
 public interface Price {
 
