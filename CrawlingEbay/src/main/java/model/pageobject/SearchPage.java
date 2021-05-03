@@ -15,17 +15,6 @@ import static util.XPath.*;
 
 public class SearchPage extends PageObject {
 
-    /*@FindBy(xpath = MINIMUM_PRICE_FIELD)
-    private WebElement minimumPriceField;
-    @FindBy(xpath = MAXIMUM_PRICE_FIELD)
-    private WebElement maximumPriceField;
-    @FindBy(xpath = SUBMIT_PRICE_RANGE_BUTTON)
-    private WebElement submitPriceRangeButton;
-    @FindBy(xpath = CASE_NEW_CONDITION_CHECK_BOX)
-    private WebElement caseNewConditionCheckBox;
-    @FindBy(xpath = CASE_USED_CONDITION_CHECK_BOX)
-    private WebElement caseUsedConditionCheckBox;*/
-
     public SearchPage(WebDriver driver) {
         super(driver);
     }

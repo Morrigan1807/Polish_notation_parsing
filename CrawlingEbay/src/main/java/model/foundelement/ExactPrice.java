@@ -3,7 +3,7 @@ package model.foundelement;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ExactPrice implements Price{
+public class ExactPrice implements Price {
 
     @Setter
     @Getter

@@ -3,7 +3,6 @@ package model.pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import util.Wait;
 
 import static util.Constant.HTML_TAG;
@@ -11,15 +10,6 @@ import static util.Constant.LANG_ATTRIBUTE;
 import static util.XPath.*;
 
 public class MainPage extends PageObject {
-
-  /*  @FindBy(xpath = SEARCH_FIELD)
-    private WebElement searchField;
-    @FindBy(xpath = SEARCH_BUTTON)
-    private WebElement searchButton;
-    @FindBy(xpath = LANGUAGE_GEO_ELEMENT)
-    private WebElement languageGeoElement;
-    @FindBy(xpath = ENGLISH_LANGUAGE_GEO_ITEM)
-    private WebElement englishLanguageGeoItem;*/
 
     public MainPage(WebDriver driver) {
         super(driver);

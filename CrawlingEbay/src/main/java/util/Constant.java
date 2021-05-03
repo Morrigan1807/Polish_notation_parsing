@@ -29,5 +29,8 @@ public class Constant {
     public static final String CONDITION_OUTPUT = "Condition: ";
     public static final String URL_OUTPUT = "URL: ";
     public static final char DOLLAR_SIGN = '$';
-    public static final char SPACE  = ' ';
+    public static final char SPACE = ' ';
+
+    private Constant() {
+    }
 }
