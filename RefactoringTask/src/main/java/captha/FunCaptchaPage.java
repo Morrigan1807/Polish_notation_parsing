@@ -1,23 +1,18 @@
 package captha;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import page.PageObject;
-import util.FunCaptcha;
-import util.Wait;
-import util.constant.Constant;
-import util.constant.XPath;
-import util.property.google.message.MessageUtil;
-import util.property.selenium.Browser;
-import util.property.selenium.Element;
-import util.property.selenium.Wait;
+import util.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static util.Constant.*;
+import static util.JavaScript.*;
+import static util.XPath.*;
+
 public class FunCaptchaPage extends PageObject {
-    private static final String jsCreateCaptchaWithUsValue = "var captchaNewFrom = new ArkoseEnforcement({public_key:window.location.pathname.split(\"/\")[1],language:getAllUrlParams(window.location.href).mkt,target_html:\"arkose\",callback:function(){parent.postMessage(JSON.stringify({eventId:\"challenge-complete\",payload:{sessionToken:captchaNewFrom.getSessionToken()}}),\"*\")},loaded_callback:function(){parent.postMessage(JSON.stringify({eventId:\"challenge-loaded\",payload:{sessionToken:captchaNewFrom.getSessionToken()}}),\"*\")},onsuppress:function(){parent.postMessage(JSON.stringify({eventId:\"challenge-suppressed\",payload:{sessionToken:captchaNewFrom.getSessionToken()}}),\"*\")},onshown:function(){parent.postMessage(JSON.stringify({eventId:\"challenge-shown\",payload:{sessionToken:captchaNewFrom.getSessionToken()}}),\"*\")}});";
-    private static final String jsDoneCallBackWithUsValue = "parent.postMessage(JSON.stringify({eventId:\"challenge-complete\",payload:{sessionToken:captchaNewFrom.getSessionToken()}}),\"*\");";
 
     public FunCaptchaPage(Browser browser) {
         super(browser);
@@ -48,47 +43,54 @@ public class FunCaptchaPage extends PageObject {
     }
 
     private String getResultValueFromRuCaptcha() {
-        List<String> fcToken = getParseFcToken();
-        String publicKey = getValueFromFcTokenList(fcToken, "pk=").substring("pk=".length());
-        String sUrl = getValueFromFcTokenList(fcToken, "surl=").substring("surl=".length());
+        List<String> funCaptchaToken = getParseFunCaptchaToken();
+        String publicKey = getValueFromFunCaptchaTokenList(funCaptchaToken, PUBLIC_KEY_VALUE).substring(PUBLIC_KEY_VALUE.length());
+        String sUrl = getValueFromFunCaptchaTokenList(funCaptchaToken, S_URL_VALUE).substring(S_URL_VALUE.length());
         return new FunCaptcha().getJsonResultCaptcha(publicKey, sUrl);
     }
 
-    private List<String> getParseFcToken() {
-        return Arrays.asList(getFcToken().split(Constant.VERTICAL_SLASH));
+    private List<String> getParseFunCaptchaToken() {
+        return Arrays.asList(getFunCaptchaToken().split(Constant.VERTICAL_SLASH));
     }
 
-    private String getFcToken() {
-        return new Element(browser, XPath.FC_TOKEN).getElementCss(XPath.CSS_VALUE);
+    private String getFunCaptchaToken() {
+        try {
+            return browser.getDriver().findElement(By.xpath(FUN_CAPTCHA_TOKEN)).getAttribute(CSS_VALUE);
+        } catch (Exception exception) {
+            LOGGER.error(Constant.ERROR_WITH, GET_FUN_CAPTCHA_TOKEN);
+            return NOT_FOUND;
+        }
     }
 
-    private String getValueFromFcTokenList(List<String> fcToken, String value) {
-        return fcToken.stream().filter(token -> token.contains(value)).findFirst().orElse(Constant.NOT_FOUND);
+    private String getValueFromFunCaptchaTokenList(List<String> funCaptchaToken, String value) {
+        return funCaptchaToken.stream().filter(token -> token.contains(value)).findFirst().orElse(Constant.NOT_FOUND);
     }
 
     public void switchToIframe() {
         browser.addPassingCaptcha();
-        browser.switchToFrame(XPath.CAPTCHA_IFRAME);
-        browser.switchToFrame("//iframe[@id=\"arkoseframe\"]");
+        browser.switchToFrame(CAPTCHA_IFRAME);
+        browser.switchToFrame(ARKOSE_FRAME);
     }
 
     private void fillInVerificationInputsAndResolveCaptcha(String json) {
-        LOGGER.info("inputJson");
-        LOGGER.info(json);
-        String jsScriptSleep = "function sleep(milliseconds) {const date = Date.now();let currentDate = null;do {currentDate = Date.now();} while (currentDate - date < milliseconds);}";
-        String verInput = String.format("document.getElementById('verification-token').value = decodeURIComponent('%s');", json);
-        String funInput = String.format("document.getElementById('FunCaptcha-Token').value = decodeURIComponent('%s');", json);
-        String js = jsScriptSleep + jsCreateCaptchaWithUsValue + "sleep(10000);" + verInput + funInput + "sleep(5000);" + jsDoneCallBackWithUsValue;
-        LOGGER.info("inputJs");
-        LOGGER.info(js);
+        LOGGER.debug(INPUT_JSON);
+        LOGGER.debug(json);
+        String js = getPreparedScriptForFillingInVerificationInputAndResolvingCaptcha(json);
+        LOGGER.debug(INPUT_JS);
+        LOGGER.debug(js);
+
         ((JavascriptExecutor) browser.getDriver()).executeScript(js);
+    }
+
+    private String getPreparedScriptForFillingInVerificationInputAndResolvingCaptcha(String json) {
+        String verificationInput = String.format(JS_SET_VERIFICATION_TOKEN, json);
+        String funCaptchaInput = String.format(JS_SET_FUN_CAPTCHA_TOKEN, json);
+        return JS_SCRIPT_SLEEP + JS_CREATE_CAPTCHA_WITH_US_VALUE + JS_SLEEP_TEN_SECONDS + verificationInput + funCaptchaInput + JS_SLEEP_FIVE_SECONDS + JS_DONE_CALL_BACK_WITH_US_VALUE;
     }
 
     private void checkForReadyCaptcha() {
         if (StringUtils.contains(browser.getCurrentUrl(), Constant.LINKEDIN_CAPTCHA)) {
-            browser.createScreenAndSnap(Constant.FAILED_READ_CAPTCHA);
-            browser.getHistory().addError(Constant.CAPTCHA_NOT_PASSED);
-            new MessageUtil().sendErrorMessage(browser.getHistory());
+            //TODO Here send error message
         }
     }
 }

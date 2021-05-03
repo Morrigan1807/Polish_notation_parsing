@@ -23,35 +23,35 @@ public class RestRuCaptcha {
 
     public String getIdPostRequest(String postRequest) {
         try {
-            return extract(postRequestToRuCaptcha(postRequest));
+            return extractCssBody(postRequestToRuCaptcha(postRequest));
         } catch (Exception e) {
             e.printStackTrace();
-            return extract(postRequestToRuCaptcha(postRequest));
+            return extractCssBody(postRequestToRuCaptcha(postRequest));
         }
     }
 
     private ValidatableResponse postRequestToRuCaptcha(String postRequest) {
-        return checkStatus(given().post(postRequest));
+        return checkStatusCode(given().post(postRequest));
     }
 
     private String makeGetResponse(String getRequest) {
         try {
-            return extract(getRequestToRuCaptcha(getRequest));
+            return extractCssBody(getRequestToRuCaptcha(getRequest));
         } catch (Exception e) {
             e.printStackTrace();
-            return extract(getRequestToRuCaptcha(getRequest));
+            return extractCssBody(getRequestToRuCaptcha(getRequest));
         }
     }
 
     private ValidatableResponse getRequestToRuCaptcha(String getRequest) {
-        return checkStatus(given().contentType(ContentType.JSON).accept(ContentType.JSON).get(getRequest));
+        return checkStatusCode(given().contentType(ContentType.JSON).accept(ContentType.JSON).get(getRequest));
     }
 
-    private ValidatableResponse checkStatus(Response response) {
+    private ValidatableResponse checkStatusCode(Response response) {
         return response.then().statusCode(HttpStatus.SC_OK);
     }
 
-    private String extract(ValidatableResponse response) {
+    private String extractCssBody(ValidatableResponse response) {
         return response.extract().htmlPath().getString(Constant.CSS_BODY).substring(3);
     }
 
