@@ -30,6 +30,13 @@ public class EbayTest {
         mainPage = new MainPage(driver);
     }
 
+    @AfterAll
+    public static void waitAndCloseDriver() {
+        Wait.sleepFiveSeconds();
+        driver.close();
+        driver.quit();
+    }
+
     @BeforeEach
     public void goToMainPage() {
         driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
@@ -118,12 +125,5 @@ public class EbayTest {
         for (int i = 0; i < 5 && i < searchResult.size(); i++) {
             assertTrue(searchResult.get(i).getCondition().equals(PRE_OWNED) || searchResult.get(i).getCondition().equals(REFURBISHED));
         }
-    }
-
-    @AfterAll
-    public static void waitAndCloseDriver() {
-        Wait.sleepFiveSeconds();
-        driver.close();
-        driver.quit();
     }
 }

@@ -1,14 +1,14 @@
-import util.ConfigurationProperties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import model.FoundElementModel;
-import util.page.MainPage;
-import util.page.SearchPage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import util.ConfigurationProperties;
 import util.Wait;
+import util.page.MainPage;
+import util.page.SearchPage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +30,13 @@ public class CrawlingTest {
         mainPage = new MainPage(driver);
     }
 
+    @AfterAll
+    public static void closeDriver() {
+        Wait.sleepFiveSeconds();
+        driver.close();
+        driver.quit();
+    }
+
     @Test
     public void crawlingEbay() {
         SearchPage searchPage = mainPage.clickLanguageGeoElement()
@@ -47,12 +54,5 @@ public class CrawlingTest {
 
         List<FoundElementModel> results = searchPage.getSearchResults(Integer.parseInt(ConfigurationProperties.getProperty("countofresults")));
         results.forEach(FoundElementModel::outToLog);
-    }
-
-    @AfterAll
-    public static void closeDriver() {
-        Wait.sleepFiveSeconds();
-        driver.close();
-        driver.quit();
     }
 }
