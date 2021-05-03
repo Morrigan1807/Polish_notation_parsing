@@ -1,6 +1,6 @@
-package model;
+package util;
 
-public class XPaths {
+public class XPath {
 
     public static final String SEARCH_FIELD = "//*[contains(@placeholder, 'Search for anything')]";
     public static final String SEARCH_BUTTON = "//*[contains(@value, 'Search')]";
@@ -11,4 +11,11 @@ public class XPaths {
     public static final String SUBMIT_PRICE_RANGE_BUTTON = "//*[contains(@aria-label, 'Submit price range')]";
     public static final String CASE_NEW_CONDITION_CHECK_BOX = "//*[contains(@aria-label, 'New')]";
     public static final String CASE_USED_CONDITION_CHECK_BOX = "//*[contains(@aria-label, 'Used')]";
+    public static final String NEXT_PAGE_BUTTON = "//*[contains(@aria-label, 'Next page')]";
+    public static final String ITEMS_IN_SEARCH_RESULT = "//ul[contains(@class, 'srp-results')]/li[contains(@class, 's-item')]";
+    public static final String PRODUCT_TITLE = ".//h3[contains(@class, 's-item__title')]";
+    public static final String PRODUCT_PRICE = ".//span[contains(@class, 's-item__price')]";
+    public static final String PRODUCT_CONDITION = ".//span[contains(@class, 'SECONDARY_INFO')]";
+    public static final String PRODUCT_URL = ".//a[contains(@class, 's-item__link')]";
+
 }

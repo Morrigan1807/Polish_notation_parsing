@@ -1,7 +1,10 @@
 import configurationproperties.ConfigurationProperties;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import model.foundelement.FoundElementModel;
 import model.pageobject.MainPage;
 import model.pageobject.SearchPage;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,44 +13,47 @@ import util.Wait;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static util.Constant.*;
+
 public class CrawlingTest {
 
     private static MainPage mainPage;
     private static WebDriver driver;
 
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfigurationProperties.getProperty("chromedriver"));
+    @BeforeAll
+    public static void setup() {
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(ConfigurationProperties.getProperty("mainpage"));
+        driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
         mainPage = new MainPage(driver);
     }
 
     @Test
     public void crawlingEbay() {
-        setup();
-
         mainPage.clickLanguageGeoElement();
-        Wait.sleepFiveSeconds();
-        mainPage.inputSearchText(ConfigurationProperties.getProperty("searchrequest"));
+        mainPage.inputSearchText(ConfigurationProperties.getProperty(SEARCH_REQUEST));
         mainPage.clickSearchButton();
-        Wait.sleepFiveSeconds();
 
         SearchPage searchPage = new SearchPage(driver);
-        searchPage.inputMinimumPriceField(ConfigurationProperties.getProperty("minimumprice"));
-        searchPage.inputMaximumPriceField(ConfigurationProperties.getProperty("maximumprice"));
+        searchPage.inputMinimumPriceField(ConfigurationProperties.getProperty(MINIMUM_PRICE));
+        searchPage.inputMaximumPriceField(ConfigurationProperties.getProperty(MAXIMUM_PRICE));
         searchPage.clickSubmitPriceRangeButton();
-        Wait.sleepFiveSeconds();
-        if (ConfigurationProperties.getProperty("condition").equalsIgnoreCase("new")) {
+        if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(NEW)) {
             searchPage.clickCaseNewConditionCheckBox();
-        } else {
+        } else if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(USED)) {
             searchPage.clickCaseUsedConditionCheckBox();
         }
-        Wait.sleepFiveSeconds();
 
-        List<FoundElementModel> results = searchPage.getSearchResults();
+        List<FoundElementModel> results = searchPage.getSearchResults(Integer.parseInt(ConfigurationProperties.getProperty("countofresults")));
         results.forEach(FoundElementModel::outToLog);
+    }
+
+    @AfterAll
+    public static void closeDriver() {
         Wait.sleepFiveSeconds();
+        driver.close();
+        driver.quit();
     }
 }

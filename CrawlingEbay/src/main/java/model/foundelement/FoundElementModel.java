@@ -2,12 +2,16 @@ package model.foundelement;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
+import org.apache.log4j.Logger;
+
+import static util.Constant.*;
+
 
 @Getter
 @Setter
-@Log4j2
 public class FoundElementModel {
+
+    private static final Logger logger = Logger.getLogger(FoundElementModel.class);
 
     private String productName;
     private Price price;
@@ -16,10 +20,10 @@ public class FoundElementModel {
     private String url;
 
     public void parseAndSetPrice() {
-        if (priceAsString.contains("to")) {
+        if (priceAsString.contains(TO)) {
             BoundedPrice boundedPrice = new BoundedPrice();
-            boundedPrice.setLowerPrice(Double.parseDouble(priceAsString.substring(priceAsString.indexOf('$') + 1, priceAsString.indexOf(' '))));
-            boundedPrice.setUpperPrice(Double.parseDouble(priceAsString.substring(priceAsString.lastIndexOf('$') + 1)));
+            boundedPrice.setLowerPrice(Double.parseDouble(priceAsString.substring(priceAsString.indexOf(DOLLAR_SIGN) + 1, priceAsString.indexOf(SPACE))));
+            boundedPrice.setUpperPrice(Double.parseDouble(priceAsString.substring(priceAsString.lastIndexOf(DOLLAR_SIGN) + 1)));
             price = boundedPrice;
         } else {
             ExactPrice exactPrice = new ExactPrice();
@@ -29,11 +33,11 @@ public class FoundElementModel {
     }
 
     public void outToLog() {
-        log.info("\n-------------------------------------------");
-        log.info("Product name: " + productName + "\n");
-        log.info("Price: " + priceAsString + "\n");
-        log.info("Condition: " + condition + "\n");
-        log.info("URL: " + url);
-        log.info("-------------------------------------------\n");
+        logger.info(DELIMITER_OUTPUT);
+        logger.info(PRODUCT_NAME_OUTPUT + productName);
+        logger.info(PRICE_OUTPUT + priceAsString);
+        logger.info(CONDITION_OUTPUT + condition);
+        logger.info(URL_OUTPUT + url);
+        logger.info(DELIMITER_OUTPUT);
     }
 }
