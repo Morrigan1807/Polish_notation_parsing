@@ -5,6 +5,8 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
+import util.other.Constant;
+import util.other.Wait;
 
 import static com.jayway.restassured.RestAssured.given;
 

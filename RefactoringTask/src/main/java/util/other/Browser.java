@@ -1,4 +1,4 @@
-package util;
+package util.other;
 
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;

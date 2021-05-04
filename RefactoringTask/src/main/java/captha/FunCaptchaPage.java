@@ -4,13 +4,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import util.*;
+import util.other.Browser;
+import util.other.Constant;
+import util.other.PageObject;
+import util.other.Wait;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static util.Constant.*;
-import static util.JavaScript.*;
-import static util.XPath.*;
+import static util.other.Constant.*;
+import static util.other.JavaScript.*;
+import static util.other.XPath.*;
 
 public class FunCaptchaPage extends PageObject {
 

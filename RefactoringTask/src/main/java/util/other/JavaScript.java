@@ -1,4 +1,4 @@
-package util;
+package util.other;
 
 public class JavaScript {
 

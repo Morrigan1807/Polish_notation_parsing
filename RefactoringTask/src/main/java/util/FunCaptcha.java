@@ -1,5 +1,7 @@
 package util;
 
+import util.other.Constant;
+
 public class FunCaptcha extends RestRuCaptcha {
 
     public String getJsonResultCaptcha(String publicKey, String sUrl) {
