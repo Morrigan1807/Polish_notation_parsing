@@ -21,6 +21,7 @@
         <module>ShopSimulator</module>
         <module>CrawlingEbay</module>
         <module>RefactoringTask</module>
+        <module>RestApiTask</module>
     </modules>
 
     <build>
