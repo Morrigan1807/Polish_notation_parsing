@@ -4,12 +4,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import util.*;
+import util.other.Browser;
+import util.other.Constant;
+import util.other.PageObject;
+import util.other.Wait;
 
-import static util.Constant.*;
-import static util.JavaScript.INNER_HTML_FOR_CAPTCHA_INPUT;
-import static util.JavaScript.JS_SCRIPT_FROM_RU_CAPTCHA;
-import static util.XPath.CAPTCHA_IFRAME;
-import static util.XPath.FUN_CAPTCHA_TOKEN;
+import static util.other.Constant.*;
+import static util.other.JavaScript.INNER_HTML_FOR_CAPTCHA_INPUT;
+import static util.other.JavaScript.JS_SCRIPT_FROM_RU_CAPTCHA;
+import static util.other.XPath.CAPTCHA_IFRAME;
+import static util.other.XPath.FUN_CAPTCHA_TOKEN;
 
 public class RuCaptchaV2Page extends PageObject {
 

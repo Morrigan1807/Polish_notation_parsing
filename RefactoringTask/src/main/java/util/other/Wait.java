@@ -1,29 +1,30 @@
-package util;
+package util.other;
 
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CustomConditions {
+@UtilityClass
+public class Wait {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PageObject.class);
 
-    public static ExpectedCondition<Boolean> pageLoad() {
-        return new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-            }
+    public void waitPeopleResolveCaptcha() {
+        sSleep(20);
+    }
 
-            @Override
-            public String toString() {
-                return "Page loaded";
-            }
-        };
+    public void sSleep(double sec) {
+        msSleep(sec * 1000);
+    }
+
+    public void msSleep(double mSec) {
+        try {
+            Thread.sleep((int) (mSec));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void waitForPageLoaded(Browser browser) {
