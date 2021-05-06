@@ -1,53 +1,58 @@
-import configurationproperties.ConfigurationProperties;
-import model.foundelement.FoundElementModel;
-import model.pageobject.MainPage;
-import model.pageobject.SearchPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import model.FoundElementModel;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import util.ConfigurationProperties;
 import util.Wait;
+import util.page.MainPage;
+import util.page.SearchPage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static util.Constant.*;
 
 public class CrawlingTest {
 
     private static MainPage mainPage;
     private static WebDriver driver;
 
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfigurationProperties.getProperty("chromedriver"));
+    @BeforeAll
+    public static void setup() {
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(ConfigurationProperties.getProperty("mainpage"));
+        driver.get(ConfigurationProperties.getProperty(MAIN_PAGE));
         mainPage = new MainPage(driver);
+    }
+
+    @AfterAll
+    public static void closeDriver() {
+        Wait.sleepFiveSeconds();
+        driver.close();
+        driver.quit();
     }
 
     @Test
     public void crawlingEbay() {
-        setup();
+        SearchPage searchPage = mainPage.clickLanguageGeoElement()
+                .inputSearchText(ConfigurationProperties.getProperty(SEARCH_REQUEST))
+                .clickSearchButton()
+                .inputMinimumPriceField(ConfigurationProperties.getProperty(MINIMUM_PRICE))
+                .inputMaximumPriceField(ConfigurationProperties.getProperty(MAXIMUM_PRICE))
+                .clickSubmitPriceRangeButton();
 
-        mainPage.clickLanguageGeoElement();
-        Wait.sleepFiveSeconds();
-        mainPage.inputSearchText(ConfigurationProperties.getProperty("searchrequest"));
-        mainPage.clickSearchButton();
-        Wait.sleepFiveSeconds();
-
-        SearchPage searchPage = new SearchPage(driver);
-        searchPage.inputMinimumPriceField(ConfigurationProperties.getProperty("minimumprice"));
-        searchPage.inputMaximumPriceField(ConfigurationProperties.getProperty("maximumprice"));
-        searchPage.clickSubmitPriceRangeButton();
-        Wait.sleepFiveSeconds();
-        if (ConfigurationProperties.getProperty("condition").equalsIgnoreCase("new")) {
+        if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(NEW)) {
             searchPage.clickCaseNewConditionCheckBox();
-        } else {
+        } else if (ConfigurationProperties.getProperty(CONDITION).equalsIgnoreCase(USED)) {
             searchPage.clickCaseUsedConditionCheckBox();
         }
-        Wait.sleepFiveSeconds();
 
-        List<FoundElementModel> results = searchPage.getSearchResults();
+        List<FoundElementModel> results = searchPage.getSearchResults(Integer.parseInt(ConfigurationProperties.getProperty("countofresults")));
         results.forEach(FoundElementModel::outToLog);
-        Wait.sleepFiveSeconds();
     }
 }
