@@ -33,27 +33,27 @@ public class RestApiTest {
     @Test
     @Order(1)
     public void getFileList() {
-        String getFileListUrl = "https://www.googleapis.com/drive/v3/files/";
-        authorization.when().get(getFileListUrl).then().assertThat().statusCode(200);
+        String getFileListUrl = Constant.GOOGLE_DRIVE_FILES_URL;
+        authorization.when().get(getFileListUrl).then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     @Order(2)
     public void uploadPicture() {
-        Response uploadPictureResponse = authorization.contentType("multipart/form-data")
-                .multiPart("jsonParams", Objects.requireNonNull(TestUtil.getFileURIFromResources("param.json")), "application/json")
-                .multiPart("picFile", Objects.requireNonNull(TestUtil.getFileURIFromResources("pic.jpg")), "image/jpeg")
-                .when().post("https://www.googleapis.com/upload/drive/v3/files");
-        uploadedFileId = uploadPictureResponse.then().extract().jsonPath().getString("id");
+        Response uploadPictureResponse = authorization.contentType(Constant.CONTENT_TYPE_MULTI_PART)
+                .multiPart(Constant.JSON_PARAMETERS, Objects.requireNonNull(TestUtil.getFileURIFromResources(Constant.JSON_PARAMETERS_FILE_NAME)), Constant.CONTENT_TYPE_APPLICATION_JSON)
+                .multiPart(Constant.PICTURE_FILE, Objects.requireNonNull(TestUtil.getFileURIFromResources(Constant.PICTURE_FILE_NAME)), Constant.CONTENT_TYPE_IMAGE_JPEG)
+                .when().post(Constant.GOOGLE_DRIVE_UPLOAD_URL);
+        uploadedFileId = uploadPictureResponse.then().extract().jsonPath().getString(Constant.CSS_ID_FILE);
         uploadPictureResponse.then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     @Order(3)
     public void getFileContent() {
-        String getFileContentUrl = String.format("https://www.googleapis.com/drive/v3/files/%s", uploadedFileId);
-        Response response = authorization.queryParam("alt", "media").when().get(getFileContentUrl);
-        response.then().assertThat().statusCode(200);
+        String getFileContentUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS, Constant.GOOGLE_DRIVE_FILES_URL, uploadedFileId);
+        Response response = authorization.queryParam(Constant.ALT_PARAMETER, Constant.ALT_VALUE_MEDIA).when().get(getFileContentUrl);
+        response.then().assertThat().statusCode(HttpStatus.SC_OK);
 
         TestUtil.saveResponseToFile(response);
     }
@@ -61,39 +61,39 @@ public class RestApiTest {
     @Test
     @Order(4)
     public void renameFile() {
-        String renameFileUrl = String.format("https://www.googleapis.com/drive/v3/files/%s", uploadedFileId);
-        authorization.contentType(ContentType.JSON).body("{\"name\":\"pic.png\"}")
-                .when().patch(renameFileUrl).then().assertThat().statusCode(200);
+        String renameFileUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS, Constant.GOOGLE_DRIVE_FILES_URL, uploadedFileId);
+        authorization.contentType(ContentType.JSON).body(Constant.NEW_FILE_NAME_PARAMETER_JSON)
+                .when().patch(renameFileUrl).then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     @Order(5)
     public void getFileData() {
-        String getFileContentUrl = String.format("https://www.googleapis.com/drive/v3/files/%s", uploadedFileId);
-        authorization.when().get(getFileContentUrl).then().assertThat().statusCode(200);
+        String getFileContentUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS, Constant.GOOGLE_DRIVE_FILES_URL, uploadedFileId);
+        authorization.when().get(getFileContentUrl).then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     @Order(6)
     public void copyFile() {
-        String copyFileUrl = String.format("https://www.googleapis.com/drive/v3/files/%s/copy", uploadedFileId);
+        String copyFileUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS_WITH_COPY, Constant.GOOGLE_DRIVE_FILES_URL, uploadedFileId);
         Response response = authorization.when().post(copyFileUrl);
-        copiedFileId = response.then().extract().jsonPath().getString("id");
-        response.then().assertThat().statusCode(200);
+        copiedFileId = response.then().extract().jsonPath().getString(Constant.CSS_ID_FILE);
+        response.then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 
     @Test
     @Order(7)
     public void deleteFile() {
-        String deleteFileUrl = String.format("https://www.googleapis.com/drive/v3/files/%s", uploadedFileId);
-        authorization.when().delete(deleteFileUrl).then().assertThat().statusCode(204);
+        String deleteFileUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS, Constant.GOOGLE_DRIVE_FILES_URL, uploadedFileId);
+        authorization.when().delete(deleteFileUrl).then().assertThat().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test
     @Order(8)
     public void replaceFile() {
-        String replaceFileUrl = String.format("https://www.googleapis.com/drive/v3/files/%s", copiedFileId);
-        authorization.contentType(ContentType.JSON).body("{\"trashed\":true}")
-                .when().patch(replaceFileUrl).then().assertThat().statusCode(200);
+        String replaceFileUrl = String.format(Constant.STRING_FORMAT_CONCATENATE_URL_PARTS, Constant.GOOGLE_DRIVE_FILES_URL, copiedFileId);
+        authorization.contentType(ContentType.JSON).body(Constant.SET_TRASHED_PARAMETER_JSON)
+                .when().patch(replaceFileUrl).then().assertThat().statusCode(HttpStatus.SC_OK);
     }
 }
