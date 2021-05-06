@@ -32,7 +32,6 @@ public class EbayTest {
 
     @AfterAll
     public static void waitAndCloseDriver() {
-        Wait.sleepFiveSeconds();
         driver.close();
         driver.quit();
     }

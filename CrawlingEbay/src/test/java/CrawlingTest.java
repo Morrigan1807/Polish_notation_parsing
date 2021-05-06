@@ -32,7 +32,6 @@ public class CrawlingTest {
 
     @AfterAll
     public static void closeDriver() {
-        Wait.sleepFiveSeconds();
         driver.close();
         driver.quit();
     }
